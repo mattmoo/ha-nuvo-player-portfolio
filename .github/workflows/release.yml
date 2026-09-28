@@ -1,0 +1,42 @@
+name: Release
+
+# Push a tag like v0.2.0 or v0.2.0b1. The tag must match manifest.json; the
+# release notes are that version's section of CHANGELOG.md. Versions with
+# a/b/rc are published as pre-releases (HACS: "Show beta versions").
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check tag matches manifest.json
+        run: |
+          version=$(jq -r .version custom_components/nuvo_player/manifest.json)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match manifest.json version $version"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      - name: Extract release notes
+        run: |
+          awk -v v="$VERSION" '
+            $0 ~ "^## " { if (found) exit; if ($2 == v) { found = 1; next } }
+            found { print }
+          ' CHANGELOG.md > notes.md
+          if [ ! -s notes.md ]; then
+            echo "::error::CHANGELOG.md has no section for $VERSION"
+            exit 1
+          fi
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          flags=""
+          if echo "$VERSION" | grep -Eq '(a|b|rc)[0-9]+$'; then flags="--prerelease"; fi
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md $flags

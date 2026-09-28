@@ -117,6 +117,14 @@ uv venv -p 3.13 .venv-ha && uv pip install -p .venv-ha -r requirements_ha_test.t
 NUVO_LIVE=1 .venv-ha/bin/pytest -s tests_ha/test_live.py -o pythonpath=.   # against the real amp (writes!)
 ```
 
+### Releasing
+
+The version is in `custom_components/nuvo_player/manifest.json`, `pyproject.toml` and
+`aionuvo/__init__.py` (a test checks they match). To release: bump all three, add a
+`CHANGELOG.md` section, commit to `main`, then `git tag v<version> && git push origin v<version>`.
+The Release workflow checks the tag and publishes a GitHub release with that section as notes;
+`a`/`b`/`rc` versions become pre-releases, which HACS offers with "Show beta versions".
+
 The tests run against a fake zone that serves the recorded `fixtures/`. The
 `tools/` scripts talk to real hardware; write actions need `--allow-write`.
 
