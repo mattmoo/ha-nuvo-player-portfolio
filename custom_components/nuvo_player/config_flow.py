@@ -2,17 +2,23 @@
 
 from __future__ import annotations
 
+import re
+from ipaddress import ip_address
 from typing import Any
 from urllib.parse import urlsplit
 
 import voluptuous as vol
 
 from homeassistant.config_entries import ConfigEntry, ConfigEntryState, ConfigFlow, ConfigFlowResult, OptionsFlow
-from homeassistant.const import CONF_HOST
 from homeassistant.core import callback
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.selector import EntitySelector, EntitySelectorConfig
+from homeassistant.helpers.selector import (
+    EntitySelector,
+    EntitySelectorConfig,
+    TextSelector,
+    TextSelectorConfig,
+)
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 
@@ -27,8 +33,32 @@ from .const import (
 )
 
 
-def _split_hosts(value: str) -> list[str]:
-    return [h.strip() for h in value.replace(";", ",").split(",") if h.strip()]
+_HOSTNAME = re.compile(r"^(?=.{1,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*\.?$", re.I)
+
+# One text box per zone address, with add/remove buttons.
+HOSTS_SELECTOR = TextSelector(TextSelectorConfig(multiple=True))
+
+
+def _valid_host(host: str) -> bool:
+    try:
+        ip_address(host)
+    except ValueError:
+        # "10.0.0.5x3" is a legal hostname, but really a mistyped IPv4 address.
+        looks_ipv4 = all(label.isdigit() for label in host.split(".")[:3])
+        return bool(_HOSTNAME.match(host)) and not looks_ipv4
+    return True
+
+
+def _clean_hosts(values: list[str] | str | None) -> tuple[list[str], bool]:
+    """(unique hosts in order, all valid). A row may still hold "a, b" pasted in."""
+    if isinstance(values, str):
+        values = [values]
+    hosts: list[str] = []
+    for value in values or []:
+        for host in re.split(r"[,;\s]+", value):
+            if host and host not in hosts:
+                hosts.append(host)
+    return hosts, all(_valid_host(h) for h in hosts)
 
 
 class NuvoConfigFlow(ConfigFlow, domain=DOMAIN):
@@ -77,12 +107,15 @@ class NuvoConfigFlow(ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         errors: dict[str, str] = {}
+        hosts: list[str] = []
         if user_input is not None:
-            hosts = _split_hosts(user_input.get(CONF_HOST, ""))
-            found = await self._probe(hosts)
+            hosts, valid = _clean_hosts(user_input.get(CONF_HOSTS))
+            found = await self._probe(hosts) if valid else {}
             configured = {e.unique_id for e in self._async_current_entries()}
             new = {sid: info for sid, info in found.items() if sid not in configured}
-            if not found:
+            if not valid:
+                errors[CONF_HOSTS] = "invalid_host"
+            elif not found:
                 errors["base"] = "no_zones"
             elif not new:
                 return self.async_abort(reason="already_configured")
@@ -93,7 +126,9 @@ class NuvoConfigFlow(ConfigFlow, domain=DOMAIN):
                 return self._create(system_id, info)
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema({vol.Optional(CONF_HOST, default=""): str}),
+            data_schema=self.add_suggested_values_to_schema(
+                vol.Schema({vol.Optional(CONF_HOSTS): HOSTS_SELECTOR}), {CONF_HOSTS: hosts}
+            ),
             errors=errors,
         )
 
@@ -153,23 +188,25 @@ class NuvoOptionsFlow(OptionsFlow):
     async def async_step_network(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         """Zone IPs for unicast discovery, and the event callback port."""
         entry = self.config_entry
-        if user_input is not None:
-            return self._save(
-                **{
-                    CONF_HOSTS: _split_hosts(user_input[CONF_HOSTS]),
-                    CONF_CALLBACK_PORT: user_input[CONF_CALLBACK_PORT],
-                }
-            )
+        errors: dict[str, str] = {}
         hosts = entry.options.get(CONF_HOSTS, entry.data.get(CONF_HOSTS, []))
         port = entry.options.get(CONF_CALLBACK_PORT, DEFAULT_CALLBACK_PORT)
+        if user_input is not None:
+            hosts, valid = _clean_hosts(user_input.get(CONF_HOSTS))
+            port = user_input[CONF_CALLBACK_PORT]
+            if valid:
+                return self._save(**{CONF_HOSTS: hosts, CONF_CALLBACK_PORT: port})
+            errors[CONF_HOSTS] = "invalid_host"
         return self.async_show_form(
             step_id="network",
-            data_schema=vol.Schema(
-                {
-                    vol.Optional(CONF_HOSTS, default=", ".join(hosts)): str,
-                    vol.Required(CONF_CALLBACK_PORT, default=port): vol.All(
-                        vol.Coerce(int), vol.Range(min=0, max=65535)
-                    ),
-                }
+            data_schema=self.add_suggested_values_to_schema(
+                vol.Schema(
+                    {
+                        vol.Optional(CONF_HOSTS): HOSTS_SELECTOR,
+                        vol.Required(CONF_CALLBACK_PORT): vol.All(vol.Coerce(int), vol.Range(min=0, max=65535)),
+                    }
+                ),
+                {CONF_HOSTS: hosts, CONF_CALLBACK_PORT: port},
             ),
+            errors=errors,
         )

@@ -2,7 +2,6 @@ from ipaddress import ip_address
 from unittest.mock import AsyncMock, patch
 
 from homeassistant import config_entries
-from homeassistant.const import CONF_HOST
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
@@ -19,7 +18,7 @@ async def test_user_flow(hass):
     with patch(PROBE, AsyncMock(return_value=FOUND)) as probe, patch(SETUP, return_value=True):
         result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
         assert result["type"] is FlowResultType.FORM
-        result = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_HOST: "10.0.0.53, 10.0.0.52"})
+        result = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_HOSTS: ["10.0.0.53", "10.0.0.52"]})
     assert result["type"] is FlowResultType.CREATE_ENTRY
     assert result["title"] == "Nuvo P4300"
     assert result["data"] == {CONF_SYSTEM_ID: "nuvoTEST", CONF_HOSTS: ["10.0.0.52", "10.0.0.53"]}
@@ -30,16 +29,27 @@ async def test_user_flow(hass):
 async def test_user_flow_no_zones(hass):
     with patch(PROBE, AsyncMock(return_value={})):
         result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
-        result = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_HOST: ""})
+        result = await hass.config_entries.flow.async_configure(result["flow_id"], {})
     assert result["type"] is FlowResultType.FORM
     assert result["errors"] == {"base": "no_zones"}
+
+
+async def test_user_flow_invalid_host(hass):
+    with patch(PROBE, AsyncMock(return_value=FOUND)) as probe:
+        result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
+        result = await hass.config_entries.flow.async_configure(
+            result["flow_id"], {CONF_HOSTS: ["10.0.0.52", "10.0.0.5x3"]}
+        )
+    assert result["type"] is FlowResultType.FORM
+    assert result["errors"] == {CONF_HOSTS: "invalid_host"}
+    probe.assert_not_awaited()
 
 
 async def test_user_flow_already_configured(hass):
     MockConfigEntry(domain=DOMAIN, unique_id="nuvoTEST", data={}).add_to_hass(hass)
     with patch(PROBE, AsyncMock(return_value=FOUND)):
         result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
-        result = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_HOST: ""})
+        result = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_HOSTS: []})
     assert result["type"] is FlowResultType.ABORT
     assert result["reason"] == "already_configured"
 
@@ -101,10 +111,24 @@ async def test_options_flow(hass):
     result = await hass.config_entries.options.async_configure(result["flow_id"], {"next_step_id": "network"})
     assert result["type"] is FlowResultType.FORM and result["step_id"] == "network"
     result = await hass.config_entries.options.async_configure(
-        result["flow_id"], {CONF_HOSTS: "10.0.0.52; 10.0.0.53", CONF_CALLBACK_PORT: 8096}
+        result["flow_id"], {CONF_HOSTS: ["10.0.0.52", "nuvo-lounge.lan", "bad host!"], CONF_CALLBACK_PORT: 8096}
+    )
+    assert result["type"] is FlowResultType.FORM and result["errors"] == {CONF_HOSTS: "invalid_host"}
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"], {CONF_HOSTS: ["10.0.0.52", "nuvo-lounge.lan", "10.0.0.52", "10.0.0.53; 10.0.0.54"], CONF_CALLBACK_PORT: 8096}
     )
     assert result["type"] is FlowResultType.CREATE_ENTRY
-    assert entry.options == {CONF_HOSTS: ["10.0.0.52", "10.0.0.53"], CONF_CALLBACK_PORT: 8096}
+    assert entry.options == {
+        CONF_HOSTS: ["10.0.0.52", "nuvo-lounge.lan", "10.0.0.53", "10.0.0.54"],
+        CONF_CALLBACK_PORT: 8096,
+    }
+
+
+def test_valid_host():
+    from custom_components.nuvo_player.config_flow import _valid_host
+
+    assert all(map(_valid_host, ["192.168.1.52", "fe80::1", "nuvo", "zone-1.home.arpa"]))
+    assert not any(map(_valid_host, ["10.0.0.5x3", "999.1.1.1", "bad host", "-x.lan", "http://10.0.0.52"]))
 
 
 async def test_line_in_feeds_need_loaded_entry(hass):

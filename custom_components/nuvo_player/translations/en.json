@@ -4,9 +4,9 @@
     "step": {
       "user": {
         "title": "Nuvo Player Portfolio",
-        "description": "Leave blank to search the network, or enter one or more zone IP addresses (comma-separated) if the amp is on another VLAN.",
+        "description": "Leave blank to search the network, or add zone IP addresses (or hostnames) if the amp is on another VLAN.",
         "data": {
-          "host": "Zone IP addresses"
+          "hosts": "Zone IP addresses"
         }
       },
       "confirm": {
@@ -15,7 +15,8 @@
       }
     },
     "error": {
-      "no_zones": "No Nuvo zones found. Check the zone is on and reachable, or enter its IP address."
+      "no_zones": "No Nuvo zones found. Check the zone is on and reachable, or enter its IP address.",
+      "invalid_host": "Enter IP addresses or hostnames only, for example 192.168.1.52."
     },
     "abort": {
       "already_configured": "This Nuvo system is already configured.",
@@ -43,6 +44,9 @@
           "callback_port": "Event callback port"
         }
       }
+    },
+    "error": {
+      "invalid_host": "Enter IP addresses or hostnames only, for example 192.168.1.52."
     },
     "abort": {
       "not_loaded": "The Nuvo system is not connected. Wait for it to load, then try again."
