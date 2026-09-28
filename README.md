@@ -51,7 +51,8 @@ is rediscovered by UDN, re-subscribed, and the command retried.
 Install with HACS (custom repository, category Integration) or copy
 `custom_components/nuvo_player/` into your HA `config/custom_components/`.
 Restart HA; the amp is discovered automatically (SSDP/zeroconf), or add
-**Nuvo Player Portfolio** manually. Nothing else to install: no add-on or
+**Nuvo Player Portfolio** manually. The integration's logo (Legrand's, from
+`brand/`) shows on HA 2026.3 or later. Nothing else to install: no add-on or
 container, and the library ships inside the integration.
 
 Per zone you get a device (assign each to an area yourself) with:
