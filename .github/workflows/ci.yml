@@ -39,7 +39,8 @@ jobs:
       - run: pip install pytest-homeassistant-custom-component pytest-cov
       - name: Install the async-upnp-client version HA pins
         run: |
-          pin=$(python -c "import json, homeassistant.components.ssdp as s, pathlib; print(next(r for r in json.loads((pathlib.Path(s.__file__).parent / 'manifest.json').read_text())['requirements'] if r.startswith('async-upnp-client')))")
+          ha=$(python -c "import importlib.util; print(importlib.util.find_spec('homeassistant').submodule_search_locations[0])")
+          pin=$(jq -r '.requirements[] | select(startswith("async-upnp-client"))' "$ha/components/ssdp/manifest.json")
           pip install "$pin"
           python -c "import homeassistant.const as c; print('HA', c.__version__)"
       - run: pytest -q tests_ha -o pythonpath=.
