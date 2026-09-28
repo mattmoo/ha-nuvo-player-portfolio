@@ -18,10 +18,15 @@ test = ["pytest>=8", "pytest-asyncio>=0.23", "pytest-cov", "httpx"]
 [tool.setuptools]
 packages = ["aionuvo"]
 
+[tool.setuptools.package-dir]
+# The library lives inside the HA integration so HACS ships it (no PyPI package).
+aionuvo = "custom_components/nuvo_player/aionuvo"
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 testpaths = ["tests"]
+pythonpath = ["custom_components/nuvo_player", "."]
 
 [tool.coverage.run]
 source = ["aionuvo"]

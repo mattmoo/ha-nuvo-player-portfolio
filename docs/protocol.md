@@ -271,3 +271,57 @@ without explicit approval (MP3 is untested).
   on optical Line In; **presumably each CCA feeds one zone (unconfirmed)**.
 - The zones advertise no AirPlay, Cast or Sendspin service. Spotify Connect is enabled
   on each zone. The `airplay2` settings exist but are empty and not advertised.
+
+## Get lags behind events after group changes (2026-09-28)
+
+After a `GroupMemberSetGroup`/`GroupDisband`, `Zone.Get` can keep returning the
+**previous** MemberGroup for roughly a second or two, while the GENA event with the new
+value has already arrived (`captures/unjoin-timeline.txt`). Found through HA: an unjoin
+issued ~0.5 s after a join re-read the zone, saw "not in a group", and did nothing.
+
+`aionuvo` therefore:
+- does not re-read a zone's group for `GROUP_READ_LAG` (4 s) after writing it, and
+  ignores MemberGroup/MasterGroup in polls during that window;
+- updates group state optimistically after a write, lets events confirm it, and
+  reconciles with a poll once the window has passed.
+
+Raw join/leave with gaps of 0.5, 2 and 5 s never reverted on the amp
+(`captures/join-leave-timing.txt`), so the amp applies changes promptly; only the read lags.
+The live HA test (`tests_ha/test_live.py`, `NUVO_LIVE=1`) passed 3/3 after the fix,
+with the unjoin reflected in HA within about 0.3 s.
+
+## Tone controls via the nSDK API (2026-09-28)
+
+- Login: the zone's `serialNumber` from its UPnP description, so no user input is needed.
+  `POST /api/authenticate {"serialNumber": "<base64(serial)>"}`, then cookie `Authentication=<base64(serial)>`.
+- Read: `GET /api/getData?path=settings://mediaPlayer/bass&roles=value` returns `[{"double_":0,"type":"double_"}]`.
+- Write: `GET /api/setData?path=settings://mediaPlayer/bass&roles=value&value={"type":"double_","double_":3}`
+  (the parameter is `roles`; `role` gives "wrong parameters: missing path or roles!").
+- Ranges (the device clamps and rounds to whole steps): **bass −6..6, treble −6..6, balance −18..18**.
+  Measured on Dining Room while it was off, then restored to 0.
+- Loudness uses UPnP `SetLoudness`/`GetLoudness` instead; it is evented via RenderingControl LastChange.
+
+## Favourites (2026-09-28, read-only exploration)
+
+ContentDirectory `Browse`/`X_NUVO_Browse` on Lounge:
+
+| ObjectID | Result |
+|---|---|
+| `tunein:` | Works: My Favorites (**empty** for this account), Local Radio, Music, Talk, Sports, By Location, By Language, Podcasts |
+| `spotify:` | Informational only (Spotify Connect) |
+| `sirius:` | Not configured |
+| `pandora:` | "Not available in this country" |
+| `favorites:`, `presets:`, `playHistory:`, `ui:`, `nuvo:` | Time out (>6 s) |
+| `/stable/lineIn/` | The three zones' line inputs |
+
+The Nuvo app's own favourites service does not answer, likely a retired cloud service.
+Playing a TuneIn item (presumably `X_NUVO_PlayContainerURI` with a `tunein:` item, which
+the zone resolves itself) is **untested**. After the HTTP-playback crash it needs explicit
+approval first. Not implemented; the integration offers Line In only.
+
+## Idle drop observed
+
+Ana's bedroom came back from the power cycle grouped but silent, and about an hour later
+was found with no group (off) without anything having touched it. This matches
+`settings://mediaPlayer/inactivityTimeout` = 60 and the idle drop mpdrago's project works
+around. HA shows the zone as off when this happens; `turn_on` restores Line In.

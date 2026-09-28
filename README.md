@@ -8,9 +8,9 @@ power and volume control of the players feeding their Line In (see PLAN.md).
 
 | Part | What it is |
 |---|---|
-| `aionuvo/` | Async Python library. The only code that talks to the amp. |
+| `custom_components/nuvo_player/aionuvo/` | Async Python library, the only code that talks to the amp. It is bundled in the integration; `pip install -e .` exposes it as `aionuvo`. |
 | `shim/` | FastAPI REST + Server-Sent Events wrapper (Docker/Unraid). |
-| `custom_components/nuvo_player/` | Home Assistant integration (in progress). |
+| `custom_components/nuvo_player/` | Home Assistant integration (HACS). |
 | `docs/protocol.md` | Protocol notes from recon on real hardware. |
 | `docs/safety.md` | Actions the code refuses to send. |
 
@@ -39,6 +39,35 @@ Discovery uses SSDP (`ST: urn:schemas-nuvotechnologies-com:device:Zone:1`),
 multicast plus unicast to any configured hosts. When a zone stops answering it
 is rediscovered by UDN, re-subscribed, and the command retried.
 
+## Home Assistant
+
+Install with HACS (custom repository, category Integration) or copy
+`custom_components/nuvo_player/` into your HA `config/custom_components/`.
+Restart HA; the amp is discovered automatically (SSDP/zeroconf), or add
+**Nuvo Player Portfolio** manually. Nothing else to install: no add-on or
+container, and the library ships inside the integration.
+
+Per zone you get a device (assign each to an area yourself) with:
+
+- `media_player.<zone>`: power, volume, mute, source (Line In) and grouping
+  (`media_player.join` / `unjoin`). Turning off a group master also turns off
+  the zones listening to it; an amp behaviour.
+- `number.<zone>_bass`, `_treble` (−6…6), `_balance` (−18…18), polled every 5 min.
+- `switch.<zone>_loudness`.
+
+Options: extra zone IPs for unicast discovery (other VLANs), and a fixed event
+port if a firewall sits between the amp and HA (0 = automatic).
+
+### Music Assistant
+
+The zones cannot be Music Assistant players themselves (see PLAN.md). Treat each
+zone as the amplifier of whatever feeds its Line In (e.g. a Chromecast Audio or
+a Sendspin receiver): in Music Assistant, open that player's settings and set
+**Power control** and **Volume control** to the zone's `media_player` entity.
+Playing to the player then turns the zone on to Line In and routes volume to the
+Nuvo. If you move a feeder to another zone, change it there; nothing here
+needs to know.
+
 ## Shim
 
 ```bash
@@ -55,7 +84,11 @@ must be able to reach the callback port (8096) for push updates.
 
 ```bash
 uv venv -p 3.13 .venv && uv pip install -p .venv -e ".[shim,test]" uvicorn
-.venv/bin/pytest --cov
+.venv/bin/pytest --cov                                   # library + shim
+
+uv venv -p 3.13 .venv-ha && uv pip install -p .venv-ha -r requirements_ha_test.txt
+.venv-ha/bin/pytest tests_ha -o pythonpath=.             # HA integration
+NUVO_LIVE=1 .venv-ha/bin/pytest -s tests_ha/test_live.py -o pythonpath=.   # against the real amp (writes!)
 ```
 
 The tests run against a fake zone that serves the recorded `fixtures/`. The

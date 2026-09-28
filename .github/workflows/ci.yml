@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  library:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,3 +17,26 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: pip install -e ".[shim,test]" uvicorn
       - run: pytest -q --cov --cov-report=term-missing --cov-fail-under=85
+
+  home-assistant:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements_ha_test.txt
+      - run: pytest -q tests_ha -o pythonpath=. --cov=custom_components.nuvo_player --cov-report=term-missing
+
+  hassfest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hacs/action@main
+        with:
+          category: integration

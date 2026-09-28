@@ -58,6 +58,11 @@ class FakeZone:
     subs: dict[str, Subscription] = field(default_factory=dict)
     faults: dict[str, tuple[int, str]] = field(default_factory=dict)
     reject_renew: bool = False
+    # Simulates the amp's lagging Get: report these groups instead of the real ones.
+    stale_get_groups: tuple[str, str] | None = None
+    loudness: bool = False
+    tone: dict[str, float] = field(default_factory=lambda: {"bass": 0.0, "treble": 0.0, "balance": 0.0})
+    web_requests: list[tuple[str, dict[str, str]]] = field(default_factory=list)
     port: int = 0
     _runner: web.AppRunner | None = None
     _session: aiohttp.ClientSession | None = None
@@ -117,6 +122,8 @@ class FakeZone:
 
     async def _handle(self, request: web.Request) -> web.Response:
         path = request.path
+        if path.startswith("/api/"):
+            return await self._web(request)
         if request.method == "GET":
             if path.endswith(f"{self.mac}.xml"):
                 body = (FIXTURES / f"00000000-0000-0000-0000-{self.mac}" / "description.xml").read_bytes()
@@ -136,6 +143,30 @@ class FakeZone:
             return await self._soap(service, request)
         raise web.HTTPMethodNotAllowed(request.method, ["GET", "POST", "SUBSCRIBE", "UNSUBSCRIBE"])
 
+    # --- nSDK web API (port 80 on real zones) ----------------------------
+
+    WEB_COOKIE = "UkVEQUNURUQ="  # base64("REDACTED"), the fixtures' serial
+    TONE_LIMITS = {"bass": 6, "treble": 6, "balance": 18}
+
+    async def _web(self, request: web.Request) -> web.Response:
+        params = dict(request.query)
+        self.web_requests.append((request.path, params))
+        if request.path == "/api/authenticate":
+            body = json.loads(await request.text())
+            ok = body.get("serialNumber") == self.WEB_COOKIE
+            return web.Response(status=200 if ok else 500)
+        if request.cookies.get("Authentication") != self.WEB_COOKIE:
+            return web.Response(status=302, headers={"Location": "/"})
+        key = params.get("path", "").rsplit("/", 1)[-1]
+        if key not in self.tone:
+            return web.Response(status=500, text="Error: unknown path")
+        if request.path == "/api/setData":
+            value = json.loads(params["value"])["double_"]
+            limit = self.TONE_LIMITS[key]
+            self.tone[key] = float(max(-limit, min(limit, round(value))))
+            return web.Response(text="")
+        return web.json_response([{"double_": self.tone[key], "type": "double_"}])
+
     # --- GENA -----------------------------------------------------------
 
     def _subscribe(self, service: str, request: web.Request) -> web.Response:
@@ -145,7 +176,7 @@ class FakeZone:
                 return web.Response(status=412)
         else:
             callback = request.headers["CALLBACK"].strip("<>")
-            sid = f"uuid:sub-{len(self.subs) + 1}-{service}"
+            sid = f"uuid:sub-{self.mac}-{next(_gid)}-{service}"
             self.subs[sid] = Subscription(service, callback)
             asyncio.get_running_loop().call_later(0.05, lambda: asyncio.ensure_future(self._initial(sid)))
         return web.Response(headers={"SID": sid, "TIMEOUT": "Second-300"})
@@ -229,8 +260,9 @@ class FakeZone:
         xml = ('<?xml version="1.0"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" '
                's:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body>'
                f'<u:{action}Response xmlns:u="{stype}">{out}</u:{action}Response></s:Body></s:Envelope>')
-        for svc in ("ZoneService", "RenderingControl", "AVTransport"):
-            asyncio.get_running_loop().call_soon(lambda s=svc: asyncio.ensure_future(self.notify(s)))
+        if not action.startswith("Get"):  # real zones only event on change
+            for svc in ("ZoneService", "RenderingControl", "AVTransport"):
+                asyncio.get_running_loop().call_soon(lambda s=svc: asyncio.ensure_future(self.notify(s)))
         return web.Response(text=xml, content_type="text/xml")
 
     @staticmethod
@@ -244,8 +276,9 @@ class FakeZone:
         return web.Response(status=500, text=xml, content_type="text/xml")
 
     def _a_Get(self, a):
-        mg = json.dumps({"id": self.member_group, "sortKey": "1"})
-        ms = json.dumps({"id": self.master_group, "sortKey": "1"})
+        member, master = self.stale_get_groups or (self.member_group, self.master_group)
+        mg = json.dumps({"id": member, "sortKey": "1"})
+        ms = json.dumps({"id": master, "sortKey": "1"})
         return {"FirmwareVersion": "2025.1", "SystemID": "nuvoTEST", "MemberID": self.member_id,
                 "Title": self.title, "Icon": "skin:iconZoneLivingRoom", "Active": "1", "Connecting": "0",
                 "MasterGroup": ms, "MemberGroup": mg, "Model": "p4300", "AudioInput": "player",
@@ -259,6 +292,12 @@ class FakeZone:
 
     def _a_X_NUVO_AdjustVolume(self, a):
         self.volume = max(0, min(100, self.volume + int(a["VolumeAdjustment"])))
+
+    def _a_GetLoudness(self, a):
+        return {"CurrentLoudness": int(self.loudness)}
+
+    def _a_SetLoudness(self, a):
+        self.loudness = a["DesiredLoudness"] in ("1", "true", "True")
 
     def _a_GetMute(self, a):
         return {"CurrentMute": int(self.muted)}

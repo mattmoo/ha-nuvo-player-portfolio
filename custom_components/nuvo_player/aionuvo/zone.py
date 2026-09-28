@@ -6,7 +6,7 @@ import asyncio
 import json
 import logging
 import time
-from collections.abc import Awaitable, Callable, Sequence
+from collections.abc import Awaitable, Callable, Iterable, Sequence
 from datetime import timedelta
 from typing import TYPE_CHECKING, Any
 from urllib.parse import urlsplit
@@ -31,6 +31,7 @@ from .didl import LINE_IN_CONTAINER_METADATA, line_in_track_metadata, line_in_ur
 from .exceptions import NuvoActionError, NuvoConnectionError, NuvoError
 from .models import Source, ZoneState, group_id
 from .safety import check_action, check_post_url, is_read_only
+from .webapi import TONE_PATHS, NuvoWebApi
 
 if TYPE_CHECKING:
     from .system import NuvoSystem
@@ -44,6 +45,11 @@ Listener = Callable[["NuvoZone"], None]
 # A command that hits a restarting zone waits this long for it to reappear.
 COMMAND_RETRY_DELAYS = (3.0,)
 
+# The amp's Get can report a zone's group from before a change for a second or
+# two (docs/protocol.md). Within this window after we change a zone's group,
+# pushed events and our own bookkeeping are trusted over Get.
+GROUP_READ_LAG = 4.0
+
 
 class NuvoZone:
     """A single zone. Keyed by member ID; its LOCATION may change at any time."""
@@ -55,7 +61,9 @@ class NuvoZone:
         *,
         locate: Callable[[NuvoZone], Awaitable[str | None]] | None = None,
         system: NuvoSystem | None = None,
+        web: NuvoWebApi | None = None,
     ) -> None:
+        self.web = web
         self._device = device
         self._factory = factory
         self._locate = locate
@@ -70,6 +78,7 @@ class NuvoZone:
         self.renew_interval = SUBSCRIPTION_TIMEOUT / 2
         self.last_renewed = 0.0
         self.last_polled = 0.0
+        self._group_written_at = float("-inf")
 
     def __repr__(self) -> str:
         return f"<NuvoZone {self.name!r} {self.member_id} {self.location}>"
@@ -276,6 +285,8 @@ class NuvoZone:
     async def async_update(self) -> None:
         """Poll the full state."""
         z = await self._call(ZONE_SERVICE, "Get")
+        if self._group_read_unreliable:
+            z = {k: v for k, v in z.items() if k not in ("MemberGroup", "MasterGroup")}
         rc = {"InstanceID": 0, "Channel": "Master"}
         vol = await self._call(RENDERING_SERVICE, "GetVolume", **rc)
         mute = await self._call(RENDERING_SERVICE, "GetMute", **rc)
@@ -313,6 +324,8 @@ class NuvoZone:
                 setattr(s, simple[key], value)
             elif key == "Volume":
                 s.volume_raw = int(value)
+            elif key == "Loudness":
+                s.loudness = value in (True, 1, "1", "true", "TRUE", "True")
             elif key == "Mute":
                 s.muted = value in (True, 1, "1", "true", "TRUE", "True")
             elif key == "MemberGroup":
@@ -405,28 +418,45 @@ class NuvoZone:
         await self._write(RENDERING_SERVICE, "SetMute", InstanceID=0, Channel="Master", DesiredMute=bool(muted))
         self.state.muted = bool(muted)
 
+    def _mark_group_written(self) -> None:
+        self._group_written_at = time.monotonic()
+
+    @property
+    def _group_read_unreliable(self) -> bool:
+        return time.monotonic() - self._group_written_at < GROUP_READ_LAG
+
     async def _refresh_group(self) -> None:
+        """Re-read group membership, unless we changed it moments ago (Get lags)."""
+        if self._group_read_unreliable:
+            return
         z = await self._call(ZONE_SERVICE, "Get")
         self._apply({"MemberGroup": z["MemberGroup"], "MasterGroup": z["MasterGroup"], "Title": z["Title"]})
 
     async def _leave_group(self) -> None:
         """Stop listening to another zone's group; this zone ends up off."""
         await self._call(ZONE_SERVICE, "GroupMemberSetGroup", memberIDs=json.dumps([self.member_id]), groupID="")
+        self._mark_group_written()
         self.state.member_group = ""
         self.state.master_group = ""
 
-    async def select_source(self, source: str) -> None:
+    async def select_source(self, source: str) -> str:
         """Select a source: leave any other zone's group, create our own if needed
-        (GroupCreate), then X_NUVO_PlayContainerURI. Zones that joined us keep listening."""
+        (GroupCreate), then X_NUVO_PlayContainerURI. Zones that joined us keep listening.
+
+        Returns the zone's group id.
+        """
         if source != SOURCE_LINE_IN:
             raise NuvoError(f"Unknown source {source!r}; known: {[s.key for s in self.sources]}")
         async with self._lock:
             await self._refresh_group()
             if self.is_joined:
                 await self._leave_group()
-            if not self.state.member_group:
+            gid = self.state.member_group
+            if not gid:
                 result = await self._call(ZONE_SERVICE, "GroupCreate", memberIDs=json.dumps([self.member_id]))
-                self.state.member_group = result.get("groupID", "")
+                gid = result.get("groupID", "")
+                self._mark_group_written()
+                self.state.member_group = self.state.master_group = gid
             await self._call(
                 AVTRANSPORT_SERVICE,
                 "X_NUVO_PlayContainerURI",
@@ -438,6 +468,7 @@ class NuvoZone:
                 StartingIndex=1,
                 UpdateID=-1,
             )
+            return gid
 
     async def turn_on(self) -> None:
         """Turn on to the zone's own Line In. No-op if already playing (own or joined group)."""
@@ -463,9 +494,47 @@ class NuvoZone:
             if self.is_joined:
                 await self._leave_group()
                 return
+            members = [z for z in self.group_members if z is not self]
             await self._call(ZONE_SERVICE, "GroupDisband", groupID=self.state.member_group)
-            self.state.member_group = ""
+            for zone in (self, *members):
+                zone._mark_group_written()
+                zone.state.member_group = zone.state.master_group = ""
             self.state.master_group = ""
+
+    @property
+    def serial(self) -> str | None:
+        """Serial number from the UPnP description; also the web UI login."""
+        return self._device.serial_number or None
+
+    async def set_loudness(self, loudness: bool) -> None:
+        await self._write(
+            RENDERING_SERVICE, "SetLoudness", InstanceID=0, Channel="Master", DesiredLoudness=bool(loudness)
+        )
+        self.state.loudness = bool(loudness)
+
+    async def async_update_loudness(self) -> None:
+        result = await self._call(RENDERING_SERVICE, "GetLoudness", InstanceID=0, Channel="Master")
+        self._apply({"Loudness": result["CurrentLoudness"]})
+
+    def _require_web(self) -> NuvoWebApi:
+        if self.web is None:
+            raise NuvoError(f"{self.name}: web API unavailable (no serial number or HTTP session)")
+        return self.web
+
+    async def async_update_tone(self, keys: Iterable[str] = TONE_PATHS) -> None:
+        """Read bass/treble/balance via the web API (not evented; poll occasionally)."""
+        web = self._require_web()
+        for key in keys:
+            self.state.tone[key] = await web.get_tone(key)
+        self._notify()
+
+    async def set_tone(self, key: str, value: float) -> None:
+        """Set bass, treble (-6..6) or balance (-18..18)."""
+        if key not in TONE_PATHS:
+            raise NuvoError(f"Unknown tone control {key!r}")
+        async with self._lock:
+            self.state.tone[key] = await self._require_web().set_tone(key, value)
+        self._notify()
 
     async def play(self) -> None:
         await self._write(AVTRANSPORT_SERVICE, "Play", InstanceID=0, Speed="1")

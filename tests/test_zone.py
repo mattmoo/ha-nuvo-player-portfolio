@@ -98,9 +98,10 @@ async def test_select_source_when_off(system, fake):
     fake.calls.clear()
     await zone.select_source("line_in")
     names = [c[0] for c in fake.calls]
-    assert names == ["Get", "GroupCreate", "X_NUVO_PlayContainerURI"]
-    assert json.loads(fake.calls[1][1]["memberIDs"]) == ["memberId-0025ed1dd983"]
-    play = fake.calls[2][1]
+    # Right after our own turn_off the zone's Get is not trusted (amp lag), so no Get.
+    assert names == ["GroupCreate", "X_NUVO_PlayContainerURI"]
+    assert json.loads(fake.calls[0][1]["memberIDs"]) == ["memberId-0025ed1dd983"]
+    play = fake.calls[1][1]
     assert play["CurrentURI"] == ""
     assert play["CurrentURIMetaData"] == LINE_IN_CONTAINER_METADATA
     assert play["TrackURI"] == "nuvo:nuvoremote:memberId-0025ed1dd983/lineIn_memberId-0025ed1dd983"
@@ -128,8 +129,9 @@ async def test_turn_off_and_on(system, fake):
     assert fake.calls[-1] == ("GroupDisband", {"groupID": "gidInitial"})
     assert zone.playback_state == "off"
     assert await eventually(lambda: not zone.state.is_on and zone.source is None)
-    await zone.turn_off()  # already off: no-op
-    assert fake.calls[-1][0] == "Get"
+    n = len(fake.calls)
+    await zone.turn_off()  # already off: no write
+    assert all(c[0].startswith("Get") for c in fake.calls[n:])
     await zone.turn_on()
     assert fake.transport == "PLAYING"
     fake.calls.clear()
@@ -254,7 +256,7 @@ async def test_group_join_and_model(amp):
     assert [z.name for z in dining.group_members] == ["Lounge", "Dining Room"]
     assert dining.playback_zone is lounge
     assert dining.playback_state == "PLAYING"  # its own transport says NO_MEDIA_PRESENT
-    assert dining.state.transport_state == "NO_MEDIA_PRESENT"
+    assert await eventually(lambda: dining.state.transport_state == "NO_MEDIA_PRESENT")
     assert lounge.source == "line_in" and dining.source is None
     f_lounge.calls.clear()
     await system.group(lounge, [dining])  # already joined: no call
@@ -315,7 +317,7 @@ async def test_select_source_on_member_leaves_group_first(amp):
     await system.group(lounge, [dining])
     f_dining.calls.clear()
     await dining.select_source("line_in")
-    assert [c[0] for c in f_dining.calls] == ["Get", "GroupMemberSetGroup", "GroupCreate", "X_NUVO_PlayContainerURI"]
+    assert [c[0] for c in f_dining.calls] == ["GroupMemberSetGroup", "GroupCreate", "X_NUVO_PlayContainerURI"]
     assert f_dining.uri == f_dining.line_in_uri and f_lounge.transport == "PLAYING"
     await dining.async_update()
     assert dining.source == "line_in" and not dining.is_joined
@@ -385,3 +387,121 @@ async def test_discover_classmethod(ssdp, fake):
     assert list(s.zones) == ["memberId-0025ed1dd983"]
     assert "Lounge" in repr(zone_of(s))
     await s.async_stop()
+
+
+async def test_loudness(system, fake):
+    zone = zone_of(system)
+    await zone.set_loudness(True)
+    assert fake.loudness is True
+    await zone.async_update_loudness()
+    assert zone.state.loudness is True
+
+
+async def test_tone_controls(system, fake):
+    zone = zone_of(system)
+    await zone.async_update_tone()
+    assert zone.state.tone == {"bass": 0.0, "treble": 0.0, "balance": 0.0}
+    await zone.set_tone("bass", 2.4)
+    assert fake.tone["bass"] == 2.0 and zone.state.tone["bass"] == 2
+    await zone.set_tone("balance", -40)
+    assert fake.tone["balance"] == -18.0
+    await zone.set_tone("treble", 99)
+    assert fake.tone["treble"] == 6.0
+    with pytest.raises(NuvoError):
+        await zone.set_tone("speakerImpedance", 1)
+    paths = {p["path"] for path, p in fake.web_requests if path == "/api/setData"}
+    assert paths == {"settings://mediaPlayer/bass", "settings://mediaPlayer/balance", "settings://mediaPlayer/treble"}
+
+
+async def test_tone_requires_login(system, fake):
+    zone = zone_of(system)
+    zone.web._cookie = "d3Jvbmc="  # wrong serial
+    zone.web._authenticated = False
+    with pytest.raises(NuvoError, match="login refused"):
+        await zone.async_update_tone()
+
+
+async def test_tone_without_web_api(system):
+    zone = zone_of(system)
+    zone.web = None
+    with pytest.raises(NuvoError, match="web API unavailable"):
+        await zone.set_tone("bass", 1)
+
+
+async def test_web_api_denies_other_settings(system):
+    from aionuvo import DeniedActionError
+
+    with pytest.raises(DeniedActionError):
+        await zone_of(system).web._api("/api/setData", {"path": "settings://mediaPlayer/speakerImpedance", "value": "x"})
+    with pytest.raises(DeniedActionError):
+        await zone_of(system).web._request("GET", "/diagnostics_execute.fcgi")
+
+
+async def test_probe(ssdp, fake):
+    import aiohttp
+
+    from aionuvo import async_probe
+
+    async with aiohttp.ClientSession() as session:
+        found = await async_probe(session, ["127.0.0.1"], multicast=False, timeout=1, ssdp_port=ssdp.port)
+        assert found == {"nuvoTEST": {"zones": ["Lounge"], "hosts": ["127.0.0.1"], "model": "p4300"}}
+        empty = FakeSsdp([])
+        await empty.start()
+        assert await async_probe(session, ["127.0.0.1"], multicast=False, timeout=1, ssdp_port=empty.port) == {}
+        empty.stop()
+
+
+async def test_system_id_filter(ssdp, fake):
+    s = make_system(ssdp, system_id="someOtherSystem")
+    with pytest.raises(NuvoConnectionError):
+        await s.async_start(subscribe=False)
+    await s.async_stop()
+
+
+async def test_late_zone_is_adopted(ssdp, fake):
+    """A zone that was offline at startup is added when SSDP sees it."""
+    dining = FakeZone(mac="0025ed1dd6e1", title="Dining Room", member_group="gidDining")
+    s = make_system(ssdp, web_port=fake.port)
+    await s.async_start()
+    added = []
+    unsub = s.on_zone_added(added.append)
+    await dining.start()
+    try:
+        s.async_location_seen(dining.udn, dining.location)
+        s.async_location_seen(dining.udn, dining.location)  # duplicate sighting while loading
+        assert await eventually(lambda: DINING in s.zones)
+        assert [z.name for z in added] == ["Dining Room"]
+        assert s.zones[DINING].subscribed
+        s.async_location_seen(dining.udn, dining.location)  # known, same place: no-op
+        unsub()
+    finally:
+        await s.async_stop()
+        await dining.stop()
+
+
+async def test_unjoin_right_after_join_despite_lagging_get(amp):
+    """Found on hardware: Get still reports the pre-join group ~0.5 s after a join,
+    which made ungroup() think the zone was already off and do nothing."""
+    system, f_lounge, f_dining = amp
+    lounge, dining = system.zones[LOUNGE], system.zones[DINING]
+    await dining.turn_off()
+    await asyncio.sleep(0.4)  # past the read-lag window of the turn_off
+    await system.group(lounge, [dining])
+    f_dining.stale_get_groups = ("", "")  # Get lags: still says "off"
+    await system.ungroup(dining)
+    assert ("GroupMemberSetGroup", {"memberIDs": json.dumps([DINING]), "groupID": ""}) in f_dining.calls
+    assert f_dining.member_group == ""
+    f_dining.stale_get_groups = None
+
+
+async def test_lagging_get_does_not_clobber_fresh_group_state(amp):
+    system, f_lounge, f_dining = amp
+    lounge, dining = system.zones[LOUNGE], system.zones[DINING]
+    await system.group(lounge, [dining])
+    f_dining.stale_get_groups = ("gidDining", "gidDining")  # pre-join view
+    await dining.async_update()
+    assert dining.state.member_group == "gidLounge"
+    await asyncio.sleep(0.4)  # window over: Get is trusted again
+    f_dining.stale_get_groups = None
+    await dining.async_update()
+    assert dining.state.member_group == "gidLounge"

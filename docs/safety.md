@@ -1,6 +1,6 @@
 # Safety rules
 
-Enforced in code by `aionuvo/safety.py` (`check_action`). Every SOAP call in
+Enforced in code by `custom_components/nuvo_player/aionuvo/safety.py` (`check_action`). Every SOAP call in
 `aionuvo`, the shim and `tools/` goes through it.
 
 ## Denylist (never call)
@@ -17,6 +17,17 @@ zone's `UpdateURL`) is also forbidden.
 
 The guard raises `DeniedActionError` for these unless the environment has
 `NUVO_I_KNOW=1`. Do not set that variable in normal use.
+
+## Tone-control exception (user decision 2026-09-28)
+
+The web UI JSON API (`/api/setData`, a write over GET) is denied except through
+`aionuvo.webapi.NuvoWebApi`, which calls `check_web_request`. That allows:
+
+- `POST /api/authenticate` (login with the zone's serial number);
+- `GET /api/getData` and `/api/getRows` (reads);
+- `GET /api/setData` **only** for `settings://mediaPlayer/bass`, `treble` and `balance`.
+
+Every other `setData` path (speaker impedance, line-out mode, audio mode, and so on) stays denied.
 
 ## Write actions (need user approval during recon)
 

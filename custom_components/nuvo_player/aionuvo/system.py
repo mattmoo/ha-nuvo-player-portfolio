@@ -7,7 +7,8 @@ import json
 import logging
 import socket
 import time
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
+from urllib.parse import urlsplit
 
 import aiohttp
 from async_upnp_client.aiohttp import AiohttpNotifyServer, AiohttpSessionRequester
@@ -18,11 +19,15 @@ from async_upnp_client.exceptions import UpnpError
 from .const import POLL_INTERVAL, REDISCOVERY_BACKOFF, SSDP_PORT, ZONE_DEVICE_TYPE, ZONE_SERVICE
 from .discovery import DiscoveredZone, LocationCache, ZoneWatcher, async_discover
 from .exceptions import NuvoConnectionError, NuvoError
+from .webapi import NuvoWebApi
+from . import zone as _zone
 from .zone import _CONNECTION_ERRORS, NuvoZone
 
 _LOGGER = logging.getLogger(__name__)
 
 TICK = 5.0
+# Seconds to wait before polling zones after a group change.
+RECONCILE_DELAY = 3.0
 
 
 def _local_ip_for(host: str) -> str:
@@ -47,7 +52,11 @@ class NuvoSystem:
         multicast: bool = True,
         ssdp_port: int = SSDP_PORT,
         search_timeout: int = 4,
+        web_port: int = 80,
+        system_id: str | None = None,
     ) -> None:
+        self._system_id = system_id
+        self._web_port = web_port
         self._own_session = session is None and requester is None
         self._session = session
         self._requester = requester
@@ -64,6 +73,9 @@ class NuvoSystem:
         self._task: asyncio.Task | None = None
         self._backoff: dict[str, tuple[int, float]] = {}
         self.zones: dict[str, NuvoZone] = {}
+        self._adding: set[str] = set()
+        self._tasks: set[asyncio.Task] = set()
+        self._zone_added: list[Callable[[NuvoZone], None]] = []
 
     @classmethod
     async def discover(cls, timeout: int = 4, hosts: Iterable[str] = (), **kwargs) -> NuvoSystem:
@@ -117,6 +129,8 @@ class NuvoSystem:
         self._task = asyncio.create_task(self._maintain())
 
     async def async_stop(self) -> None:
+        for task in list(self._tasks):
+            task.cancel()
         if self._task:
             self._task.cancel()
             try:
@@ -145,11 +159,18 @@ class NuvoSystem:
             return None
         if device.device_type != ZONE_DEVICE_TYPE or device.find_service(ZONE_SERVICE) is None:
             return None
-        zone = NuvoZone(device, self._factory, locate=self._locate, system=self)
+        web = None
+        if self._session is not None and device.serial_number:
+            host = urlsplit(location).hostname or ""
+            web = NuvoWebApi(self._session, host, device.serial_number, port=self._web_port)
+        zone = NuvoZone(device, self._factory, locate=self._locate, system=self, web=web)
         try:
             await zone.async_update()
         except NuvoError as err:
             _LOGGER.debug("Cannot read %s: %r", location, err)
+            return None
+        if self._system_id and zone.state.system_id != self._system_id:
+            _LOGGER.debug("Ignoring %s: belongs to system %s", zone.name, zone.state.system_id)
             return None
         return zone
 
@@ -183,10 +204,53 @@ class NuvoSystem:
         return hit.location if hit else None
 
     def _on_ssdp(self, found: DiscoveredZone) -> None:
-        zone = next((z for z in self.zones.values() if z.udn == found.udn), None)
-        if zone and zone.location != found.location:
-            _LOGGER.info("SSDP: %s is now at %s", zone.name, found.location)
-            asyncio.create_task(self._relocate(zone, found.location))
+        self.async_location_seen(found.udn, found.location)
+
+    def async_location_seen(self, udn: str, location: str) -> None:
+        """Feed an SSDP sighting (e.g. from Home Assistant's scanner).
+
+        A known zone at a new LOCATION is relocated; an unknown zone of this
+        system (for example one that was offline at startup) is added.
+        """
+        zone = next((z for z in self.zones.values() if z.udn == udn), None)
+        if zone is None:
+            if udn not in self._adding:
+                self._adding.add(udn)
+                self._spawn(self._add_zone(udn, location))
+        elif zone.location != location:
+            _LOGGER.info("SSDP: %s is now at %s", zone.name, location)
+            self._spawn(self._relocate(zone, location))
+
+    def _spawn(self, coro) -> None:
+        task = asyncio.get_running_loop().create_task(coro)
+        self._tasks.add(task)
+        task.add_done_callback(self._tasks.discard)
+
+    async def _add_zone(self, udn: str, location: str) -> None:
+        try:
+            zone = await self._load(location)
+            if zone is None or zone.udn != udn or zone.member_id in self.zones:
+                return
+            if self.system_id and zone.state.system_id != self.system_id:
+                return
+            if self._notify_server:
+                try:
+                    await zone.async_subscribe_events(self._notify_server.event_handler)
+                except (UpnpError, *_CONNECTION_ERRORS):
+                    pass  # the maintenance loop retries
+            # Publish and announce together, so listeners never see a half-added zone.
+            self.zones[zone.member_id] = zone
+            _LOGGER.info("Added zone %s at %s", zone.name, location)
+            self._save_cache()
+            for cb in list(self._zone_added):
+                cb(zone)
+        finally:
+            self._adding.discard(udn)
+
+    def on_zone_added(self, callback: Callable[[NuvoZone], None]) -> Callable[[], None]:
+        """Call `callback(zone)` when a zone is added after startup."""
+        self._zone_added.append(callback)
+        return lambda: self._zone_added.remove(callback)
 
     async def _relocate(self, zone: NuvoZone, location: str) -> None:
         if await zone.async_relocate(location):
@@ -244,6 +308,10 @@ class NuvoSystem:
 
     # --- grouping (verified on hardware 2026-09-28, docs/protocol.md) ----
 
+    # The amp's Get lags its own events by up to a second or so after a group
+    # change (docs/protocol.md), so after a write we set state optimistically,
+    # let events confirm it, and only poll once things have settled.
+
     async def group(self, master: NuvoZone, members: Iterable[NuvoZone]) -> None:
         """Make `members` listen to `master`'s group (GroupMemberSetGroup).
 
@@ -251,18 +319,23 @@ class NuvoSystem:
         listens to another zone, members join that group instead.
         """
         await master._refresh_group()
-        if not master.state.is_on:
-            await master.select_source("line_in")
-        gid = master.state.member_group
+        if master.state.is_on:
+            gid = master.state.member_group
+        else:
+            gid = await master.select_source("line_in")
         joining = [m for m in members if m is not master]
         for zone in joining:
             await zone._refresh_group()
-        ids = [z.member_id for z in joining if z.state.member_group != gid]
-        if ids:
+        moving = [z for z in joining if z.state.member_group != gid]
+        if moving:
             async with master._lock:
-                await master._call(ZONE_SERVICE, "GroupMemberSetGroup", memberIDs=json.dumps(ids), groupID=gid)
-        for zone in (master, *joining):
-            await zone.async_update()
+                await master._call(
+                    ZONE_SERVICE, "GroupMemberSetGroup", memberIDs=json.dumps([z.member_id for z in moving]), groupID=gid
+                )
+            for zone in moving:
+                zone._mark_group_written()
+                zone.state.member_group, zone.state.master_group = gid, ""
+        self._settled((master, *joining))
 
     async def ungroup(self, zone: NuvoZone) -> None:
         """Take `zone` out of its group.
@@ -276,14 +349,61 @@ class NuvoSystem:
         if zone.is_joined:
             async with zone._lock:
                 await zone._leave_group()
-            await zone.async_update()
+            self._settled((zone,))
             return
+        for other in self.zones.values():
+            if other is not zone:
+                await other._refresh_group()
         others = [z for z in zone.group_members if z is not zone]
-        for other in others:
-            await other._refresh_group()
-        ids = [z.member_id for z in others if z.state.member_group == zone.state.member_group]
-        if ids:
+        leaving = [z for z in others if z.state.member_group == zone.state.member_group]
+        if leaving:
             async with zone._lock:
-                await zone._call(ZONE_SERVICE, "GroupMemberSetGroup", memberIDs=json.dumps(ids), groupID="")
-        for z in (zone, *others):
-            await z.async_update()
+                await zone._call(
+                    ZONE_SERVICE, "GroupMemberSetGroup", memberIDs=json.dumps([z.member_id for z in leaving]), groupID=""
+                )
+            for z in leaving:
+                z._mark_group_written()
+                z.state.member_group = z.state.master_group = ""
+        self._settled((zone, *others))
+
+    def _settled(self, zones: Iterable[NuvoZone]) -> None:
+        """Notify listeners now; reconcile with a poll once the amp has settled."""
+        zones = list(zones)
+        for zone in zones:
+            zone._notify()
+
+        async def _reconcile() -> None:
+            await asyncio.sleep(max(RECONCILE_DELAY, _zone.GROUP_READ_LAG))
+            for zone in zones:
+                try:
+                    await zone.async_update()
+                except NuvoError:
+                    pass
+
+        self._spawn(_reconcile())
+
+
+async def async_probe(
+    session: aiohttp.ClientSession,
+    hosts: Iterable[str] = (),
+    *,
+    multicast: bool = True,
+    timeout: int = 4,
+    **kwargs,
+) -> dict[str, dict[str, object]]:
+    """Find Nuvo systems without subscribing. Returns {system_id: {"zones": [...], "hosts": [...], "model": ...}}."""
+    system = NuvoSystem(session=session, hosts=hosts, multicast=multicast, search_timeout=timeout, **kwargs)
+    try:
+        await system.async_start(subscribe=False, watch=False)
+    except NuvoConnectionError:
+        await system.async_stop()
+        return {}
+    found: dict[str, dict[str, object]] = {}
+    for zone in system.zones.values():
+        entry = found.setdefault(
+            zone.state.system_id or "", {"zones": [], "hosts": [], "model": zone.state.model}
+        )
+        entry["zones"].append(zone.name)
+        entry["hosts"].append(zone.host)
+    await system.async_stop()
+    return found

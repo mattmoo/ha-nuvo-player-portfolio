@@ -8,7 +8,7 @@ RUN apt-get update \
 
 WORKDIR /app
 COPY pyproject.toml README.md ./
-COPY aionuvo ./aionuvo
+COPY custom_components/nuvo_player/aionuvo ./custom_components/nuvo_player/aionuvo
 COPY shim ./shim
 RUN pip install --no-cache-dir ".[shim]"
 

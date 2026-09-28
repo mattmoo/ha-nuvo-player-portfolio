@@ -15,9 +15,9 @@ Build one async Python library that talks UPnP/SOAP straight to the amp, and put
 |---|---|
 | 0 Environment | Done. No sudo on ubuntu-dev: `uv` venv on Python 3.13 (the `upnp-client` CLI breaks on 3.14); no nmap/tshark/gupnp-tools. |
 | 1 Recon | Done, including write replay and a power cycle. App traffic capture (step 6) turned out unnecessary. |
-| 2 `aionuvo` | Done. Verified live on all zones: volume, mute, step, Line In, on/off, grouping, push events (0.2–0.5 s), recovery after a power cycle. 81 tests, 92% coverage. |
+| 2 `aionuvo` | Done, and now bundled at `custom_components/nuvo_player/aionuvo/`. Verified live on all zones: volume, mute, step, Line In, on/off, grouping, tone, loudness, push events (0.2–0.5 s), recovery after a power cycle. 92 tests, 92% coverage; also passes on HA's pinned async-upnp-client 0.46.2. |
 | 3 Shim | Code and tests done; ran against the amp. Docker image not built (no Docker on ubuntu-dev). 48 h soak outstanding. |
-| 4 HA integration | Not started. Waiting on the STOP AND ASK decisions. |
+| 4 HA integration | **Built.** Config flow (SSDP, zeroconf, manual, options), media_player with grouping, tone numbers, loudness switch, diagnostics. 21 HA tests; live test against the amp passed 3/3. Outstanding: hassfest/HACS CI (needs GitHub), a real HA install, and the repo URL in `manifest.json` (placeholder `OWNER`). |
 
 What changed from the original plan (details in docs/protocol.md):
 
@@ -28,6 +28,9 @@ What changed from the original plan (details in docs/protocol.md):
 5. **Ports:** the shim API is on 8095 and its GENA callback on 8096. The original plan put both on 8095.
 6. **Web UI / nSDK JSON API on :80** (serial-number login) exposes the full settings tree: bass, treble, balance, turn-on volume, idle timeout. It **writes via plain GET** (`/api/setData`), so it is hard-denied. Tone controls would need a deliberate, narrow exception.
 7. **Direct HTTP playback crashes the zone's UPnP process** (`SetAVTransportURI` + `Play` of an http WAV: the zone fetched it, then its UPnP server restarted on a new port). This is not a usable path, which rules out Music Assistant driving the zones directly. See Phase 4, Music Assistant.
+9. **The amp's `Get` lags its own events** by a second or two after group changes. Group state is updated optimistically and confirmed by events; reads are ignored briefly after writes.
+10. **Tone controls need no user input:** the web login serial is published in each zone's UPnP description.
+11. **Favourites:** the Nuvo favourites service is dead; TuneIn browsing works but playback is untested (needs approval). Line In only for now.
 8. **The DLNA DMR overlap is moot.** The zones embed a MediaRenderer but do not advertise it over SSDP, so HA's DLNA integration should not discover them. Still confirm in Phase 4.
 
 ## Key Findings (read before coding)
@@ -299,7 +302,14 @@ The zones cannot be MA players directly. They advertise no AirPlay, Cast or Send
 
 **Acceptance:** SSDP auto-discovery shows "Discovered: Nuvo" in HA; three media_players with working source select and volume slider; app-side changes appear in HA within 2 s; automatic recovery after an amp reboot (port change); hassfest and HACS validation pass.
 
-**STOP AND ASK:** entity naming and device layout (one hub with three zones, or three devices), whether to expose streaming favourites as sources, the CCA → zone mapping for Music Assistant, whether to allow tone controls via the nSDK API, and before a public HACS release.
+**Decisions (user, 2026-09-28):**
+- One config entry per Nuvo system. **Each zone is its own HA device** with one `media_player` named after the zone, so each can be put in its own area. The integration never assigns areas and sets no `suggested_area`.
+- `aionuvo` is **bundled inside the integration** (no PyPI package, no add-on or extra container). HA core already ships `async-upnp-client`/`aiohttp`.
+- Sources: Line In, and **explore streaming favourites** (read-only `X_NUVO_Browse` first; any playback test needs approval, given the HTTP-playback crash).
+- **Tone controls: a narrow exception** to the nSDK `setData` denylist. Only bass, treble and balance (number entities); loudness goes over UPnP (switch). The login serial is read from each zone's UPnP description, not stored.
+- **No player-to-zone mapping in the integration.** Which MA player feeds which zone is configured in Music Assistant (power/volume control entity per player), so moving a Chromecast needs no change here.
+
+**STOP AND ASK:** before any favourites playback test, and before a public HACS release.
 
 ## Risks and unknowns
 

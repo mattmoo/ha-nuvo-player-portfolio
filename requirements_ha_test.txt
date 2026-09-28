@@ -1,0 +1,5 @@
+# Home Assistant integration tests (tests_ha/). Pinned to HA 2026.2.x,
+# the newest release supporting Python 3.13; bump together.
+pytest-homeassistant-custom-component==0.13.316
+async-upnp-client==0.46.2
+pytest-cov

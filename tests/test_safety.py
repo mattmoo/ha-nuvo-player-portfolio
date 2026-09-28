@@ -74,3 +74,17 @@ def test_web_ui_reads_allowed(monkeypatch):
     monkeypatch.delenv("NUVO_I_KNOW", raising=False)
     check_http_url("http://10.0.0.1/api/getData?path=x&roles=value")
     check_http_url("http://10.0.0.1/diagnostics.fcgi")
+
+
+def test_web_request_allowlist():
+    from aionuvo.safety import check_web_request
+
+    check_web_request("/api/getData", {"path": "settings://anything"})
+    check_web_request("/api/authenticate", {})
+    for p in ("bass", "treble", "balance"):
+        check_web_request("/api/setData", {"path": f"settings://mediaPlayer/{p}"})
+    for bad in ("settings://mediaPlayer/speakerImpedance", "settings://deviceName", ""):
+        with pytest.raises(DeniedActionError):
+            check_web_request("/api/setData", {"path": bad})
+    with pytest.raises(DeniedActionError):
+        check_web_request("/update.fcgi", {})

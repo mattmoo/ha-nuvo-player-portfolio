@@ -20,8 +20,9 @@ from xml.etree import ElementTree as ET
 
 import httpx
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "custom_components" / "nuvo_player"))
 from aionuvo.safety import check_action, check_post_url, is_read_only  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from read_state import DEV, envelope  # noqa: E402
 
 

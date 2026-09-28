@@ -18,7 +18,7 @@ from xml.sax.saxutils import escape
 
 import httpx
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "custom_components" / "nuvo_player"))
 from aionuvo.safety import check_action, is_read_only  # noqa: E402
 
 DEV = "{urn:schemas-upnp-org:device-1-0}"

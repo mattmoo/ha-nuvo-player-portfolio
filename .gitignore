@@ -7,3 +7,5 @@ refs/
 captures/*
 !captures/.gitkeep
 .coverage
+.venv-ha/
+*.egg-info/

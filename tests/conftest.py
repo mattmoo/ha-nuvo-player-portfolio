@@ -12,6 +12,8 @@ def fast_maintenance(monkeypatch):
     monkeypatch.setattr(aionuvo.system, "TICK", 0.05)
     monkeypatch.setattr(aionuvo.system, "REDISCOVERY_BACKOFF", (0.05, 0.1))
     monkeypatch.setattr(aionuvo.zone, "COMMAND_RETRY_DELAYS", (0.3,))
+    monkeypatch.setattr(aionuvo.system, "RECONCILE_DELAY", 0.1)
+    monkeypatch.setattr(aionuvo.zone, "GROUP_READ_LAG", 0.3)
 
 
 @pytest.fixture
@@ -42,8 +44,8 @@ def make_system(ssdp, **kwargs) -> NuvoSystem:
 
 
 @pytest.fixture
-async def system(ssdp):
-    s = make_system(ssdp)
+async def system(ssdp, fake):
+    s = make_system(ssdp, web_port=fake.port)
     await s.async_start()
     yield s
     await s.async_stop()

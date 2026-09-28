@@ -1,0 +1,47 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Nuvo Player Portfolio",
+        "description": "Leave blank to search the network, or enter one or more zone IP addresses (comma-separated) if the amp is on another VLAN.",
+        "data": {
+          "host": "Zone IP addresses"
+        }
+      },
+      "confirm": {
+        "title": "Nuvo Player Portfolio",
+        "description": "Add this Nuvo system? Zones found: {zones}."
+      }
+    },
+    "error": {
+      "no_zones": "No Nuvo zones found. Check the zone is on and reachable, or enter its IP address."
+    },
+    "abort": {
+      "already_configured": "This Nuvo system is already configured.",
+      "cannot_connect": "Could not read the Nuvo zone."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Nuvo options",
+        "description": "Zone IPs are used for unicast discovery when multicast does not reach the amp. The event port is where zones send state changes; 0 picks a free port, so set a fixed one only if a firewall needs it.",
+        "data": {
+          "hosts": "Zone IP addresses",
+          "callback_port": "Event callback port"
+        }
+      }
+    }
+  },
+  "entity": {
+    "number": {
+      "bass": { "name": "Bass" },
+      "treble": { "name": "Treble" },
+      "balance": { "name": "Balance" }
+    },
+    "switch": {
+      "loudness": { "name": "Loudness" }
+    }
+  }
+}
