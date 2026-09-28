@@ -30,7 +30,7 @@ What changed from the original plan (details in docs/protocol.md):
 7. **Direct HTTP playback crashes the zone's UPnP process** (`SetAVTransportURI` + `Play` of an http WAV: the zone fetched it, then its UPnP server restarted on a new port). This is not a usable path, which rules out Music Assistant driving the zones directly. See Phase 4, Music Assistant.
 9. **The amp's `Get` lags its own events** by a second or two after group changes. Group state is updated optimistically and confirmed by events; reads are ignored briefly after writes.
 10. **Tone controls need no user input:** the web login serial is published in each zone's UPnP description.
-11. **Favourites:** the Nuvo favourites service is dead; TuneIn browsing works but playback is untested (needs approval). Line In only for now.
+11. **Favourites:** the Nuvo favourites service is dead. **TuneIn** browse and playback work through the zone's own ContentDirectory (2026-09-28) and are exposed through HA's media browser; Podcasts are hidden until tested. Playing by guide ID alone (for short automation IDs) is untested.
 8. **The DLNA DMR overlap is moot.** The zones embed a MediaRenderer but do not advertise it over SSDP, so HA's DLNA integration should not discover them. Still confirm in Phase 4.
 
 ## Key Findings (read before coding)
@@ -307,7 +307,8 @@ The zones cannot be MA players directly. They advertise no AirPlay, Cast or Send
 - `aionuvo` is **bundled inside the integration** (no PyPI package, no add-on or extra container). HA core already ships `async-upnp-client`/`aiohttp`.
 - Sources: Line In, and **explore streaming favourites** (read-only `X_NUVO_Browse` first; any playback test needs approval, given the HTTP-playback crash).
 - **Tone controls: a narrow exception** to the nSDK `setData` denylist. Only bass, treble and balance (number entities); loudness goes over UPnP (switch). The login serial is read from each zone's UPnP description, not stored.
-- **No player-to-zone mapping in the integration.** Which MA player feeds which zone is configured in Music Assistant (power/volume control entity per player), so moving a Chromecast needs no change here.
+- **Optional Line In feed per zone (user decision 2026-09-28).** Options → Line In feeds maps each zone to the player wired to its Line In. When that player goes to `playing` (not from `unavailable`/`unknown`), the zone runs `turn_on`, i.e. switches to Line In, turning on if needed, unless it listens to another zone's group. This works without Music Assistant's power control and overrides TuneIn. MA's power/volume control remains the alternative and needs no mapping here.
+- `turn_on` switches a zone playing TuneIn to Line In (so MA power control wins over TuneIn); it stays a no-op on Line In or while joined to another zone's playing group.
 
 **STOP AND ASK:** before any favourites playback test, and before a public HACS release.
 

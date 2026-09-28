@@ -1,4 +1,4 @@
-"""DIDL-Lite payloads for X_NUVO_PlayContainerURI, and metadata parsing.
+"""DIDL-Lite payloads for X_NUVO_PlayContainerURI, and metadata and listing parsing.
 
 The Line In payload is byte-for-byte the one the official app sends, as captured
 by mpdrago/nuvo-zone-keepalive (MIT) and replayed on a P4300 (docs/protocol.md).
@@ -6,6 +6,8 @@ by mpdrago/nuvo-zone-keepalive (MIT) and replayed on a P4300 (docs/protocol.md).
 
 from __future__ import annotations
 
+import re
+from dataclasses import dataclass
 from xml.etree import ElementTree as ET
 from xml.sax.saxutils import escape
 
@@ -94,6 +96,76 @@ def parse_metadata(didl: str | None) -> dict[str, str | None]:
     out["title"] = item.findtext("dc:title", None, _NS)
     out["artist"] = item.findtext("upnp:artist", None, _NS) or item.findtext("dc:creator", None, _NS)
     out["album"] = item.findtext("upnp:album", None, _NS)
-    art = item.findtext("upnp:albumArtURI", None, _NS)
+    # TuneIn stations carry their logo as upnp:icon; Line In has a skin: icon.
+    art = item.findtext("upnp:albumArtURI", None, _NS) or item.findtext("upnp:icon", None, _NS)
     out["image_url"] = art if art and art.startswith("http") else None
     return out
+
+
+# --- ContentDirectory listings -------------------------------------------
+
+# Top-level entries of a Browse result. Items and containers never nest (the
+# x:x_nuvo_context inside an item is a different tag), so a lazy match is safe.
+_ENTRY_RE = re.compile(r"<(item|container)\b.*?</\1>", re.S)
+
+
+@dataclass(frozen=True)
+class DidlEntry:
+    """One item or container from a Browse listing.
+
+    `xml` is the element exactly as the zone sent it: X_NUVO_PlayContainerURI
+    wants it back verbatim (docs/protocol.md, "TuneIn playback").
+    """
+
+    kind: str  # "item" or "container"
+    id: str
+    parent_id: str
+    title: str
+    upnp_class: str
+    res: str | None
+    icon: str | None
+    description: str | None
+    index: int  # 1-based position in the parent's listing
+    xml: str
+
+    @property
+    def playable(self) -> bool:
+        return self.kind == "item" and bool(self.id and self.res) and self.upnp_class.startswith(
+            "object.item.audioItem"
+        )
+
+    @property
+    def didl(self) -> str:
+        """The element wrapped in a DIDL-Lite document."""
+        return wrap_didl(self.xml)
+
+
+def wrap_didl(fragment: str) -> str:
+    return _DIDL_OPEN + fragment + "</DIDL-Lite>"
+
+
+def parse_listing(didl: str | None, start: int = 0) -> list[DidlEntry]:
+    """Parse a Browse result; `start` is the StartingIndex the listing was fetched from."""
+    entries = []
+    for pos, match in enumerate(_ENTRY_RE.finditer(didl or ""), start=start + 1):
+        fragment = match.group(0)
+        try:
+            el = ET.fromstring(wrap_didl(fragment))[0]
+        except ET.ParseError:
+            continue
+        icon = el.findtext("upnp:icon", None, _NS)
+        entries.append(
+            DidlEntry(
+                kind=match.group(1),
+                id=el.get("id", ""),
+                parent_id=el.get("parentID", ""),
+                title=el.findtext("dc:title", "", _NS),
+                upnp_class=el.findtext("upnp:class", "", _NS),
+                res=el.findtext("d:res", None, _NS),
+                icon=icon if icon and icon.startswith("http") else None,
+                description=el.findtext("dc:description", None, _NS),
+                index=pos,
+                xml=fragment,
+            )
+        )
+    return entries

@@ -14,6 +14,14 @@ SSDP_PORT = 1900
 MEMBER_ID_PREFIX = "memberId-"
 
 SOURCE_LINE_IN = "line_in"
+SOURCE_TUNEIN = "tunein"
+
+# TuneIn in the zone's ContentDirectory, and its track URIs (docs/protocol.md).
+TUNEIN_ROOT = "tunein:"
+TUNEIN_URI_PREFIX = "nuvo:tunein:"
+# Browse page size, and the most entries read from one listing.
+BROWSE_PAGE = 100
+BROWSE_LIMIT = 500
 
 # Rediscovery backoff after a zone stops answering, in seconds.
 REDISCOVERY_BACKOFF = (1, 2, 5, 10, 30)

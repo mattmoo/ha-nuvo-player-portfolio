@@ -97,9 +97,19 @@ async def test_options_flow(hass):
     entry = MockConfigEntry(domain=DOMAIN, unique_id="nuvoTEST", data={CONF_SYSTEM_ID: "nuvoTEST", CONF_HOSTS: ["10.0.0.52"]})
     entry.add_to_hass(hass)
     result = await hass.config_entries.options.async_init(entry.entry_id)
-    assert result["type"] is FlowResultType.FORM
+    assert result["type"] is FlowResultType.MENU
+    result = await hass.config_entries.options.async_configure(result["flow_id"], {"next_step_id": "network"})
+    assert result["type"] is FlowResultType.FORM and result["step_id"] == "network"
     result = await hass.config_entries.options.async_configure(
         result["flow_id"], {CONF_HOSTS: "10.0.0.52; 10.0.0.53", CONF_CALLBACK_PORT: 8096}
     )
     assert result["type"] is FlowResultType.CREATE_ENTRY
     assert entry.options == {CONF_HOSTS: ["10.0.0.52", "10.0.0.53"], CONF_CALLBACK_PORT: 8096}
+
+
+async def test_line_in_feeds_need_loaded_entry(hass):
+    entry = MockConfigEntry(domain=DOMAIN, unique_id="nuvoTEST", data={CONF_SYSTEM_ID: "nuvoTEST", CONF_HOSTS: ["10.0.0.52"]})
+    entry.add_to_hass(hass)
+    result = await hass.config_entries.options.async_init(entry.entry_id)
+    result = await hass.config_entries.options.async_configure(result["flow_id"], {"next_step_id": "line_in_feeds"})
+    assert result["type"] is FlowResultType.ABORT and result["reason"] == "not_loaded"

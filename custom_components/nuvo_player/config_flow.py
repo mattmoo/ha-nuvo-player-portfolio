@@ -7,15 +7,24 @@ from urllib.parse import urlsplit
 
 import voluptuous as vol
 
-from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult, OptionsFlow
+from homeassistant.config_entries import ConfigEntry, ConfigEntryState, ConfigFlow, ConfigFlowResult, OptionsFlow
 from homeassistant.const import CONF_HOST
 from homeassistant.core import callback
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.selector import EntitySelector, EntitySelectorConfig
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 
 from .aionuvo import async_probe
-from .const import CONF_CALLBACK_PORT, CONF_HOSTS, CONF_SYSTEM_ID, DEFAULT_CALLBACK_PORT, DOMAIN
+from .const import (
+    CONF_CALLBACK_PORT,
+    CONF_HOSTS,
+    CONF_LINE_IN_FEEDS,
+    CONF_SYSTEM_ID,
+    DEFAULT_CALLBACK_PORT,
+    DOMAIN,
+)
 
 
 def _split_hosts(value: str) -> list[str]:
@@ -101,13 +110,52 @@ class NuvoConfigFlow(ConfigFlow, domain=DOMAIN):
 
 
 class NuvoOptionsFlow(OptionsFlow):
-    """Zone IPs for unicast discovery, and the event callback port."""
+    """Network settings, and which player feeds each zone's Line In."""
 
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
+        return self.async_show_menu(step_id="init", menu_options=["line_in_feeds", "network"])
+
+    def _save(self, **changes: Any) -> ConfigFlowResult:
+        return self.async_create_entry(data={**self.config_entry.options, **changes})
+
+    async def async_step_line_in_feeds(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
+        """Per zone, the player (e.g. a Chromecast Audio) wired to its Line In.
+
+        When that player starts playing, the zone switches to Line In.
+        """
+        entry = self.config_entry
+        if entry.state is not ConfigEntryState.LOADED:
+            return self.async_abort(reason="not_loaded")
+        zones = sorted(entry.runtime_data.zones.values(), key=lambda z: z.name)
+        # Field keys are shown as labels, so use zone names (made unique) and map back.
+        fields: dict[str, str] = {}
+        for zone in zones:
+            key = zone.name if zone.name not in fields else f"{zone.name} ({zone.member_id})"
+            fields[key] = zone.member_id
+        if user_input is not None:
+            feeds = {fields[k]: v for k, v in user_input.items() if k in fields and v}
+            return self._save(**{CONF_LINE_IN_FEEDS: feeds})
+        current = entry.options.get(CONF_LINE_IN_FEEDS, {})
+        ours = er.async_entries_for_config_entry(er.async_get(self.hass), entry.entry_id)
+        selector = EntitySelector(
+            EntitySelectorConfig(domain="media_player", exclude_entities=[e.entity_id for e in ours])
+        )
+        return self.async_show_form(
+            step_id="line_in_feeds",
+            data_schema=vol.Schema(
+                {
+                    vol.Optional(key, description={"suggested_value": current.get(member_id)}): selector
+                    for key, member_id in fields.items()
+                }
+            ),
+        )
+
+    async def async_step_network(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
+        """Zone IPs for unicast discovery, and the event callback port."""
         entry = self.config_entry
         if user_input is not None:
-            return self.async_create_entry(
-                data={
+            return self._save(
+                **{
                     CONF_HOSTS: _split_hosts(user_input[CONF_HOSTS]),
                     CONF_CALLBACK_PORT: user_input[CONF_CALLBACK_PORT],
                 }
@@ -115,7 +163,7 @@ class NuvoOptionsFlow(OptionsFlow):
         hosts = entry.options.get(CONF_HOSTS, entry.data.get(CONF_HOSTS, []))
         port = entry.options.get(CONF_CALLBACK_PORT, DEFAULT_CALLBACK_PORT)
         return self.async_show_form(
-            step_id="init",
+            step_id="network",
             data_schema=vol.Schema(
                 {
                     vol.Optional(CONF_HOSTS, default=", ".join(hosts)): str,

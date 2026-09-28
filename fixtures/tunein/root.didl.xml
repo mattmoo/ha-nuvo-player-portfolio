@@ -1,0 +1,59 @@
+
+<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp/" xmlns:x="urn:schemas.nuvotechnologies.com">
+    <container id="tunein:browse/uri/Browse.ashx?c=presets&amp;nsdkDisplayName=My%20Favorites" parentID="tunein:" restricted="1">
+        <dc:title>My Favorites</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInMyPresets</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;My Favorites&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=presets&amp;nsdkDisplayName=My%20Favorites&quot;,&quot;icon&quot;:&quot;skin:iconTuneInMyPresets&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" parentID="tunein:" restricted="1">
+        <dc:title>Local Radio</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInLocalRadio</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Local Radio&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio&quot;,&quot;icon&quot;:&quot;skin:iconTuneInLocalRadio&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" parentID="tunein:" restricted="1">
+        <dc:title>Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInMusic</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music&quot;,&quot;icon&quot;:&quot;skin:iconTuneInMusic&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?c=talk&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Talk" parentID="tunein:" restricted="1">
+        <dc:title>Talk</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInTalk</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Talk&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=talk&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Talk&quot;,&quot;icon&quot;:&quot;skin:iconTuneInTalk&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?c=sports&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Sports" parentID="tunein:" restricted="1">
+        <dc:title>Sports</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInSports</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Sports&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=sports&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Sports&quot;,&quot;icon&quot;:&quot;skin:iconTuneInSports&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=r0&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=By%20Location" parentID="tunein:" restricted="1">
+        <dc:title>By Location</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInByLocation</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;By Location&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=r0&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=By%20Location&quot;,&quot;icon&quot;:&quot;skin:iconTuneInByLocation&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?c=lang&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=By%20Language" parentID="tunein:" restricted="1">
+        <dc:title>By Language</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInByLanguage</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;By Language&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=lang&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=By%20Language&quot;,&quot;icon&quot;:&quot;skin:iconTuneInByLanguage&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?c=podcast&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Podcasts" parentID="tunein:" restricted="1">
+        <dc:title>Podcasts</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <upnp:icon>skin:iconTuneInPodcasts</upnp:icon>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Podcasts&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?c=podcast&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Podcasts&quot;,&quot;icon&quot;:&quot;skin:iconTuneInPodcasts&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+</DIDL-Lite>

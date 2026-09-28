@@ -1,25 +1,33 @@
-"""Media player per Nuvo zone: power, volume, Line In and grouping."""
+"""Media player per Nuvo zone: power, volume, Line In, TuneIn and grouping."""
 
 from __future__ import annotations
 
+import logging
 from collections.abc import Awaitable
+from typing import Any
 
 from homeassistant.components.media_player import (
+    BrowseMedia,
     MediaPlayerDeviceClass,
     MediaPlayerEntity,
     MediaPlayerEntityFeature,
     MediaPlayerState,
     MediaType,
 )
-from homeassistant.core import HomeAssistant, callback
+from homeassistant.const import STATE_PLAYING, STATE_UNAVAILABLE, STATE_UNKNOWN
+from homeassistant.core import Event, EventStateChangedData, HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.event import async_track_state_change_event
 
 from . import NuvoConfigEntry
 from .aionuvo import NuvoError, NuvoSystem, NuvoZone
-from .const import DOMAIN, SOURCE_LABELS
+from .browse import TuneInBrowser, is_tunein_id
+from .const import CONF_LINE_IN_FEEDS, DOMAIN, SOURCE_LABELS
 from .entity import NuvoEntity
+
+_LOGGER = logging.getLogger(__name__)
 
 PARALLEL_UPDATES = 0
 
@@ -34,11 +42,12 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: NuvoConfigEntry, async_add_entities: AddEntitiesCallback
 ) -> None:
     system = entry.runtime_data
-    async_add_entities(NuvoMediaPlayer(system, z) for z in system.zones.values())
+    feeds: dict[str, str] = entry.options.get(CONF_LINE_IN_FEEDS, {})
+    async_add_entities(NuvoMediaPlayer(system, z, feeds.get(z.member_id)) for z in system.zones.values())
 
     @callback
     def _added(zone: NuvoZone) -> None:
-        async_add_entities([NuvoMediaPlayer(system, zone)])
+        async_add_entities([NuvoMediaPlayer(system, zone, feeds.get(zone.member_id))])
 
     entry.async_on_unload(system.on_zone_added(_added))
 
@@ -55,11 +64,42 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
         | MediaPlayerEntityFeature.TURN_ON
         | MediaPlayerEntityFeature.TURN_OFF
         | MediaPlayerEntityFeature.GROUPING
+        | MediaPlayerEntityFeature.BROWSE_MEDIA
+        | MediaPlayerEntityFeature.PLAY_MEDIA
     )
 
-    def __init__(self, system: NuvoSystem, zone: NuvoZone) -> None:
+    def __init__(self, system: NuvoSystem, zone: NuvoZone, line_in_feed: str | None = None) -> None:
         super().__init__(system, zone)
         self._attr_unique_id = zone.member_id
+        self._browser = TuneInBrowser(zone)
+        self._line_in_feed = line_in_feed
+
+    async def async_added_to_hass(self) -> None:
+        await super().async_added_to_hass()
+        if self._line_in_feed:
+            self.async_on_remove(
+                async_track_state_change_event(self.hass, [self._line_in_feed], self._feed_changed)
+            )
+
+    @callback
+    def _feed_changed(self, event: Event[EventStateChangedData]) -> None:
+        """The player wired to this zone's Line In started: switch the zone to Line In.
+
+        Only a real start counts, not the player (re)appearing at startup or after
+        a dropout, so a zone someone moved to TuneIn is not grabbed back.
+        """
+        old, new = event.data["old_state"], event.data["new_state"]
+        if new is None or old is None or new.state != STATE_PLAYING:
+            return
+        if old.state in (STATE_PLAYING, STATE_UNAVAILABLE, STATE_UNKNOWN):
+            return
+        self.hass.async_create_task(self._switch_to_line_in(), eager_start=True)
+
+    async def _switch_to_line_in(self) -> None:
+        try:
+            await self.zone.turn_on()
+        except NuvoError as err:
+            _LOGGER.warning("%s: could not switch to Line In for %s: %s", self.zone.name, self._line_in_feed, err)
 
     # --- state ------------------------------------------------------------
 
@@ -151,6 +191,28 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
         if source not in keys:
             raise ServiceValidationError(f"Unknown source {source!r}; choose from {list(keys)}")
         await self._run(self.zone.select_source(keys[source]))
+
+    async def async_browse_media(
+        self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None
+    ) -> BrowseMedia:
+        return await self._browser.async_browse(media_content_id)
+
+    async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None:
+        """Play a TuneIn station from the media browser.
+
+        Only the zone's own TuneIn works: an HTTP URL would crash its UPnP server
+        (PLAN.md, finding 7), so media sources and URLs are refused.
+        """
+        if not is_tunein_id(media_id):
+            raise ServiceValidationError(
+                f"{self.zone.name} can only play TuneIn stations from its media browser, not {media_id!r}"
+            )
+
+        async def _play() -> None:
+            container, station = await self._browser.async_resolve(media_id)
+            await self.zone.play_item(container, station)
+
+        await self._run(_play())
 
     async def async_join_players(self, group_members: list[str]) -> None:
         registry = er.async_get(self.hass)

@@ -26,12 +26,26 @@
     "step": {
       "init": {
         "title": "Nuvo options",
+        "menu_options": {
+          "line_in_feeds": "Line In feeds",
+          "network": "Network"
+        }
+      },
+      "line_in_feeds": {
+        "title": "Line In feeds",
+        "description": "For each zone, pick the player wired to its Line In (for example a Chromecast Audio). When that player starts playing, the zone switches to Line In, turning on if needed. A zone listening to another zone's group is left alone. Leave a zone blank to skip it."
+      },
+      "network": {
+        "title": "Network",
         "description": "Zone IPs are used for unicast discovery when multicast does not reach the amp. The event port is where zones send state changes; 0 picks a free port, so set a fixed one only if a firewall needs it.",
         "data": {
           "hosts": "Zone IP addresses",
           "callback_port": "Event callback port"
         }
       }
+    },
+    "abort": {
+      "not_loaded": "The Nuvo system is not connected. Wait for it to load, then try again."
     }
   },
   "entity": {

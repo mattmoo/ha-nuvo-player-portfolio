@@ -1,6 +1,7 @@
 """Async client for Legrand Nuvo Player Portfolio zones (UPnP/SOAP)."""
 
-from .const import SOURCE_LINE_IN, ZONE_DEVICE_TYPE
+from .const import SOURCE_LINE_IN, SOURCE_TUNEIN, TUNEIN_ROOT, ZONE_DEVICE_TYPE
+from .didl import DidlEntry
 from .discovery import DiscoveredZone, async_discover
 from .exceptions import DeniedActionError, NuvoActionError, NuvoConnectionError, NuvoError
 from .models import Source, ZoneState
@@ -9,8 +10,11 @@ from .zone import NuvoZone
 
 __all__ = [
     "SOURCE_LINE_IN",
+    "SOURCE_TUNEIN",
+    "TUNEIN_ROOT",
     "ZONE_DEVICE_TYPE",
     "DeniedActionError",
+    "DidlEntry",
     "DiscoveredZone",
     "NuvoActionError",
     "NuvoConnectionError",

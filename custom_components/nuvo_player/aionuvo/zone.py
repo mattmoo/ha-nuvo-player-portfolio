@@ -20,14 +20,26 @@ from async_upnp_client.profiles.dlna import dlna_handle_notify_last_change
 
 from .const import (
     AVTRANSPORT_SERVICE,
+    BROWSE_LIMIT,
+    BROWSE_PAGE,
+    CONTENT_DIRECTORY_SERVICE,
     MEMBER_ID_PREFIX,
     RENDERING_SERVICE,
     SOURCE_LINE_IN,
+    SOURCE_TUNEIN,
     SUBSCRIBED_SERVICES,
     SUBSCRIPTION_TIMEOUT,
+    TUNEIN_URI_PREFIX,
     ZONE_SERVICE,
 )
-from .didl import LINE_IN_CONTAINER_METADATA, line_in_track_metadata, line_in_uri, parse_metadata
+from .didl import (
+    LINE_IN_CONTAINER_METADATA,
+    DidlEntry,
+    line_in_track_metadata,
+    line_in_uri,
+    parse_listing,
+    parse_metadata,
+)
 from .exceptions import NuvoActionError, NuvoConnectionError, NuvoError
 from .models import Source, ZoneState, group_id
 from .safety import check_action, check_post_url, is_read_only
@@ -134,8 +146,11 @@ class NuvoZone:
         """Key of this zone's own source, or None if off, joined to another zone, or unknown."""
         if not self.state.is_on or self.master is not self:
             return None
-        if self.state.current_uri == line_in_uri(self.member_id):
+        uri = self.state.current_uri or ""
+        if uri == line_in_uri(self.member_id):
             return SOURCE_LINE_IN
+        if uri.startswith(TUNEIN_URI_PREFIX):
+            return SOURCE_TUNEIN
         return None
 
     # Group model (docs/protocol.md, "Grouping"): every playing zone masters its own
@@ -447,6 +462,26 @@ class NuvoZone:
         """
         if source != SOURCE_LINE_IN:
             raise NuvoError(f"Unknown source {source!r}; known: {[s.key for s in self.sources]}")
+        return await self._play_container(
+            LINE_IN_CONTAINER_METADATA,
+            line_in_uri(self.member_id),
+            line_in_track_metadata(self.member_id, self.name),
+            1,
+        )
+
+    async def play_item(self, container: DidlEntry, item: DidlEntry) -> str:
+        """Play `item` (e.g. a TuneIn station) from its parent `container`'s listing.
+
+        Both entries must come from Browse listings: the zone wants the parent
+        container's element as returned by *its* parent, and the item's 1-based
+        position (docs/protocol.md, "TuneIn playback"). The zone resolves the
+        stream itself; never hand it an HTTP URL (that crashes its UPnP server).
+        """
+        if not item.playable or item.parent_id != container.id:
+            raise NuvoError(f"{item.title!r} is not a playable item of {container.title!r}")
+        return await self._play_container(container.didl, item.res or "", item.didl, item.index)
+
+    async def _play_container(self, container_meta: str, track_uri: str, track_meta: str, index: int) -> str:
         async with self._lock:
             await self._refresh_group()
             if self.is_joined:
@@ -462,23 +497,69 @@ class NuvoZone:
                 "X_NUVO_PlayContainerURI",
                 InstanceID=0,
                 CurrentURI="",
-                CurrentURIMetaData=LINE_IN_CONTAINER_METADATA,
-                TrackURI=line_in_uri(self.member_id),
-                TrackURIMetaData=line_in_track_metadata(self.member_id, self.name),
-                StartingIndex=1,
+                CurrentURIMetaData=container_meta,
+                TrackURI=track_uri,
+                TrackURIMetaData=track_meta,
+                StartingIndex=index,
                 UpdateID=-1,
             )
             return gid
 
     async def turn_on(self) -> None:
-        """Turn on to the zone's own Line In. No-op if already playing (own or joined group)."""
+        """Play the zone's own Line In.
+
+        No-op if Line In already plays, or if the zone listens to another zone's
+        playing group (someone joined it there on purpose). A zone playing TuneIn
+        switches to Line In: Music Assistant's power control and the Line In
+        feed option rely on this (PLAN.md, Music Assistant).
+        """
         await self.async_update()
         master = self.master
         if master is not None and master is not self and self._system is not None:
             await master.async_update()
-        if self.playback_state == "PLAYING":
+            if self.playback_state == "PLAYING":
+                return
+        elif self.source == SOURCE_LINE_IN and self.playback_state == "PLAYING":
             return
         await self.select_source(SOURCE_LINE_IN)
+
+    # --- browsing -------------------------------------------------------
+
+    async def browse(self, object_id: str, start: int = 0, count: int = BROWSE_PAGE) -> tuple[list[DidlEntry], int]:
+        """One page of a ContentDirectory listing: (entries, total matches).
+
+        Read-only, and deliberately not through `_call`: some services answer
+        slowly or never (docs/protocol.md, Favourites), which must not mark the
+        zone unavailable or start a rediscovery.
+        """
+        check_action("Browse")
+        service = self._service(CONTENT_DIRECTORY_SERVICE)
+        check_post_url(service.control_url)
+        try:
+            result = await service.action("Browse").async_call(
+                ObjectID=object_id,
+                BrowseFlag="BrowseDirectChildren",
+                Filter="*",
+                StartingIndex=start,
+                RequestedCount=count,
+                SortCriteria="",
+            )
+        except UpnpActionError as err:
+            raise NuvoActionError("Browse", err.error_code, err.error_desc) from err
+        except _CONNECTION_ERRORS as err:
+            raise NuvoConnectionError(f"Browse {object_id!r} failed: {err!r}") from err
+        entries = parse_listing(result.get("Result"), start)
+        return entries, int(result.get("TotalMatches") or 0)
+
+    async def browse_all(self, object_id: str, limit: int = BROWSE_LIMIT) -> list[DidlEntry]:
+        """A whole listing (up to `limit` entries), fetched page by page."""
+        entries: list[DidlEntry] = []
+        while len(entries) < limit:
+            page, total = await self.browse(object_id, len(entries), min(BROWSE_PAGE, limit - len(entries)))
+            entries.extend(page)
+            if not page or len(entries) >= total:
+                break
+        return entries
 
     async def turn_off(self) -> None:
         """Turn the zone off.

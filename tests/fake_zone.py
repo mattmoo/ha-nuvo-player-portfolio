@@ -35,6 +35,26 @@ SERVICE_TYPES = {
 }
 _gid = itertools.count(1)
 
+# ContentDirectory listings recorded from a P4300 (fixtures/tunein), keyed by ObjectID.
+TUNEIN_FIXTURES = FIXTURES / "tunein"
+_DIDL_ENTRY = re.compile(r"<(item|container)\b.*?</\1>", re.S)
+_DIDL_OPEN = re.compile(r"^\s*<DIDL-Lite[^>]*>", re.S)
+
+
+def _load_listings() -> dict[str, str]:
+    root = (TUNEIN_FIXTURES / "root.didl.xml").read_text()
+    ids = {name: re.search(rf'<container id="([^"]*nsdkDisplayName={name})"', root).group(1)
+           for name in ("My%20Favorites", "Local%20Radio", "Music")}
+    return {
+        "tunein:": root,
+        ids["My%20Favorites"].replace("&amp;", "&"): (TUNEIN_FIXTURES / "favorites.didl.xml").read_text(),
+        ids["Local%20Radio"].replace("&amp;", "&"): (TUNEIN_FIXTURES / "local.didl.xml").read_text(),
+        ids["Music"].replace("&amp;", "&"): (TUNEIN_FIXTURES / "music.didl.xml").read_text(),
+    }
+
+
+LISTINGS = _load_listings()
+
 
 @dataclass
 class Subscription:
@@ -260,7 +280,7 @@ class FakeZone:
         xml = ('<?xml version="1.0"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" '
                's:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body>'
                f'<u:{action}Response xmlns:u="{stype}">{out}</u:{action}Response></s:Body></s:Envelope>')
-        if not action.startswith("Get"):  # real zones only event on change
+        if not action.startswith("Get") and action != "Browse":  # real zones only event on change
             for svc in ("ZoneService", "RenderingControl", "AVTransport"):
                 asyncio.get_running_loop().call_soon(lambda s=svc: asyncio.ensure_future(self.notify(s)))
         return web.Response(text=xml, content_type="text/xml")
@@ -271,7 +291,7 @@ class FakeZone:
                's:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body><s:Fault>'
                '<faultcode>s:Client</faultcode><faultstring>UPnPError</faultstring><detail>'
                '<UPnPError xmlns="urn:schemas-upnp-org:control-1-0">'
-               f'<errorCode>{code}</errorCode><errorDescription>{desc}</errorDescription>'
+               f'<errorCode>{code}</errorCode><errorDescription>{escape(desc)}</errorDescription>'
                '</UPnPError></detail></s:Fault></s:Body></s:Envelope>')
         return web.Response(status=500, text=xml, content_type="text/xml")
 
@@ -363,6 +383,17 @@ class FakeZone:
                 z.transport, z.uri = "NO_MEDIA_PRESENT", ""
             z.member_group = gid
         self._changed(*self.amp)
+
+    def _a_Browse(self, a):
+        if a["BrowseFlag"] != "BrowseDirectChildren" or a["ObjectID"] not in LISTINGS:
+            return self._fault(501, f"Node at path '{a['ObjectID']}' does not exist")
+        didl = LISTINGS[a["ObjectID"]]
+        entries = [m.group(0) for m in _DIDL_ENTRY.finditer(didl)]
+        start, count = int(a["StartingIndex"]), int(a["RequestedCount"]) or len(entries)
+        page = entries[start : start + count]
+        head = _DIDL_OPEN.match(didl).group(0).strip()
+        return {"Result": head + "".join(page) + "</DIDL-Lite>", "NumberReturned": len(page),
+                "TotalMatches": len(entries), "UpdateID": 1}
 
     def _a_X_NUVO_PlayContainerURI(self, a):
         if not self.member_group:

@@ -333,7 +333,23 @@ itself through `opml.radiotime.com/Tune.ashx`, which is why this path is safe wh
 pushing an HTTP URL (`SetAVTransportURI`) crashed the UPnP process. Items carry
 `upnp:icon` (station logo) and `dc:description` (the current show).
 `BrowseMetadata` on a TuneIn container fails (501 "does not exist"), so the container
-DIDL must come from the parent's `BrowseDirectChildren` listing. Not yet in `aionuvo`.
+DIDL must come from the parent's `BrowseDirectChildren` listing. Implemented as `NuvoZone.browse`/`play_item`.
+
+`BrowseMetadata` on a station's own id (`tunein:browse?nsdkGuideId=s7160`) answers with a generic
+"TuneIn" container (`parentID="0"`), not the station; `BrowseDirectChildren` on it fails (501). The
+station's `tunein:player_context?…` and `tunein:browser_context_ex?…` children are app menus
+(Play Now, Add to Favorites, Choose stream, Sleep Timer). Whether a station plays from its guide ID
+alone, without the listing it came from, is untested.
+
+### TuneIn and Line In feed through HA (2026-09-28, user-approved, Dining Room)
+
+`tests_ha/test_live_tunein.py`: browsing Local Radio from the media browser took ~1 s (48 stations);
+`play_media` of 95bFM reached `playing`/source TuneIn in ~2.7 s, with title "95bFM | (College Radio)"
+and the station logo as the entity picture. A stand-in feed entity going `idle` → `playing` switched
+the zone to Line In in ~1.1 s (briefly `TRANSITIONING`, shown as buffering).
+
+Caution: Dining Room was not off but playing TuneIn (Radio Hauraki Auckland 99.0, volume 44), so the
+run interrupted it for ~15 s; it was put back via `play_item`. The live test now skips a zone that is on.
 
 ### Other services (read-only browse, 2026-09-28)
 

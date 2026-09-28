@@ -10,6 +10,9 @@ volume, mute, Line In, on/off, grouping and push updates, and it survives the am
 changing its HTTP port on every boot. With Music Assistant, use the zones as the
 power and volume control of the players feeding their Line In (see PLAN.md).
 
+This project is largely vibe-engineered (I do have a Software Engineering degree). 
+Use at your own risk, I'm putting it here in case it comes in handy for someone.
+
 | Part | What it is |
 |---|---|
 | `custom_components/nuvo_player/aionuvo/` | Async Python library, the only code that talks to the amp. It is bundled in the integration; `pip install -e .` exposes it as `aionuvo`. |
@@ -59,8 +62,23 @@ Per zone you get a device (assign each to an area yourself) with:
 - `number.<zone>_bass`, `_treble` (−6…6), `_balance` (−18…18), polled every 5 min.
 - `switch.<zone>_loudness`.
 
-Options: extra zone IPs for unicast discovery (other VLANs), and a fixed event
-port if a firewall sits between the amp and HA (0 = automatic).
+**TuneIn:** open a zone's media browser to browse the amp's built-in TuneIn
+(Local Radio, Music, Talk, Sports, By Location, By Language, My Favorites) and
+play a station. The zone streams it itself. Station IDs from the browser work
+in `media_player.play_media` automations, but they include the station's
+category path, so a station that drops out of that category stops resolving.
+Other media (URLs, media sources, Music Assistant streams) are refused, because
+pushing HTTP media crashes the zone's UPnP server.
+
+Options (**Configure** on the integration):
+
+- **Line In feeds:** per zone, the player wired to its Line In (for example a
+  Chromecast Audio). When that player starts playing, the zone switches to Line
+  In, turning on if needed, even from TuneIn. A zone listening to another
+  zone's group is left alone, and so is a player that reappears already
+  playing (HA restart, network blip).
+- **Network:** extra zone IPs for unicast discovery (other VLANs), and a fixed
+  event port if a firewall sits between the amp and HA (0 = automatic).
 
 ### Music Assistant
 
@@ -69,8 +87,9 @@ zone as the amplifier of whatever feeds its Line In (e.g. a Chromecast Audio or
 a Sendspin receiver): in Music Assistant, open that player's settings and set
 **Power control** and **Volume control** to the zone's `media_player` entity.
 Playing to the player then turns the zone on to Line In and routes volume to the
-Nuvo. If you move a feeder to another zone, change it there; nothing here
-needs to know.
+Nuvo. If you move a feeder to another zone, change it there. The Line In feeds
+option above does the switching without Music Assistant, and the two can be
+used together.
 
 ## Shim
 

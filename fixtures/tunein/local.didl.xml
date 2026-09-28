@@ -1,0 +1,771 @@
+
+<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp/" xmlns:x="urn:schemas.nuvotechnologies.com">
+    <item id="" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Stations</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.item.x_nuvo_headerItem</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Stations&quot;,&quot;type&quot;:&quot;header&quot;}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s7160" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>95bFM | (College Radio)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="256000">nuvo:tunein:browse?nsdkGuideId=s7160</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>College Radio</upnp:genre>
+        <dc:description>The One to Four with Pennie Black</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s7160/images/logoq.png?t=1673902350000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s7160&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7160" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s7160&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7160&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s7160&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s7160&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7160&amp;nsdkTitle=95bFM%20%7C%20(College%20Radio)&amp;nsdkDescription=The%20One%20to%20Four%20with%20Pennie%20Black&amp;nsdkIcon=http://cdn-profiles.tunein.com/s7160/images/logoq.png?t%3D1673902350000&amp;nsdkGenreId=g6&quot;,&quot;genre&quot;:&quot;College Radio&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:256000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s7160&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;95bFM | (College Radio)&quot;,&quot;description&quot;:&quot;The One to Four with Pennie Black&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s7160&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s7160/images/logoq.png?t=1673902350000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s7160&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7160&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s186457" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>96.9 FM | (Talk)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s186457</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Talk</upnp:genre>
+        <dc:description>English</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s186457q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s186457&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s186457" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s186457&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s186457&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s186457&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s186457&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s186457&amp;nsdkTitle=96.9%20FM%20%7C%20(Talk)&amp;nsdkDescription=English&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s186457q.png&amp;nsdkGenreId=g2&quot;,&quot;genre&quot;:&quot;Talk&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s186457&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;96.9 FM | (Talk)&quot;,&quot;description&quot;:&quot;English&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s186457&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s186457q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s186457&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s186457&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s348837" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Breeze Classic 93 (60's Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s348837</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>60's Music</upnp:genre>
+        <dc:description>Your new home for the 60's, 70's and early 80's!</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s348837/images/logoq.png?t=2</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s348837&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s348837" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s348837&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s348837&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s348837&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s348837&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s348837&amp;nsdkTitle=Breeze%20Classic%2093%20(60's%20Music)&amp;nsdkDescription=Your%20new%20home%20for%20the%2060's,%2070's%20and%20early%2080's!&amp;nsdkIcon=http://cdn-profiles.tunein.com/s348837/images/logoq.png?t%3D2&amp;nsdkGenreId=g407&quot;,&quot;genre&quot;:&quot;60's Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s348837&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Breeze Classic 93 (60's Music)&quot;,&quot;description&quot;:&quot;Your new home for the 60's, 70's and early 80's!&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s348837&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s348837/images/logoq.png?t=2&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s348837&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s348837&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s249599" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Brian FM Marlborough 100.9 (Rock)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s249599</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Rock</upnp:genre>
+        <dc:description>Meatloaf at Mary's - Bat Out Of Hell</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s249599/images/logoq.png?t=1758045986000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s249599&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s249599" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s249599&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s249599&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s249599&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s249599&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s249599&amp;nsdkTitle=Brian%20FM%20Marlborough%20100.9%20(Rock)&amp;nsdkDescription=Meatloaf%20at%20Mary's%20-%20Bat%20Out%20Of%20Hell&amp;nsdkIcon=http://cdn-profiles.tunein.com/s249599/images/logoq.png?t%3D1758045986000&amp;nsdkGenreId=g19&quot;,&quot;genre&quot;:&quot;Rock&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s249599&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Brian FM Marlborough 100.9 (Rock)&quot;,&quot;description&quot;:&quot;Meatloaf at Mary's - Bat Out Of Hell&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s249599&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s249599/images/logoq.png?t=1758045986000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s249599&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s249599&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s87185" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Coast 105.4 (Variety)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s87185</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Variety</upnp:genre>
+        <dc:description>Love the Music</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s87185/images/logoq.jpg?t=154412</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s87185&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87185" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87185&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87185&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87185&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s87185&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87185&amp;nsdkTitle=Coast%20105.4%20(Variety)&amp;nsdkDescription=Love%20the%20Music&amp;nsdkIcon=http://cdn-profiles.tunein.com/s87185/images/logoq.jpg?t%3D154412&amp;nsdkGenreId=g88&quot;,&quot;genre&quot;:&quot;Variety&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s87185&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Coast 105.4 (Variety)&quot;,&quot;description&quot;:&quot;Love the Music&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87185&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s87185/images/logoq.jpg?t=154412&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87185&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87185&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s333800" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Coast Auckland 98.2</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s333800</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <dc:description>Feel Good!</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s333800/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s333800&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333800" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333800&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333800&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333800&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s333800&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333800&amp;nsdkTitle=Coast%20Auckland%2098.2&amp;nsdkDescription=Feel%20Good!&amp;nsdkIcon=http://cdn-profiles.tunein.com/s333800/images/logoq.png?t%3D1&amp;nsdkGenreId=&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s333800&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Coast Auckland 98.2&quot;,&quot;description&quot;:&quot;Feel Good!&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333800&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s333800/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333800&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333800&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s244001" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Dylan and Andy Radio (Talk Show Replays)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s244001</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Talk Show Replays</upnp:genre>
+        <dc:description>The boys from downunder, 24/7</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s244001q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s244001&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s244001" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s244001&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s244001&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s244001&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s244001&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s244001&amp;nsdkTitle=Dylan%20and%20Andy%20Radio%20(Talk%20Show%20Replays)&amp;nsdkDescription=The%20boys%20from%20downunder,%2024/7&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s244001q.png&amp;nsdkGenreId=g3434&quot;,&quot;genre&quot;:&quot;Talk Show Replays&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s244001&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Dylan and Andy Radio (Talk Show Replays)&quot;,&quot;description&quot;:&quot;The boys from downunder, 24/7&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s244001&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s244001q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s244001&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s244001&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s155609" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>East FM NZ 88.1 (Top 40 &amp; Pop Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="129000">nuvo:tunein:browse?nsdkGuideId=s155609</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Top 40 &amp; Pop Music</upnp:genre>
+        <dc:description>We've got you covered!</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s155609q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s155609&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s155609" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s155609&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s155609&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s155609&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s155609&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s155609&amp;nsdkTitle=East%20FM%20NZ%2088.1%20(Top%2040%20%26%20Pop%20Music)&amp;nsdkDescription=We've%20got%20you%20covered!&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s155609q.png&amp;nsdkGenreId=g61&quot;,&quot;genre&quot;:&quot;Top 40 &amp; Pop Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:129000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s155609&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;East FM NZ 88.1 (Top 40 &amp; Pop Music)&quot;,&quot;description&quot;:&quot;We've got you covered!&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s155609&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s155609q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s155609&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s155609&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s302357" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Easy 80s (Easy Listening)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s302357</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Easy Listening</upnp:genre>
+        <dc:description>A continuous blend of easy classics</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s302357/images/logoq.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s302357&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s302357" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s302357&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s302357&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s302357&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s302357&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s302357&amp;nsdkTitle=Easy%2080s%20(Easy%20Listening)&amp;nsdkDescription=A%20continuous%20blend%20of%20easy%20classics&amp;nsdkIcon=http://cdn-profiles.tunein.com/s302357/images/logoq.png&amp;nsdkGenreId=g10&quot;,&quot;genre&quot;:&quot;Easy Listening&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s302357&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Easy 80s (Easy Listening)&quot;,&quot;description&quot;:&quot;A continuous blend of easy classics&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s302357&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s302357/images/logoq.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s302357&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s302357&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s333801" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Flava Auckland 95.8</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s333801</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <dc:description>Old School Hip Hop &amp; R'n'B 24/7</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s333801/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s333801&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333801" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333801&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333801&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333801&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s333801&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333801&amp;nsdkTitle=Flava%20Auckland%2095.8&amp;nsdkDescription=Old%20School%20Hip%20Hop%20%26%20R'n'B%2024/7&amp;nsdkIcon=http://cdn-profiles.tunein.com/s333801/images/logoq.png?t%3D1&amp;nsdkGenreId=&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s333801&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Flava Auckland 95.8&quot;,&quot;description&quot;:&quot;Old School Hip Hop &amp; R'n'B 24/7&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333801&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s333801/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333801&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333801&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s17350" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>George FM 96 (Dance &amp; Electronic)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s17350</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Dance &amp; Electronic</upnp:genre>
+        <dc:description>Beats Working…</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s17350/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s17350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17350" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17350&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17350&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s17350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17350&amp;nsdkTitle=George%20FM%2096%20(Dance%20%26%20Electronic)&amp;nsdkDescription=Beats%20Working%E2%80%A6&amp;nsdkIcon=http://cdn-profiles.tunein.com/s17350/images/logoq.png?t%3D1&amp;nsdkGenreId=g59&quot;,&quot;genre&quot;:&quot;Dance &amp; Electronic&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s17350&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;George FM 96 (Dance &amp; Electronic)&quot;,&quot;description&quot;:&quot;Beats Working…&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17350&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s17350/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17350&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s333799" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Gold Sport Auckland 1332</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s333799</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <dc:description>Your Home for Live Commentary &amp; Just Great Rock!</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s333799/images/logoq.png?t=1727282646000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s333799&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333799" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333799&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333799&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333799&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s333799&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333799&amp;nsdkTitle=Gold%20Sport%20Auckland%201332&amp;nsdkDescription=Your%20Home%20for%20Live%20Commentary%20%26%20Just%20Great%20Rock!&amp;nsdkIcon=http://cdn-profiles.tunein.com/s333799/images/logoq.png?t%3D1727282646000&amp;nsdkGenreId=&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s333799&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Gold Sport Auckland 1332&quot;,&quot;description&quot;:&quot;Your Home for Live Commentary &amp; Just Great Rock!&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333799&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s333799/images/logoq.png?t=1727282646000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333799&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333799&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s108804" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Humm FM 104 (Bollywood)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s108804</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Bollywood</upnp:genre>
+        <dc:description>It's Happening on HUMM</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s108804/images/logoq.png?t=2</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s108804&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s108804" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s108804&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s108804&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s108804&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s108804&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s108804&amp;nsdkTitle=Humm%20FM%20104%20(Bollywood)&amp;nsdkDescription=It's%20Happening%20on%20HUMM&amp;nsdkIcon=http://cdn-profiles.tunein.com/s108804/images/logoq.png?t%3D2&amp;nsdkGenreId=g2762&quot;,&quot;genre&quot;:&quot;Bollywood&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s108804&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Humm FM 104 (Bollywood)&quot;,&quot;description&quot;:&quot;It's Happening on HUMM&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s108804&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s108804/images/logoq.png?t=2&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s108804&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s108804&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s344086" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>iHeartCountry NZ Auckland 105.4</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s344086</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <dc:description>Your new home for Country</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s344086/images/logoq.png?t=1754627897000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s344086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s344086" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s344086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s344086&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s344086&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s344086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s344086&amp;nsdkTitle=iHeartCountry%20NZ%20Auckland%20105.4&amp;nsdkDescription=Your%20new%20home%20for%20Country&amp;nsdkIcon=http://cdn-profiles.tunein.com/s344086/images/logoq.png?t%3D1754627897000&amp;nsdkGenreId=&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s344086&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;iHeartCountry NZ Auckland 105.4&quot;,&quot;description&quot;:&quot;Your new home for Country&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s344086&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s344086/images/logoq.png?t=1754627897000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s344086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s344086&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s7983" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Life FM 99 (Christian Contemporary)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s7983</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Christian Contemporary</upnp:genre>
+        <dc:description>Faith. Music. Culture.</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s7983/images/logoq.jpg?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s7983&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7983" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s7983&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7983&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s7983&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s7983&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7983&amp;nsdkTitle=Life%20FM%2099%20(Christian%20Contemporary)&amp;nsdkDescription=Faith.%20Music.%20Culture.&amp;nsdkIcon=http://cdn-profiles.tunein.com/s7983/images/logoq.jpg?t%3D1&amp;nsdkGenreId=g99&quot;,&quot;genre&quot;:&quot;Christian Contemporary&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s7983&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Life FM 99 (Christian Contemporary)&quot;,&quot;description&quot;:&quot;Faith. Music. Culture.&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s7983&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s7983/images/logoq.jpg?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s7983&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7983&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s253328" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>MAD FM Worldwide (Adult Hits)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s253328</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Adult Hits</upnp:genre>
+        <dc:description>MAD FM Worldwide – Diversity Through Music</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s253328/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s253328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s253328" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s253328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s253328&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s253328&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s253328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s253328&amp;nsdkTitle=MAD%20FM%20Worldwide%20(Adult%20Hits)&amp;nsdkDescription=MAD%20FM%20Worldwide%20%E2%80%93%20Diversity%20Through%20Music&amp;nsdkIcon=http://cdn-profiles.tunein.com/s253328/images/logoq.png?t%3D1&amp;nsdkGenreId=g3&quot;,&quot;genre&quot;:&quot;Adult Hits&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s253328&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;MAD FM Worldwide (Adult Hits)&quot;,&quot;description&quot;:&quot;MAD FM Worldwide – Diversity Through Music&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s253328&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s253328/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s253328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s253328&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s87117" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Magic (Oldies Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s87117</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Oldies Music</upnp:genre>
+        <dc:description>More of The Songs You Love</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s87117/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s87117&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87117" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87117&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87117&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87117&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s87117&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87117&amp;nsdkTitle=Magic%20(Oldies%20Music)&amp;nsdkDescription=More%20of%20The%20Songs%20You%20Love&amp;nsdkIcon=http://cdn-profiles.tunein.com/s87117/images/logoq.png?t%3D1&amp;nsdkGenreId=g4562&quot;,&quot;genre&quot;:&quot;Oldies Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s87117&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Magic (Oldies Music)&quot;,&quot;description&quot;:&quot;More of The Songs You Love&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87117&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s87117/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87117&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87117&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s18593" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Mai FM (Hip Hop Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s18593</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Hip Hop Music</upnp:genre>
+        <dc:description>The Hottest Hip Hop &amp; RnB</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s18593/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s18593&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s18593" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s18593&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s18593&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s18593&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s18593&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s18593&amp;nsdkTitle=Mai%20FM%20(Hip%20Hop%20Music)&amp;nsdkDescription=The%20Hottest%20Hip%20Hop%20%26%20RnB&amp;nsdkIcon=http://cdn-profiles.tunein.com/s18593/images/logoq.png?t%3D1&amp;nsdkGenreId=g128&quot;,&quot;genre&quot;:&quot;Hip Hop Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s18593&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Mai FM (Hip Hop Music)&quot;,&quot;description&quot;:&quot;The Hottest Hip Hop &amp; RnB&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s18593&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s18593/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s18593&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s18593&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s7162" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>More FM Auckland 91 (Top 40 &amp; Pop Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s7162</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Top 40 &amp; Pop Music</upnp:genre>
+        <dc:description>More Of Your Favourite Songs</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s7162/images/logoq.jpg?t=6</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s7162&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7162" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s7162&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7162&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s7162&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s7162&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7162&amp;nsdkTitle=More%20FM%20Auckland%2091%20(Top%2040%20%26%20Pop%20Music)&amp;nsdkDescription=More%20Of%20Your%20Favourite%20Songs&amp;nsdkIcon=http://cdn-profiles.tunein.com/s7162/images/logoq.jpg?t%3D6&amp;nsdkGenreId=g61&quot;,&quot;genre&quot;:&quot;Top 40 &amp; Pop Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s7162&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;More FM Auckland 91 (Top 40 &amp; Pop Music)&quot;,&quot;description&quot;:&quot;More Of Your Favourite Songs&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s7162&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s7162/images/logoq.jpg?t=6&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s7162&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s7162&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s321587" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>More FM Rodney 88 (Top 40 &amp; Pop Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s321587</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Top 40 &amp; Pop Music</upnp:genre>
+        <dc:description>More Of Your Favourite Songs</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s321587/images/logoq.jpg?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s321587&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321587" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s321587&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321587&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s321587&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s321587&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321587&amp;nsdkTitle=More%20FM%20Rodney%2088%20(Top%2040%20%26%20Pop%20Music)&amp;nsdkDescription=More%20Of%20Your%20Favourite%20Songs&amp;nsdkIcon=http://cdn-profiles.tunein.com/s321587/images/logoq.jpg?t%3D1&amp;nsdkGenreId=g61&quot;,&quot;genre&quot;:&quot;Top 40 &amp; Pop Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s321587&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;More FM Rodney 88 (Top 40 &amp; Pop Music)&quot;,&quot;description&quot;:&quot;More Of Your Favourite Songs&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s321587&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s321587/images/logoq.jpg?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s321587&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321587&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s127752" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Mushroom FM (Adult Hits)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s127752</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Adult Hits</upnp:genre>
+        <dc:description>Brian Setzer - Summertime Blues (HQ 2023 Remastered)</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s251780q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s127752&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s127752" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s127752&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s127752&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s127752&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s127752&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s127752&amp;nsdkTitle=Mushroom%20FM%20(Adult%20Hits)&amp;nsdkDescription=Brian%20Setzer%20-%20Summertime%20Blues%20(HQ%202023%20Remastered)&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s251780q.png&amp;nsdkGenreId=g3&quot;,&quot;genre&quot;:&quot;Adult Hits&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s127752&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Mushroom FM (Adult Hits)&quot;,&quot;description&quot;:&quot;Brian Setzer - Summertime Blues (HQ 2023 Remastered)&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s127752&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s251780q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s127752&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s127752&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s17823" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>New Zealand Chinese Radio 90.6 (Chinese Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s17823</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Chinese Music</upnp:genre>
+        <dc:description>&quot;Yin Yue Life (Premier) &quot;</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s17823/images/logoq.jpg?t=158031</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s17823&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17823" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17823&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17823&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17823&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s17823&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17823&amp;nsdkTitle=New%20Zealand%20Chinese%20Radio%2090.6%20(Chinese%20Music)&amp;nsdkDescription=%22Yin%20Yue%20Life%20(Premier)%20%22&amp;nsdkIcon=http://cdn-profiles.tunein.com/s17823/images/logoq.jpg?t%3D158031&amp;nsdkGenreId=g139&quot;,&quot;genre&quot;:&quot;Chinese Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s17823&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;New Zealand Chinese Radio 90.6 (Chinese Music)&quot;,&quot;description&quot;:&quot;\&quot;Yin Yue Life (Premier) \&quot;&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17823&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s17823/images/logoq.jpg?t=158031&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17823&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17823&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s2328" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Newstalk ZB Auckland 89.4 (Local News)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s2328</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Local News</upnp:genre>
+        <dc:description>New Zealand's #1 Talk Station</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s2328/images/logoq.png?t=1727351107000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s2328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s2328" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s2328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s2328&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s2328&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s2328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s2328&amp;nsdkTitle=Newstalk%20ZB%20Auckland%2089.4%20(Local%20News)&amp;nsdkDescription=New%20Zealand's%20%231%20Talk%20Station&amp;nsdkIcon=http://cdn-profiles.tunein.com/s2328/images/logoq.png?t%3D1727351107000&amp;nsdkGenreId=g3126&quot;,&quot;genre&quot;:&quot;Local News&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s2328&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Newstalk ZB Auckland 89.4 (Local News)&quot;,&quot;description&quot;:&quot;New Zealand's #1 Talk Station&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s2328&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s2328/images/logoq.png?t=1727351107000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s2328&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s2328&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s178759" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio BurgerFuel (Indie Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s178759</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Indie Music</upnp:genre>
+        <dc:description>The Kooks - Be Who You Are</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s178759q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s178759&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s178759" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s178759&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s178759&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s178759&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s178759&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s178759&amp;nsdkTitle=Radio%20BurgerFuel%20(Indie%20Music)&amp;nsdkDescription=The%20Kooks%20-%20Be%20Who%20You%20Are&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s178759q.png&amp;nsdkGenreId=g2748&quot;,&quot;genre&quot;:&quot;Indie Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s178759&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio BurgerFuel (Indie Music)&quot;,&quot;description&quot;:&quot;The Kooks - Be Who You Are&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s178759&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s178759q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s178759&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s178759&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s87119" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio Hauraki (Rock)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s87119</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Rock</upnp:genre>
+        <dc:description>Music That Rocks!</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s87119/images/logoq.png?t=1701261151000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s87119&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87119" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87119&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87119&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87119&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s87119&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87119&amp;nsdkTitle=Radio%20Hauraki%20(Rock)&amp;nsdkDescription=Music%20That%20Rocks!&amp;nsdkIcon=http://cdn-profiles.tunein.com/s87119/images/logoq.png?t%3D1701261151000&amp;nsdkGenreId=g19&quot;,&quot;genre&quot;:&quot;Rock&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s87119&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio Hauraki (Rock)&quot;,&quot;description&quot;:&quot;Music That Rocks!&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87119&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s87119/images/logoq.png?t=1701261151000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87119&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87119&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s333795" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio Hauraki Auckland 99.0</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s333795</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <dc:description>Music That Rocks!</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s333795/images/logoq.png?t=1727281814000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s333795&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333795" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333795&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333795&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333795&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s333795&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333795&amp;nsdkTitle=Radio%20Hauraki%20Auckland%2099.0&amp;nsdkDescription=Music%20That%20Rocks!&amp;nsdkIcon=http://cdn-profiles.tunein.com/s333795/images/logoq.png?t%3D1727281814000&amp;nsdkGenreId=&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s333795&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio Hauraki Auckland 99.0&quot;,&quot;description&quot;:&quot;Music That Rocks!&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333795&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s333795/images/logoq.png?t=1727281814000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333795&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333795&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s290277" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio KPS 106.9 (Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="256000">nuvo:tunein:browse?nsdkGuideId=s290277</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Music</upnp:genre>
+        <dc:description>NZME - SPORTSCHECK</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s290277/images/logoq.png?t=1732310522000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s290277&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s290277" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s290277&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s290277&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s290277&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s290277&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s290277&amp;nsdkTitle=Radio%20KPS%20106.9%20(Music)&amp;nsdkDescription=NZME%20-%20SPORTSCHECK&amp;nsdkIcon=http://cdn-profiles.tunein.com/s290277/images/logoq.png?t%3D1732310522000&amp;nsdkGenreId=g1&quot;,&quot;genre&quot;:&quot;Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:256000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s290277&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio KPS 106.9 (Music)&quot;,&quot;description&quot;:&quot;NZME - SPORTSCHECK&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s290277&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s290277/images/logoq.png?t=1732310522000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s290277&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s290277&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s135826" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio Spice 88.0 (Bollywood)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="130000">nuvo:tunein:browse?nsdkGuideId=s135826</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Bollywood</upnp:genre>
+        <dc:description>Phulkari</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s135826q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s135826&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s135826" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s135826&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s135826&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s135826&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s135826&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s135826&amp;nsdkTitle=Radio%20Spice%2088.0%20(Bollywood)&amp;nsdkDescription=Phulkari&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s135826q.png&amp;nsdkGenreId=g2762&quot;,&quot;genre&quot;:&quot;Bollywood&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:130000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s135826&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio Spice 88.0 (Bollywood)&quot;,&quot;description&quot;:&quot;Phulkari&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s135826&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s135826q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s135826&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s135826&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s76236" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio Tarana 1386 (Bollywood)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="55000">nuvo:tunein:browse?nsdkGuideId=s76236</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Bollywood</upnp:genre>
+        <dc:description>Tezz Gaadi</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s76236/images/logoq.jpg?t=159526</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s76236&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s76236" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s76236&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s76236&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s76236&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s76236&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s76236&amp;nsdkTitle=Radio%20Tarana%201386%20(Bollywood)&amp;nsdkDescription=Tezz%20Gaadi&amp;nsdkIcon=http://cdn-profiles.tunein.com/s76236/images/logoq.jpg?t%3D159526&amp;nsdkGenreId=g2762&quot;,&quot;genre&quot;:&quot;Bollywood&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:55000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s76236&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio Tarana 1386 (Bollywood)&quot;,&quot;description&quot;:&quot;Tezz Gaadi&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s76236&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s76236/images/logoq.jpg?t=159526&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s76236&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s76236&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s205719" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Radio Virsa NZ 107.0 (Religion &amp; Spirituality)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s205719</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Religion &amp; Spirituality</upnp:genre>
+        <dc:description>Radio Virsa New Zealand or...</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s205719q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s205719&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205719" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s205719&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205719&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s205719&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s205719&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205719&amp;nsdkTitle=Radio%20Virsa%20NZ%20107.0%20(Religion%20%26%20Spirituality)&amp;nsdkDescription=Radio%20Virsa%20New%20Zealand%20or...&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s205719q.png&amp;nsdkGenreId=g34&quot;,&quot;genre&quot;:&quot;Religion &amp; Spirituality&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s205719&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Radio Virsa NZ 107.0 (Religion &amp; Spirituality)&quot;,&quot;description&quot;:&quot;Radio Virsa New Zealand or...&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s205719&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s205719q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s205719&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205719&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s288885" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>RadiowaveNZ (Classic Hits)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="131000">nuvo:tunein:browse?nsdkGuideId=s288885</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Classic Hits</upnp:genre>
+        <dc:description>Home of Hits</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s0q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s288885&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s288885" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s288885&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s288885&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s288885&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s288885&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s288885&amp;nsdkTitle=RadiowaveNZ%20(Classic%20Hits)&amp;nsdkDescription=Home%20of%20Hits&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s0q.png&amp;nsdkGenreId=g2755&quot;,&quot;genre&quot;:&quot;Classic Hits&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:131000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s288885&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;RadiowaveNZ (Classic Hits)&quot;,&quot;description&quot;:&quot;Home of Hits&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s288885&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s0q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s288885&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s288885&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s9688" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Rhema 1251 (Religious Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s9688</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Religious Music</upnp:genre>
+        <dc:description>Your Christian Radio Station</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s9688/images/logoq.jpg?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s9688&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s9688" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s9688&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s9688&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s9688&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s9688&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s9688&amp;nsdkTitle=Rhema%201251%20(Religious%20Music)&amp;nsdkDescription=Your%20Christian%20Radio%20Station&amp;nsdkIcon=http://cdn-profiles.tunein.com/s9688/images/logoq.jpg?t%3D1&amp;nsdkGenreId=g17&quot;,&quot;genre&quot;:&quot;Religious Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s9688&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Rhema 1251 (Religious Music)&quot;,&quot;description&quot;:&quot;Your Christian Radio Station&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s9688&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s9688/images/logoq.jpg?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s9688&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s9688&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s235883" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Rush FM 88.1 (Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s235883</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Music</upnp:genre>
+        <dc:description>English</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s0q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s235883&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s235883" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s235883&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s235883&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s235883&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s235883&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s235883&amp;nsdkTitle=Rush%20FM%2088.1%20(Music)&amp;nsdkDescription=English&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s0q.png&amp;nsdkGenreId=g1&quot;,&quot;genre&quot;:&quot;Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s235883&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Rush FM 88.1 (Music)&quot;,&quot;description&quot;:&quot;English&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s235883&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s0q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s235883&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s235883&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s339696" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Sanctuary 882 (Religious Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s339696</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Religious Music</upnp:genre>
+        <dc:description>New Zealand's Worship Station</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s339696/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s339696&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s339696" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s339696&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s339696&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s339696&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s339696&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s339696&amp;nsdkTitle=Sanctuary%20882%20(Religious%20Music)&amp;nsdkDescription=New%20Zealand's%20Worship%20Station&amp;nsdkIcon=http://cdn-profiles.tunein.com/s339696/images/logoq.png?t%3D1&amp;nsdkGenreId=g17&quot;,&quot;genre&quot;:&quot;Religious Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s339696&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Sanctuary 882 (Religious Music)&quot;,&quot;description&quot;:&quot;New Zealand's Worship Station&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s339696&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s339696/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s339696&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s339696&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s10407" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Star 882 (Religious Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s10407</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Religious Music</upnp:genre>
+        <dc:description>The Christian music you've loved for years</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s10407q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s10407&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10407" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s10407&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10407&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s10407&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s10407&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10407&amp;nsdkTitle=Star%20882%20(Religious%20Music)&amp;nsdkDescription=The%20Christian%20music%20you've%20loved%20for%20years&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s10407q.png&amp;nsdkGenreId=g17&quot;,&quot;genre&quot;:&quot;Religious Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s10407&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Star 882 (Religious Music)&quot;,&quot;description&quot;:&quot;The Christian music you've loved for years&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s10407&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s10407q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s10407&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10407&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s20268" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Static FM, 88.1 | (College Radio)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="191000">nuvo:tunein:browse?nsdkGuideId=s20268</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>College Radio</upnp:genre>
+        <dc:description>Refreshingly Chilled</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s20268/images/logoq.png?t=158896</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s20268&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s20268" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s20268&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s20268&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s20268&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s20268&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s20268&amp;nsdkTitle=Static%20FM,%2088.1%20%7C%20(College%20Radio)&amp;nsdkDescription=Refreshingly%20Chilled&amp;nsdkIcon=http://cdn-profiles.tunein.com/s20268/images/logoq.png?t%3D158896&amp;nsdkGenreId=g6&quot;,&quot;genre&quot;:&quot;College Radio&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:191000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s20268&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Static FM, 88.1 | (College Radio)&quot;,&quot;description&quot;:&quot;Refreshingly Chilled&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s20268&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s20268/images/logoq.png?t=158896&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s20268&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s20268&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s17930" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Breeze Auckland 93 (Adult Hits)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s17930</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Adult Hits</upnp:genre>
+        <dc:description>Take It Easy</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s17930/images/logoq.png?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s17930&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17930" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17930&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17930&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17930&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s17930&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17930&amp;nsdkTitle=The%20Breeze%20Auckland%2093%20(Adult%20Hits)&amp;nsdkDescription=Take%20It%20Easy&amp;nsdkIcon=http://cdn-profiles.tunein.com/s17930/images/logoq.png?t%3D1&amp;nsdkGenreId=g3&quot;,&quot;genre&quot;:&quot;Adult Hits&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s17930&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Breeze Auckland 93 (Adult Hits)&quot;,&quot;description&quot;:&quot;Take It Easy&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17930&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s17930/images/logoq.png?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17930&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17930&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s321596" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Breeze Thames / Coromandel 90.8 (Adult Hits)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s321596</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Adult Hits</upnp:genre>
+        <dc:description>Take It Easy</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s321596/images/logoq.png?t=1666203919000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s321596&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321596" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s321596&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321596&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s321596&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s321596&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321596&amp;nsdkTitle=The%20Breeze%20Thames%20/%20Coromandel%2090.8%20(Adult%20Hits)&amp;nsdkDescription=Take%20It%20Easy&amp;nsdkIcon=http://cdn-profiles.tunein.com/s321596/images/logoq.png?t%3D1666203919000&amp;nsdkGenreId=g3&quot;,&quot;genre&quot;:&quot;Adult Hits&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s321596&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Breeze Thames / Coromandel 90.8 (Adult Hits)&quot;,&quot;description&quot;:&quot;Take It Easy&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s321596&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s321596/images/logoq.png?t=1666203919000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s321596&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s321596&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s17636" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Edge 94 (Top 40 &amp; Pop Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s17636</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Top 40 &amp; Pop Music</upnp:genre>
+        <dc:description>Hit Music Now</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s17636/images/logoq.png?t=4</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s17636&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17636" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17636&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17636&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17636&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s17636&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17636&amp;nsdkTitle=The%20Edge%2094%20(Top%2040%20%26%20Pop%20Music)&amp;nsdkDescription=Hit%20Music%20Now&amp;nsdkIcon=http://cdn-profiles.tunein.com/s17636/images/logoq.png?t%3D4&amp;nsdkGenreId=g61&quot;,&quot;genre&quot;:&quot;Top 40 &amp; Pop Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s17636&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Edge 94 (Top 40 &amp; Pop Music)&quot;,&quot;description&quot;:&quot;Hit Music Now&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s17636&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s17636/images/logoq.png?t=4&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s17636&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s17636&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s87086" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Hits Auckland 97.4 (Adult Hits)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s87086</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Adult Hits</upnp:genre>
+        <dc:description>All The Hits You Know And Love</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s87086/images/logoq.png?t=1727351173000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s87086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87086" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87086&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87086&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s87086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87086&amp;nsdkTitle=The%20Hits%20Auckland%2097.4%20(Adult%20Hits)&amp;nsdkDescription=All%20The%20Hits%20You%20Know%20And%20Love&amp;nsdkIcon=http://cdn-profiles.tunein.com/s87086/images/logoq.png?t%3D1727351173000&amp;nsdkGenreId=g3&quot;,&quot;genre&quot;:&quot;Adult Hits&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s87086&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Hits Auckland 97.4 (Adult Hits)&quot;,&quot;description&quot;:&quot;All The Hits You Know And Love&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87086&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s87086/images/logoq.png?t=1727351173000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87086&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87086&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s25248" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Rock 90 (Rock)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s25248</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Rock</upnp:genre>
+        <dc:description>Taking The Piss Since '91</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s25248/images/logoq.png?t=161655</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s25248&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s25248" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s25248&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s25248&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s25248&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s25248&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s25248&amp;nsdkTitle=The%20Rock%2090%20(Rock)&amp;nsdkDescription=Taking%20The%20Piss%20Since%20'91&amp;nsdkIcon=http://cdn-profiles.tunein.com/s25248/images/logoq.png?t%3D161655&amp;nsdkGenreId=g19&quot;,&quot;genre&quot;:&quot;Rock&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s25248&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Rock 90 (Rock)&quot;,&quot;description&quot;:&quot;Taking The Piss Since '91&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s25248&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s25248/images/logoq.png?t=161655&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s25248&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s25248&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s10999" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Sound (Classic Rock)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s10999</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Classic Rock</upnp:genre>
+        <dc:description>Mark Smith</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s10999/images/logoq.jpg?t=1</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s10999&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10999" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s10999&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10999&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s10999&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s10999&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10999&amp;nsdkTitle=The%20Sound%20(Classic%20Rock)&amp;nsdkDescription=Mark%20Smith&amp;nsdkIcon=http://cdn-profiles.tunein.com/s10999/images/logoq.jpg?t%3D1&amp;nsdkGenreId=g54&quot;,&quot;genre&quot;:&quot;Classic Rock&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s10999&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Sound (Classic Rock)&quot;,&quot;description&quot;:&quot;Mark Smith&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s10999&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s10999/images/logoq.jpg?t=1&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s10999&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s10999&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s205019" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>The Wireless 90.4FM | (Easy Listening)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="161000">nuvo:tunein:browse?nsdkGuideId=s205019</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Easy Listening</upnp:genre>
+        <dc:description>Commodores - Sweet Love</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s205019q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s205019&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205019" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s205019&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205019&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s205019&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s205019&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205019&amp;nsdkTitle=The%20Wireless%2090.4FM%20%7C%20(Easy%20Listening)&amp;nsdkDescription=Commodores%20-%20Sweet%20Love&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s205019q.png&amp;nsdkGenreId=g10&quot;,&quot;genre&quot;:&quot;Easy Listening&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:161000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s205019&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;The Wireless 90.4FM | (Easy Listening)&quot;,&quot;description&quot;:&quot;Commodores - Sweet Love&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s205019&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s205019q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s205019&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s205019&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s87196" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>TheFlea 88.2 (90's)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="96000">nuvo:tunein:browse?nsdkGuideId=s87196</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>90's</upnp:genre>
+        <dc:description>North Shore Community Radio</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s87196q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s87196&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87196" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87196&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87196&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87196&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s87196&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87196&amp;nsdkTitle=TheFlea%2088.2%20(90's)&amp;nsdkDescription=North%20Shore%20Community%20Radio&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s87196q.png&amp;nsdkGenreId=g2677&quot;,&quot;genre&quot;:&quot;90's&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:96000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s87196&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;TheFlea 88.2 (90's)&quot;,&quot;description&quot;:&quot;North Shore Community Radio&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s87196&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s87196q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s87196&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s87196&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s259350" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Tiri 2 (Classic Rock)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s259350</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Classic Rock</upnp:genre>
+        <dc:description>On the waves with pirate attitude</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s259350/images/logoq.jpg?t=1699053132000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s259350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s259350" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s259350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s259350&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s259350&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s259350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s259350&amp;nsdkTitle=Tiri%202%20(Classic%20Rock)&amp;nsdkDescription=On%20the%20waves%20with%20pirate%20attitude&amp;nsdkIcon=http://cdn-profiles.tunein.com/s259350/images/logoq.jpg?t%3D1699053132000&amp;nsdkGenreId=g54&quot;,&quot;genre&quot;:&quot;Classic Rock&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s259350&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Tiri 2 (Classic Rock)&quot;,&quot;description&quot;:&quot;On the waves with pirate attitude&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s259350&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s259350/images/logoq.jpg?t=1699053132000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s259350&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s259350&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s125566" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>Waiheke Radio 88.3 or 107.4 (Rock)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="128000">nuvo:tunein:browse?nsdkGuideId=s125566</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Rock</upnp:genre>
+        <dc:description>Community Radio for Waiheke Island</dc:description>
+        <upnp:icon>http://cdn-radiotime-logos.tunein.com/s125566q.png</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s125566&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s125566" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s125566&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s125566&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s125566&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s125566&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s125566&amp;nsdkTitle=Waiheke%20Radio%2088.3%20or%20107.4%20(Rock)&amp;nsdkDescription=Community%20Radio%20for%20Waiheke%20Island&amp;nsdkIcon=http://cdn-radiotime-logos.tunein.com/s125566q.png&amp;nsdkGenreId=g19&quot;,&quot;genre&quot;:&quot;Rock&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:128000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s125566&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;Waiheke Radio 88.3 or 107.4 (Rock)&quot;,&quot;description&quot;:&quot;Community Radio for Waiheke Island&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s125566&quot;,&quot;icon&quot;:&quot;http://cdn-radiotime-logos.tunein.com/s125566q.png&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s125566&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s125566&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s165368" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>West Coast Radio WCR 87.6Fm | (Top 40 &amp; Pop Music)</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="192000">nuvo:tunein:browse?nsdkGuideId=s165368</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <upnp:genre>Top 40 &amp; Pop Music</upnp:genre>
+        <dc:description>West Coast Radio 87.6 and 87.9Fm Broadcasting across Auckland and Northland, Where the Hits are made</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s165368/images/logoq.jpg?t=1701639710000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s165368&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s165368" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s165368&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s165368&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s165368&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s165368&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s165368&amp;nsdkTitle=West%20Coast%20Radio%20WCR%2087.6Fm%20%7C%20(Top%2040%20%26%20Pop%20Music)&amp;nsdkDescription=West%20Coast%20Radio%2087.6%20and%2087.9Fm%20Broadcasting%20across%20Auckland%20and%20Northland,%20Where%20the%20Hits%20are%20made&amp;nsdkIcon=http://cdn-profiles.tunein.com/s165368/images/logoq.jpg?t%3D1701639710000&amp;nsdkGenreId=g61&quot;,&quot;genre&quot;:&quot;Top 40 &amp; Pop Music&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:192000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s165368&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;West Coast Radio WCR 87.6Fm | (Top 40 &amp; Pop Music)&quot;,&quot;description&quot;:&quot;West Coast Radio 87.6 and 87.9Fm Broadcasting across Auckland and Northland, Where the Hits are made&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s165368&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s165368/images/logoq.jpg?t=1701639710000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s165368&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s165368&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+    <item id="tunein:browse?nsdkGuideId=s333794" parentID="tunein:browse/uri/Browse.ashx?c=local&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Local%20Radio" restricted="1">
+        <dc:title>ZM Auckland 91.0</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <res protocolInfo="nuvo:*:*:*" bitrate="64000">nuvo:tunein:browse?nsdkGuideId=s333794</res>
+        <upnp:class>object.item.audioItem.audioBroadcast</upnp:class>
+        <dc:description>For Fletch, Vaughan &amp; Hayley - Play ZM</dc:description>
+        <upnp:icon>http://cdn-profiles.tunein.com/s333794/images/logoq.png?t=1727281530000</upnp:icon>
+        <x:x_nuvo_context id="tunein:browser_context_ex?guideId=s333794&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333794" restricted="1">
+            <dc:title></dc:title>
+            <dc:creator>tuneIn</dc:creator>
+            <upnp:class>object.container.x_nuvo_contextContainer</upnp:class>
+            <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333794&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333794&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}</x:x_nuvo_nsdk>
+        </x:x_nuvo_context>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;contentRedirect&quot;:true,&quot;matchingMediaRoles&quot;:[{&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333794&quot;}],&quot;contentPlayContextPath&quot;:&quot;tunein:player_context?guideId=s333794&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333794&amp;nsdkTitle=ZM%20Auckland%2091.0&amp;nsdkDescription=For%20Fletch,%20Vaughan%20%26%20Hayley%20-%20Play%20ZM&amp;nsdkIcon=http://cdn-profiles.tunein.com/s333794/images/logoq.png?t%3D1727281530000&amp;nsdkGenreId=&quot;,&quot;live&quot;:true,&quot;serviceID&quot;:&quot;tuneIn&quot;},&quot;resources&quot;:[{&quot;bitRate&quot;:64000,&quot;mimeType&quot;:&quot;audio/x-mpegurl&quot;,&quot;uri&quot;:&quot;http://opml.radiotime.com/Tune.ashx?id=s333794&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&quot;}]},&quot;title&quot;:&quot;ZM Auckland 91.0&quot;,&quot;description&quot;:&quot;For Fletch, Vaughan &amp; Hayley - Play ZM&quot;,&quot;path&quot;:&quot;tunein:browse?nsdkGuideId=s333794&quot;,&quot;icon&quot;:&quot;http://cdn-profiles.tunein.com/s333794/images/logoq.png?t=1727281530000&quot;,&quot;type&quot;:&quot;audio&quot;,&quot;audioType&quot;:&quot;audioBroadcast&quot;,&quot;context&quot;:{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;containerType&quot;:&quot;context&quot;,&quot;path&quot;:&quot;tunein:browser_context_ex?guideId=s333794&amp;nsdkMatchingPath=tunein:browse?nsdkGuideId=s333794&quot;,&quot;type&quot;:&quot;container&quot;,&quot;align&quot;:&quot;left&quot;}}</x:x_nuvo_nsdk>
+    </item>
+</DIDL-Lite>

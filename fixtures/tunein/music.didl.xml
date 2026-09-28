@@ -1,0 +1,153 @@
+
+<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp/" xmlns:x="urn:schemas.nuvotechnologies.com">
+    <container id="tunein:browse/uri/Browse.ashx?id=c57940&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Country" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Country</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Country&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57940&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Country&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100035612&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Powerhitz" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Powerhitz</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Powerhitz&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100035612&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Powerhitz&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=g22&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=World%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>World Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;World Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=g22&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=World%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57943&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Top%2040%20%26%20Pop%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Top 40 &amp; Pop Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Top 40 &amp; Pop Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57943&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Top%2040%20%26%20Pop%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c1367173&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Soul%20%26%20R%26B" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Soul &amp; R&amp;B</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Soul &amp; R&amp;B&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c1367173&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Soul%20%26%20R%26B&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57951&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Rock%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Rock Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Rock Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57951&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Rock%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57950&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Religious%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Religious Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Religious Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57950&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Religious%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100000949&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Reggae%20%26%20Dancehall" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Reggae &amp; Dancehall</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Reggae &amp; Dancehall&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100000949&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Reggae%20%26%20Dancehall&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100002533&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Latin%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Latin Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Latin Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100002533&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Latin%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57944&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Jazz" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Jazz</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Jazz&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57944&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Jazz&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100000952&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Indie%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Indie Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Indie Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100000952&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Indie%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100002506&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Holiday%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Holiday Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Holiday Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100002506&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Holiday%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57942&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Hip%20Hop" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Hip Hop</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Hip Hop&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57942&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Hip%20Hop&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100000948&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Folk" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Folk</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Folk&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100000948&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Folk&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c10635888&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Easy%20Listening" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Easy Listening</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Easy Listening&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c10635888&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Easy%20Listening&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c481372&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Decades%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Decades Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Decades Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c481372&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Decades%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57941&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Dance%20%26%20Electronic" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Dance &amp; Electronic</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Dance &amp; Electronic&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57941&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Dance%20%26%20Electronic&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100002494&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=College%20Radio" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>College Radio</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;College Radio&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100002494&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=College%20Radio&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57939&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Classical%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Classical Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Classical Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57939&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Classical%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c530749&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Children's%20Music" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Children's Music</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Children's Music&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c530749&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Children's%20Music&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100001870&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Blues" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Blues</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Blues&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100001870&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Blues&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c57935&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Adult%20Hits" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Adult Hits</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Adult Hits&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c57935&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Adult%20Hits&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100001676&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Classic%20Hits" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Classic Hits</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Classic Hits&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100001676&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Classic%20Hits&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100006395&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Boss%20Radio" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Boss Radio</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Boss Radio&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100006395&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Boss%20Radio&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+    <container id="tunein:browse/uri/Browse.ashx?id=c100006348&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Variety" parentID="tunein:browse/uri/Browse.ashx?c=music&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Music" restricted="1">
+        <dc:title>Variety</dc:title>
+        <dc:creator>tuneIn</dc:creator>
+        <upnp:class>object.container</upnp:class>
+        <x:x_nuvo_nsdk>{&quot;mediaData&quot;:{&quot;metaData&quot;:{&quot;serviceID&quot;:&quot;tuneIn&quot;}},&quot;title&quot;:&quot;Variety&quot;,&quot;path&quot;:&quot;tunein:browse/uri/Browse.ashx?id=c100006348&amp;formats=mp3,aac&amp;partnerId=q4Wc!5W9&amp;serial=nuvo2HvKFUspj2CRGUs8&amp;locale=enUS&amp;nsdkDisplayName=Variety&quot;,&quot;type&quot;:&quot;container&quot;}</x:x_nuvo_nsdk>
+    </container>
+</DIDL-Lite>
