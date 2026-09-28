@@ -76,8 +76,8 @@ class NuvoZone:
         self.available = True
         self.subscribed = False
         self.renew_interval = SUBSCRIPTION_TIMEOUT / 2
-        self.last_renewed = 0.0
-        self.last_polled = 0.0
+        self.last_renewed = float("-inf")
+        self.last_polled = float("-inf")
         self._group_written_at = float("-inf")
 
     def __repr__(self) -> str:

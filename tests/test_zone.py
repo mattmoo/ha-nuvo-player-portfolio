@@ -1,4 +1,5 @@
 import asyncio
+import time
 import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -224,7 +225,7 @@ async def test_unreachable_then_recovers(system, fake, ssdp):
 async def test_dropped_subscription_is_renewed(system, fake):
     zone = zone_of(system)
     fake.subs.clear()  # device forgot us: renewals now get 412
-    zone.last_renewed = 0
+    zone.last_renewed = time.monotonic() - zone.renew_interval - 1  # not 0: CI clocks can be < 150 s
     assert await eventually(lambda: len(fake.subs) == 3 and zone.subscribed, timeout=3)
     await fake.app_set_volume(5)
     assert await eventually(lambda: zone.state.volume_raw == 5)
