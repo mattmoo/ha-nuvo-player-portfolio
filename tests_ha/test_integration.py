@@ -31,7 +31,7 @@ from homeassistant.helpers import device_registry as dr, entity_registry as er
 from custom_components.nuvo_player.const import DOMAIN
 from custom_components.nuvo_player.diagnostics import async_get_config_entry_diagnostics
 
-LOUNGE, DINING = "media_player.lounge", "media_player.dining_room"
+LOUNGE, DINING = "media_player.nuvo_lounge", "media_player.nuvo_dining_room"
 
 
 async def settle(hass, pred, timeout=3.0):
@@ -197,5 +197,28 @@ async def test_retired_tone_entities_are_removed(hass, entry, amp):
         await hass.async_block_till_done()
         domains = {e.domain for e in er.async_entries_for_config_entry(registry, entry.entry_id)}
         assert domains == {"media_player"}
+        await hass.config_entries.async_unload(entry.entry_id)
+        await hass.async_block_till_done()
+
+
+async def test_existing_entity_ids_are_kept(hass, entry, amp):
+    """New installs get media_player.nuvo_<zone>; an entity registered earlier keeps its ID."""
+    registry = er.async_get(hass)
+    registry.async_get_or_create(
+        "media_player", DOMAIN, "memberId-0025ed1dd983", config_entry=entry, suggested_object_id="lounge"
+    )
+    lounge, dining, responder = amp
+    from custom_components.nuvo_player.aionuvo import NuvoSystem
+    from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
+    def _create(hass_, entry_):
+        return NuvoSystem(session=async_get_clientsession(hass_), hosts=["127.0.0.1"], multicast=False,
+                          ssdp_port=responder.port, callback_host="127.0.0.1", search_timeout=1, system_id="nuvoTEST")
+
+    with patch("custom_components.nuvo_player.create_system", _create):
+        assert await hass.config_entries.async_setup(entry.entry_id)
+        await hass.async_block_till_done()
+        ids = sorted(e.entity_id for e in er.async_entries_for_config_entry(registry, entry.entry_id))
+        assert ids == ["media_player.lounge", "media_player.nuvo_dining_room"]
         await hass.config_entries.async_unload(entry.entry_id)
         await hass.async_block_till_done()

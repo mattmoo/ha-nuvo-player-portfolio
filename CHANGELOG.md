@@ -5,6 +5,17 @@ while the version is 0.x, a minor bump (0.1 → 0.2) may include breaking change
 **Breaking**. Pre-releases (`b1`, `rc1`, ...) are published as GitHub pre-releases, which HACS offers
 when "Show beta versions" is on.
 
+## 0.2.1 (2026-09-28)
+
+### Changed
+- New zones are named `media_player.nuvo_<zone>` (e.g. `media_player.nuvo_lounge`) instead of
+  `media_player.<zone>`, so they no longer collide with other players named after the same room.
+  The display name is still the zone's name. Existing entities keep their IDs; to get the new
+  names, rename them in Settings → Entities, or delete and re-add the integration.
+
+### Fixed
+- Tests pass on Home Assistant 2026.9, and CI now also runs them on the latest HA release.
+
 ## 0.2.0 (2026-09-28)
 
 First full release since 0.1.0; the same code as 0.2.0b1.

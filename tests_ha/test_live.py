@@ -15,7 +15,7 @@ from custom_components.nuvo_player.const import CONF_HOSTS, CONF_SYSTEM_ID, DOMA
 ZONES = ["192.168.1.52", "192.168.1.53", "192.168.1.54"]
 pytestmark = pytest.mark.skipif(os.environ.get("NUVO_LIVE") != "1", reason="needs the real amp (NUVO_LIVE=1)")
 
-LOUNGE, DINING = "media_player.lounge", "media_player.dining_room"
+LOUNGE, DINING = "media_player.nuvo_lounge", "media_player.nuvo_dining_room"
 
 
 async def settle(hass, pred, timeout=5.0):
@@ -45,7 +45,7 @@ async def test_live(hass, socket_enabled):
     assert await hass.config_entries.async_setup(entry.entry_id)
     await hass.async_block_till_done()
     try:
-        for eid in (LOUNGE, DINING, "media_player.ana_s_bedroom"):
+        for eid in (LOUNGE, DINING, "media_player.nuvo_ana_s_bedroom"):
             s = hass.states.get(eid)
             print(eid, s.state, s.attributes.get("volume_level"), s.attributes.get("source"), s.attributes.get("group_members"))
 

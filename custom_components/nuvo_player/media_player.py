@@ -20,11 +20,12 @@ from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event
+from homeassistant.util import slugify
 
 from . import NuvoConfigEntry
 from .aionuvo import NuvoError, NuvoSystem, NuvoZone
 from .browse import TuneInBrowser, is_tunein_id
-from .const import CONF_LINE_IN_FEEDS, DOMAIN, SOURCE_LABELS
+from .const import CONF_LINE_IN_FEEDS, DOMAIN, ENTITY_ID_PREFIX, SOURCE_LABELS
 from .entity import NuvoEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -71,6 +72,8 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
     def __init__(self, system: NuvoSystem, zone: NuvoZone, line_in_feed: str | None = None) -> None:
         super().__init__(system, zone)
         self._attr_unique_id = zone.member_id
+        # Only a suggestion: HA keeps the ID of an entity that is already registered.
+        self.entity_id = f"media_player.{ENTITY_ID_PREFIX}_{slugify(zone.name)}"
         self._browser = TuneInBrowser(zone)
         self._line_in_feed = line_in_feed
 

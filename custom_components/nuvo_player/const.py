@@ -4,6 +4,10 @@ from datetime import timedelta
 
 DOMAIN = "nuvo_player"
 
+# New entities are suggested as media_player.nuvo_<zone>, so a zone named after
+# its room does not collide with other players named after the same room.
+ENTITY_ID_PREFIX = "nuvo"
+
 CONF_HOSTS = "hosts"
 CONF_SYSTEM_ID = "system_id"
 CONF_CALLBACK_PORT = "callback_port"

@@ -28,6 +28,22 @@ jobs:
       - run: pip install -r requirements_ha_test.txt
       - run: pytest -q tests_ha -o pythonpath=. --cov=custom_components.nuvo_player --cov-report=term-missing
 
+  home-assistant-latest:
+    # The newest HA release (what most users run); the job above stays on the pinned one.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: pip install pytest-homeassistant-custom-component pytest-cov
+      - name: Install the async-upnp-client version HA pins
+        run: |
+          pin=$(python -c "import json, homeassistant.components.ssdp as s, pathlib; print(next(r for r in json.loads((pathlib.Path(s.__file__).parent / 'manifest.json').read_text())['requirements'] if r.startswith('async-upnp-client')))")
+          pip install "$pin"
+          python -c "import homeassistant.const as c; print('HA', c.__version__)"
+      - run: pytest -q tests_ha -o pythonpath=.
+
   hassfest:
     runs-on: ubuntu-latest
     steps:

@@ -83,6 +83,7 @@ class FakeZone:
     port: int = 0
     _runner: web.AppRunner | None = None
     _session: aiohttp.ClientSession | None = None
+    _timers: list[asyncio.TimerHandle] = field(default_factory=list, repr=False)
 
     def __post_init__(self) -> None:
         if not self.uri:
@@ -122,6 +123,9 @@ class FakeZone:
         self._session = aiohttp.ClientSession()
 
     async def stop(self) -> None:
+        for timer in self._timers:
+            timer.cancel()
+        self._timers.clear()
         if self._runner:
             await self._runner.cleanup()
             self._runner = None
@@ -169,7 +173,9 @@ class FakeZone:
             callback = request.headers["CALLBACK"].strip("<>")
             sid = f"uuid:sub-{self.mac}-{next(_gid)}-{service}"
             self.subs[sid] = Subscription(service, callback)
-            asyncio.get_running_loop().call_later(0.05, lambda: asyncio.ensure_future(self._initial(sid)))
+            self._timers.append(
+                asyncio.get_running_loop().call_later(0.05, lambda: asyncio.ensure_future(self._initial(sid)))
+            )
         return web.Response(headers={"SID": sid, "TIMEOUT": "Second-300"})
 
     async def _initial(self, sid: str) -> None:

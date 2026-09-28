@@ -57,7 +57,7 @@ container, and the library ships inside the integration.
 
 Per zone you get a device (assign each to an area yourself) with:
 
-- `media_player.<zone>`: power, volume, mute, source (Line In) and grouping
+- `media_player.nuvo_<zone>` (e.g. `media_player.nuvo_lounge`): power, volume, mute, source (Line In) and grouping
   (`media_player.join` / `unjoin`). Turning off a group master also turns off
   the zones listening to it; an amp behaviour.
 

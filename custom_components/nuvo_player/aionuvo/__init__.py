@@ -27,4 +27,4 @@ __all__ = [
     "async_probe",
 ]
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
