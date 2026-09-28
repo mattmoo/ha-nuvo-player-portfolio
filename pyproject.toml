@@ -9,6 +9,7 @@ description = "Async client for Legrand Nuvo Player Portfolio zones (UPnP/SOAP)"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
+license-files = ["LICENSE"]
 dependencies = ["async-upnp-client>=0.44", "aiohttp>=3.9"]
 
 [project.optional-dependencies]
