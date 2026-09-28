@@ -44,9 +44,12 @@ async def test_browse_tree(hass, setup, amp):
     titles = [c.title for c in root.children]
     assert titles[:3] == ["My Favorites", "Local Radio", "Music"] and "Podcasts" not in titles
     assert all(c.can_expand and not c.can_play for c in root.children)
+    assert root.children_media_class == "directory"
 
     station = await local_radio_station(hass)
     assert station.can_play and not station.can_expand
+    local = await browse(hass, next(c for c in root.children if c.title == "Local Radio").media_content_id)
+    assert local.children_media_class == "channel"
     assert station.thumbnail.startswith("http://cdn-profiles.tunein.com/s7160/")
     assert station.media_content_id.startswith("tunein|tunein:|") and station.media_content_id.endswith("|" + S7160)
 

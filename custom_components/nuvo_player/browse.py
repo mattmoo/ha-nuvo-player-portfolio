@@ -70,6 +70,7 @@ class TuneInBrowser:
         except NuvoError as err:
             raise BrowseError(f"{self.zone.name}: {err}") from err
         parent = parts[1] if len(parts) == 3 else ""
+        items = [c for e in children if (c := self._child(parent, object_id, e))]
         return BrowseMedia(
             media_class=MediaClass.DIRECTORY,
             media_content_id=content_id() if len(parts) == 1 else content_id(parent, object_id),
@@ -78,8 +79,11 @@ class TuneInBrowser:
             can_play=False,
             can_expand=True,
             thumbnail=thumbnail,
-            children=[c for e in children if (c := self._child(parent, object_id, e))],
-            children_media_class=MediaClass.CHANNEL,
+            children=items,
+            # Tells the frontend how to draw children without a thumbnail.
+            children_media_class=MediaClass.CHANNEL
+            if any(c.can_play for c in items)
+            else MediaClass.DIRECTORY,
         )
 
     @staticmethod

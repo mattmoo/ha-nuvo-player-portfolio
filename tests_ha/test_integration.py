@@ -199,3 +199,11 @@ async def test_not_ready_without_zones(hass, entry):
         await hass.async_block_till_done()
     assert entry.state is ConfigEntryState.SETUP_RETRY
     system.async_stop.assert_awaited()
+
+
+async def test_entity_icons(hass, setup):
+    from homeassistant.helpers.icon import async_get_icons
+
+    icons = (await async_get_icons(hass, "entity", integrations=[DOMAIN]))[DOMAIN]
+    assert icons["number"]["bass"]["default"] == "mdi:music-clef-bass"
+    assert icons["switch"]["loudness"]["state"]["off"] == "mdi:volume-medium"

@@ -1,0 +1,15 @@
+{
+  "entity": {
+    "number": {
+      "bass": { "default": "mdi:music-clef-bass" },
+      "treble": { "default": "mdi:music-clef-treble" },
+      "balance": { "default": "mdi:scale-balance" }
+    },
+    "switch": {
+      "loudness": {
+        "default": "mdi:volume-plus",
+        "state": { "off": "mdi:volume-medium" }
+      }
+    }
+  }
+}
