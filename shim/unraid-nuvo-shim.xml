@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>nuvo-shim</Name>
+  <Repository>nuvo-shim</Repository>
+  <Network>host</Network>
+  <Privileged>false</Privileged>
+  <Overview>REST API and Server-Sent Events for Legrand Nuvo Player Portfolio zones (volume, mute, Line In, power). Host networking is required for SSDP discovery and UPnP event callbacks.</Overview>
+  <Category>HomeAutomation:</Category>
+  <WebUI>http://[IP]:8095/docs</WebUI>
+  <Config Name="Zone IPs" Target="NUVO_HOSTS" Default="" Mode="" Description="Comma-separated zone IPs for unicast discovery (needed when the amp is on another VLAN)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Event callback port" Target="NUVO_CALLBACK_PORT" Default="8096" Mode="" Description="TCP port the zones connect back to with state changes. Allow amp VLAN to this host on it." Type="Variable" Display="always" Required="true" Mask="false">8096</Config>
+  <Config Name="Event callback IP" Target="NUVO_CALLBACK_HOST" Default="" Mode="" Description="IP the zones should call back on. Leave blank to auto-detect." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="API token" Target="NUVO_API_TOKEN" Default="" Mode="" Description="Optional bearer token for the API" Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/nuvo-shim" Mode="rw" Description="Location cache" Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/nuvo-shim</Config>
+</Container>

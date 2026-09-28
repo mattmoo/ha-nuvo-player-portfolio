@@ -1,0 +1,19 @@
+<?xml version="1.0"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body><u:GetMediaInfoResponse xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"><NrTracks>0</NrTracks><MediaDuration>NOT_IMPLEMENTED</MediaDuration><CurrentURI>nuvo:nuvoremote:memberId-0025ed1dd983/lineIn_memberId-0025ed1dd983</CurrentURI><CurrentURIMetaData>
+&lt;DIDL-Lite xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:x=&quot;urn:schemas.nuvotechnologies.com&quot;&gt;
+    &lt;item id=&quot;nuvoremote:memberId-0025ed1dd983/lineIn_memberId-0025ed1dd983&quot; restricted=&quot;1&quot;&gt;
+        &lt;dc:title&gt;Line Input (Local)&lt;/dc:title&gt;
+        &lt;dc:creator&gt;lineIn&lt;/dc:creator&gt;
+        &lt;res protocolInfo=&quot;nuvo:*:*:*&quot;&gt;nuvo:nuvoremote:memberId-0025ed1dd983/lineIn_memberId-0025ed1dd983&lt;/res&gt;
+        &lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;
+        &lt;upnp:icon&gt;skin:iconLineIn&lt;/upnp:icon&gt;
+        &lt;x:x_nuvo_context id=&quot;lineIn:lineInContextmemberId-0025ed1dd983&quot; restricted=&quot;1&quot;&gt;
+            &lt;dc:title&gt;&lt;/dc:title&gt;
+            &lt;upnp:class&gt;object.container.x_nuvo_contextContainer&lt;/upnp:class&gt;
+            &lt;x:x_nuvo_itemId&gt;memberId-0025ed1dd983&lt;/x:x_nuvo_itemId&gt;
+            &lt;x:x_nuvo_nsdk&gt;{&amp;quot;containerType&amp;quot;:&amp;quot;context&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;lineIn:lineInContextmemberId-0025ed1dd983&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;container&amp;quot;,&amp;quot;id&amp;quot;:&amp;quot;memberId-0025ed1dd983&amp;quot;,&amp;quot;align&amp;quot;:&amp;quot;left&amp;quot;}&lt;/x:x_nuvo_nsdk&gt;
+        &lt;/x:x_nuvo_context&gt;
+        &lt;x:x_nuvo_itemId&gt;memberId-0025ed1dd983&lt;/x:x_nuvo_itemId&gt;
+        &lt;x:x_nuvo_nsdk&gt;{&amp;quot;mediaData&amp;quot;:{&amp;quot;metaData&amp;quot;:{&amp;quot;playLogicPath&amp;quot;:&amp;quot;nuvoremote:memberId-0025ed1dd983/lineIn:PlayLogic&amp;quot;,&amp;quot;groupPlayRemote&amp;quot;:true,&amp;quot;serviceID&amp;quot;:&amp;quot;lineIn&amp;quot;}},&amp;quot;title&amp;quot;:&amp;quot;Line Input (Local)&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;nuvoremote:memberId-0025ed1dd983/lineIn_memberId-0025ed1dd983&amp;quot;,&amp;quot;icon&amp;quot;:&amp;quot;skin:iconLineIn&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;audio&amp;quot;,&amp;quot;audioType&amp;quot;:&amp;quot;audioBroadcast&amp;quot;,&amp;quot;id&amp;quot;:&amp;quot;memberId-0025ed1dd983&amp;quot;,&amp;quot;context&amp;quot;:{&amp;quot;containerType&amp;quot;:&amp;quot;context&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;lineIn:lineInContextmemberId-0025ed1dd983&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;container&amp;quot;,&amp;quot;id&amp;quot;:&amp;quot;memberId-0025ed1dd983&amp;quot;,&amp;quot;align&amp;quot;:&amp;quot;left&amp;quot;},&amp;quot;sortKey&amp;quot;:&amp;quot;1&amp;quot;}&lt;/x:x_nuvo_nsdk&gt;
+    &lt;/item&gt;
+&lt;/DIDL-Lite&gt;
+</CurrentURIMetaData><NextURI></NextURI><NextURIMetaData></NextURIMetaData><PlayMedium>UNKNOWN</PlayMedium><RecordMedium>NOT_IMPLEMENTED</RecordMedium><WriteStatus>NOT_IMPLEMENTED</WriteStatus></u:GetMediaInfoResponse></s:Body></s:Envelope>

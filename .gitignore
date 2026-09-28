@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+refs/
+# Raw captures may include serials/tokens; review before committing
+captures/*
+!captures/.gitkeep
+.coverage

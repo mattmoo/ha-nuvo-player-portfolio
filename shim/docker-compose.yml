@@ -1,0 +1,16 @@
+services:
+  nuvo-shim:
+    build:
+      context: ..
+      dockerfile: shim/Dockerfile
+    image: nuvo-shim
+    container_name: nuvo-shim
+    network_mode: host # SSDP multicast + GENA callbacks
+    restart: unless-stopped
+    environment:
+      NUVO_HOSTS: "192.168.1.52,192.168.1.53,192.168.1.54"
+      NUVO_CALLBACK_PORT: "8096"
+      # NUVO_CALLBACK_HOST: "192.168.1.x"   # set if the host has several interfaces
+      # NUVO_API_TOKEN: "change-me"
+    volumes:
+      - ./data:/data

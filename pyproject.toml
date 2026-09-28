@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aionuvo"
+version = "0.1.0"
+description = "Async client for Legrand Nuvo Player Portfolio zones (UPnP/SOAP)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = ["async-upnp-client>=0.44", "aiohttp>=3.9"]
+
+[project.optional-dependencies]
+shim = ["fastapi>=0.110", "uvicorn>=0.29"]
+test = ["pytest>=8", "pytest-asyncio>=0.23", "pytest-cov", "httpx"]
+
+[tool.setuptools]
+packages = ["aionuvo"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["aionuvo"]
