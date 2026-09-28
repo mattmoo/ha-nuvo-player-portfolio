@@ -1,13 +1,13 @@
 {
   "domain": "nuvo_player",
   "name": "Nuvo Player Portfolio",
-  "codeowners": [],
+  "codeowners": ["@mattmoo"],
   "config_flow": true,
   "dependencies": ["ssdp", "zeroconf"],
-  "documentation": "https://github.com/OWNER/nuvo-ha",
+  "documentation": "https://github.com/mattmoo/ha-nuvo-player-portfolio",
   "integration_type": "hub",
   "iot_class": "local_push",
-  "issue_tracker": "https://github.com/OWNER/nuvo-ha/issues",
+  "issue_tracker": "https://github.com/mattmoo/ha-nuvo-player-portfolio/issues",
   "requirements": [],
   "ssdp": [
     {

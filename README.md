@@ -1,4 +1,8 @@
-# nuvo-ha
+# Nuvo Player Portfolio for Home Assistant
+
+> **Scope:** the IP-based Legrand Nuvo **Player Portfolio** (P100/P200/P3100/P3500/P4300/…),
+> controlled over the network. This is **not** for the older Nuvo Grand Concerto /
+> Essentia (RS-232) systems; see `nuvo_serial` for those.
 
 Local control of a Legrand Nuvo Player Portfolio amp (built and tested on a
 3-zone **P4300**, firmware 2025.1) over its UPnP/SOAP interface. It covers

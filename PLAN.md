@@ -17,7 +17,7 @@ Build one async Python library that talks UPnP/SOAP straight to the amp, and put
 | 1 Recon | Done, including write replay and a power cycle. App traffic capture (step 6) turned out unnecessary. |
 | 2 `aionuvo` | Done, and now bundled at `custom_components/nuvo_player/aionuvo/`. Verified live on all zones: volume, mute, step, Line In, on/off, grouping, tone, loudness, push events (0.2–0.5 s), recovery after a power cycle. 92 tests, 92% coverage; also passes on HA's pinned async-upnp-client 0.46.2. |
 | 3 Shim | Code and tests done; ran against the amp. Docker image not built (no Docker on ubuntu-dev). 48 h soak outstanding. |
-| 4 HA integration | **Built.** Config flow (SSDP, zeroconf, manual, options), media_player with grouping, tone numbers, loudness switch, diagnostics. 21 HA tests; live test against the amp passed 3/3. Outstanding: hassfest/HACS CI (needs GitHub), a real HA install, and the repo URL in `manifest.json` (placeholder `OWNER`). |
+| 4 HA integration | **Built.** Config flow (SSDP, zeroconf, manual, options), media_player with grouping, tone numbers, loudness switch, diagnostics. 21 HA tests; live test against the amp passed 3/3. Outstanding: a real HA install. Repo: https://github.com/mattmoo/ha-nuvo-player-portfolio. |
 
 What changed from the original plan (details in docs/protocol.md):
 

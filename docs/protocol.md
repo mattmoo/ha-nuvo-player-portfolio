@@ -315,9 +315,36 @@ ContentDirectory `Browse`/`X_NUVO_Browse` on Lounge:
 | `/stable/lineIn/` | The three zones' line inputs |
 
 The Nuvo app's own favourites service does not answer, likely a retired cloud service.
-Playing a TuneIn item (presumably `X_NUVO_PlayContainerURI` with a `tunein:` item, which
-the zone resolves itself) is **untested**. After the HTTP-playback crash it needs explicit
-approval first. Not implemented; the integration offers Line In only.
+
+### TuneIn playback: works (2026-09-28, user-approved, Dining Room at volume 50)
+
+Same pattern as Line In: `GroupCreate`, then `X_NUVO_PlayContainerURI` with
+- `CurrentURI` = `""`;
+- `CurrentURIMetaData` = DIDL wrapping the **parent container element** exactly as returned
+  by browsing its parent (e.g. Local Radio from `Browse("tunein:")`);
+- `TrackURI` = the item's `<res>` (`nuvo:tunein:browse?nsdkGuideId=s7160`);
+- `TrackURIMetaData` = DIDL wrapping the **item element** from `Browse(container)`;
+- `StartingIndex` = the item's 1-based position in that listing (2 for 95bFM; the listing
+  starts with an empty-id item); `UpdateID` = -1.
+
+Result: `PLAYING` within ~2 s, and `media_title` "95bFM | (College Radio)". The zone stayed
+up (same UPnP port) and was still playing minutes later. The zone resolves the stream
+itself through `opml.radiotime.com/Tune.ashx`, which is why this path is safe while
+pushing an HTTP URL (`SetAVTransportURI`) crashed the UPnP process. Items carry
+`upnp:icon` (station logo) and `dc:description` (the current show).
+`BrowseMetadata` on a TuneIn container fails (501 "does not exist"), so the container
+DIDL must come from the parent's `BrowseDirectChildren` listing. Not yet in `aionuvo`.
+
+### Other services (read-only browse, 2026-09-28)
+
+| Service | State |
+|---|---|
+| Spotify Connect | Enabled on every zone (mDNS `_spotify-connect._tcp`). Controlled from Spotify clients, not browsable here. |
+| Deezer, iHeart, Napster | "Not configured / Fix it!": needs an account linked in the Nuvo app. Napster (ex-Rhapsody) and iHeart are likely dead or not offered in NZ. |
+| Amazon Music, SiriusXM (`siriusxm2:`), `top10:`, `alexa:` | Empty. |
+| `iheart:`, `rhapsody:`, `sxZone:`, `testStreams:`, `airplay2:` | Time out. |
+| Pandora | Not available in NZ. |
+| AirPlay 2 | Settings exist but nothing is advertised. |
 
 ## Idle drop observed
 
