@@ -10,7 +10,7 @@ volume, mute, Line In, on/off, grouping and push updates, and it survives the am
 changing its HTTP port on every boot. With Music Assistant, use the zones as the
 power and volume control of the players feeding their Line In (see PLAN.md).
 
-This project is largely vibe-engineered (I do have a Software Engineering degree). 
+This project is largely "vibe-engineered" (I do have a Software Engineering degree). 
 Use at your own risk, I'm putting it here in case it comes in handy for someone.
 
 | Part | What it is |
