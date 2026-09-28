@@ -5,7 +5,9 @@ while the version is 0.x, a minor bump (0.1 → 0.2) may include breaking change
 **Breaking**. Pre-releases (`b1`, `rc1`, ...) are published as GitHub pre-releases, which HACS offers
 when "Show beta versions" is on.
 
-## 0.2.0b1 (2026-09-28)
+## 0.2.0 (2026-09-28)
+
+First full release since 0.1.0; the same code as 0.2.0b1.
 
 ### Added
 - **TuneIn** in each zone's media browser (Local Radio, Music, Talk, Sports, By Location,
@@ -28,6 +30,10 @@ when "Show beta versions" is on.
   stored these values but never applied them to the sound or showed them in the Nuvo app. The old
   entities are deleted on upgrade; update any automations or dashboards that used them. Use the Nuvo
   app for tone and loudness. See PLAN.md, "Tone and loudness".
+
+## 0.2.0b1 (2026-09-28)
+
+Pre-release of 0.2.0 (same changes).
 
 ## 0.1.0 (2026-09-28)
 

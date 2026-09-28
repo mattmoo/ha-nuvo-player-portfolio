@@ -14,6 +14,6 @@
       "deviceType": "urn:schemas-nuvotechnologies-com:device:Zone:1"
     }
   ],
-  "version": "0.2.0b1",
+  "version": "0.2.0",
   "zeroconf": ["_nuvoplayer._tcp.local."]
 }
