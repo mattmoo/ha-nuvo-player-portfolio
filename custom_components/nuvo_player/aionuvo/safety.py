@@ -61,27 +61,6 @@ def check_post_url(url: str) -> None:
         )
 
 
-# The only nSDK settings that may be written (docs/safety.md, tone-control exception).
-ALLOWED_SETDATA_PATHS = frozenset(
-    {
-        "settings://mediaPlayer/bass",
-        "settings://mediaPlayer/treble",
-        "settings://mediaPlayer/balance",
-    }
-)
-READ_ONLY_WEB_PATHS = frozenset({"/api/getdata", "/api/getrows"})
-
-
-def check_web_request(path: str, params: dict[str, str]) -> None:
-    """Allow nSDK reads, the login, and setData on ALLOWED_SETDATA_PATHS only."""
-    p = path.rstrip("/").lower()
-    if p in READ_ONLY_WEB_PATHS or p == "/api/authenticate":
-        return
-    if p == "/api/setdata" and params.get("path") in ALLOWED_SETDATA_PATHS:
-        return
-    raise DeniedActionError(f"web request {path} {params.get('path', '')} is not allowlisted (docs/safety.md)")
-
-
 def check_http_url(url: str) -> None:
     """Raise DeniedActionError for any request to a state-changing web UI path."""
     path = urlsplit(url).path.rstrip("/").lower()

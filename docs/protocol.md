@@ -301,6 +301,11 @@ with the unjoin reflected in HA within about 0.3 s.
   Measured on Dining Room while it was off, then restored to 0.
 - Loudness uses UPnP `SetLoudness`/`GetLoudness` instead; it is evented via RenderingControl LastChange.
 
+**Correction (2026-09-28, real HA install):** none of this changes the sound. Balance −18 via
+`setData` was stored and read back but was inaudible and did not show in the Nuvo app; UPnP
+`SetLoudness` likewise. App-side changes do land in `settings://mediaPlayer/*`, so the app applies
+tone some other way. The entities were removed; see PLAN.md, "Tone and loudness".
+
 ## Favourites (2026-09-28, read-only exploration)
 
 ContentDirectory `Browse`/`X_NUVO_Browse` on Lounge:

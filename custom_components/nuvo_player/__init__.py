@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo
@@ -20,7 +21,7 @@ from .const import CONF_CALLBACK_PORT, CONF_HOSTS, CONF_SYSTEM_ID, DEFAULT_CALLB
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS = [Platform.MEDIA_PLAYER, Platform.NUMBER, Platform.SWITCH]
+PLATFORMS = [Platform.MEDIA_PLAYER]
 
 type NuvoConfigEntry = ConfigEntry[NuvoSystem]
 
@@ -35,7 +36,19 @@ def create_system(hass: HomeAssistant, entry: NuvoConfigEntry) -> NuvoSystem:
     )
 
 
+def _remove_retired_entities(hass: HomeAssistant, entry: NuvoConfigEntry) -> None:
+    """Drop the tone number and loudness switch entities of older versions.
+
+    They wrote settings the amp never applied (PLAN.md, "Tone and loudness").
+    """
+    registry = er.async_get(hass)
+    for ent in er.async_entries_for_config_entry(registry, entry.entry_id):
+        if ent.domain in (Platform.NUMBER, Platform.SWITCH):
+            registry.async_remove(ent.entity_id)
+
+
 async def async_setup_entry(hass: HomeAssistant, entry: NuvoConfigEntry) -> bool:
+    _remove_retired_entities(hass, entry)
     system = create_system(hass, entry)
 
     # Locations HA's own SSDP scanner already knows save a search round-trip.

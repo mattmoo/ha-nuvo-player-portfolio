@@ -45,7 +45,7 @@ def make_system(ssdp, **kwargs) -> NuvoSystem:
 
 @pytest.fixture
 async def system(ssdp, fake):
-    s = make_system(ssdp, web_port=fake.port)
+    s = make_system(ssdp)
     await s.async_start()
     yield s
     await s.async_stop()

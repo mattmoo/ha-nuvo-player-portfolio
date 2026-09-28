@@ -84,7 +84,6 @@ async def setup(hass, entry, amp):
             ssdp_port=responder.port,
             callback_host="127.0.0.1",
             search_timeout=1,
-            web_port=lounge.port,
             system_id="nuvoTEST",
         )
 

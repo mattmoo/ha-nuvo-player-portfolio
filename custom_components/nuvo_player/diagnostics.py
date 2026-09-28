@@ -33,7 +33,6 @@ async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: NuvoCon
                 "source": zone.source,
                 "group_master": zone.master.name if zone.master else None,
                 "group_members": [z.name for z in zone.group_members],
-                "web_api": zone.web is not None,
                 "state": state,
             }
         )

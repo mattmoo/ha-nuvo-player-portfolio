@@ -60,8 +60,10 @@ Per zone you get a device (assign each to an area yourself) with:
 - `media_player.<zone>`: power, volume, mute, source (Line In) and grouping
   (`media_player.join` / `unjoin`). Turning off a group master also turns off
   the zones listening to it; an amp behaviour.
-- `number.<zone>_bass`, `_treble` (−6…6), `_balance` (−18…18), polled every 5 min.
-- `switch.<zone>_loudness`.
+
+Bass, treble, balance and loudness are not supported. Use the Nuvo app for them:
+the amp accepts these settings from outside the app but does not apply them to
+the sound (PLAN.md, "Tone and loudness").
 
 **TuneIn:** open a zone's media browser to browse the amp's built-in TuneIn
 (Local Radio, Music, Talk, Sports, By Location, By Language, My Favorites) and

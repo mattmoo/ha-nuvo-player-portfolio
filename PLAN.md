@@ -15,9 +15,9 @@ Build one async Python library that talks UPnP/SOAP straight to the amp, and put
 |---|---|
 | 0 Environment | Done. No sudo on ubuntu-dev: `uv` venv on Python 3.13 (the `upnp-client` CLI breaks on 3.14); no nmap/tshark/gupnp-tools. |
 | 1 Recon | Done, including write replay and a power cycle. App traffic capture (step 6) turned out unnecessary. |
-| 2 `aionuvo` | Done, and now bundled at `custom_components/nuvo_player/aionuvo/`. Verified live on all zones: volume, mute, step, Line In, on/off, grouping, tone, loudness, push events (0.2–0.5 s), recovery after a power cycle. 92 tests, 92% coverage; also passes on HA's pinned async-upnp-client 0.46.2. |
+| 2 `aionuvo` | Done, and now bundled at `custom_components/nuvo_player/aionuvo/`. Verified live on all zones: volume, mute, step, Line In, on/off, grouping, push events (0.2–0.5 s), recovery after a power cycle. 92 tests, 92% coverage; also passes on HA's pinned async-upnp-client 0.46.2. |
 | 3 Shim | Code and tests done; ran against the amp. Docker image not built (no Docker on ubuntu-dev). 48 h soak outstanding. |
-| 4 HA integration | **Built.** Config flow (SSDP, zeroconf, manual, options), media_player with grouping, tone numbers, loudness switch, diagnostics. 21 HA tests; live test against the amp passed 3/3. Outstanding: a real HA install. Repo: https://github.com/mattmoo/ha-nuvo-player-portfolio. |
+| 4 HA integration | **Built.** Config flow (SSDP, zeroconf, manual, options), media_player with grouping, TuneIn browsing and Line In feeds, diagnostics. Tone and loudness were built, then **removed** (see "Tone and loudness"). 21 HA tests; live test against the amp passed 3/3. Outstanding: a real HA install. Repo: https://github.com/mattmoo/ha-nuvo-player-portfolio. |
 
 What changed from the original plan (details in docs/protocol.md):
 
@@ -26,10 +26,10 @@ What changed from the original plan (details in docs/protocol.md):
 3. **Grouping is master/member**, verified on hardware. Join and leave use `GroupMemberSetGroup` (see Phase 2). Disbanding a master's group turns **every member off**, and a joined member's own AVTransport reads `NO_MEDIA_PRESENT`, so its state must come from the master.
 4. **The port-scan fallback is dropped.** Unicast M-SEARCH to the zone IP works, and each zone also advertises `_nuvoplayer._tcp` over mDNS on a fixed port (4747), which is a better fallback if ever needed.
 5. **Ports:** the shim API is on 8095 and its GENA callback on 8096. The original plan put both on 8095.
-6. **Web UI / nSDK JSON API on :80** (serial-number login) exposes the full settings tree: bass, treble, balance, turn-on volume, idle timeout. It **writes via plain GET** (`/api/setData`), so it is hard-denied. Tone controls would need a deliberate, narrow exception.
+6. **Web UI / nSDK JSON API on :80** (serial-number login) exposes the full settings tree: bass, treble, balance, turn-on volume, idle timeout. It **writes via plain GET** (`/api/setData`), so it is hard-denied. Writing tone there saves the value but does not change the sound (see "Tone and loudness").
 7. **Direct HTTP playback crashes the zone's UPnP process** (`SetAVTransportURI` + `Play` of an http WAV: the zone fetched it, then its UPnP server restarted on a new port). This is not a usable path, which rules out Music Assistant driving the zones directly. See Phase 4, Music Assistant.
 9. **The amp's `Get` lags its own events** by a second or two after group changes. Group state is updated optimistically and confirmed by events; reads are ignored briefly after writes.
-10. **Tone controls need no user input:** the web login serial is published in each zone's UPnP description.
+10. **Tone and loudness are not controllable yet.** The obvious routes store values without applying them; see "Tone and loudness".
 11. **Favourites:** the Nuvo favourites service is dead. **TuneIn** browse and playback work through the zone's own ContentDirectory (2026-09-28) and are exposed through HA's media browser; Podcasts are hidden until tested. Playing by guide ID alone (for short automation IDs) is untested.
 8. **The DLNA DMR overlap is moot.** The zones embed a MediaRenderer but do not advertise it over SSDP, so HA's DLNA integration should not discover them. Still confirm in Phase 4.
 
@@ -306,11 +306,73 @@ The zones cannot be MA players directly. They advertise no AirPlay, Cast or Send
 - One config entry per Nuvo system. **Each zone is its own HA device** with one `media_player` named after the zone, so each can be put in its own area. The integration never assigns areas and sets no `suggested_area`.
 - `aionuvo` is **bundled inside the integration** (no PyPI package, no add-on or extra container). HA core already ships `async-upnp-client`/`aiohttp`.
 - Sources: Line In, and **explore streaming favourites** (read-only `X_NUVO_Browse` first; any playback test needs approval, given the HTTP-playback crash).
-- **Tone controls: a narrow exception** to the nSDK `setData` denylist. Only bass, treble and balance (number entities); loudness goes over UPnP (switch). The login serial is read from each zone's UPnP description, not stored.
+- ~~Tone controls: a narrow exception to the nSDK `setData` denylist.~~ **Withdrawn 2026-09-28**: the writes never reached the sound. Tone and loudness entities removed (see "Tone and loudness").
 - **Optional Line In feed per zone (user decision 2026-09-28).** Options → Line In feeds maps each zone to the player wired to its Line In. When that player goes to `playing` (not from `unavailable`/`unknown`), the zone runs `turn_on`, i.e. switches to Line In, turning on if needed, unless it listens to another zone's group. This works without Music Assistant's power control and overrides TuneIn. MA's power/volume control remains the alternative and needs no mapping here.
 - `turn_on` switches a zone playing TuneIn to Line In (so MA power control wins over TuneIn); it stays a no-op on Line In or while joined to another zone's playing group.
 
 **STOP AND ASK:** before any favourites playback test, and before a public HACS release.
+
+## Tone and loudness (removed 2026-09-28; open problem)
+
+**Status:** not supported. Bass, treble, balance (`number`) and loudness (`switch`) were built,
+tested against the fake zone, and shipped on `main` up to commit `79f6c3e`. Testing in a real HA
+install showed that none of them changes the sound, so they were removed. The integration deletes
+their leftover entities at startup (`_remove_retired_entities` in `__init__.py`).
+
+### What was tried, and what we learned
+
+| Control | Route used | Result on a P4300 (Dining Room) |
+|---|---|---|
+| Bass, treble, balance | nSDK web API on :80, `GET /api/setData?path=settings://mediaPlayer/<key>&roles=value&value={"type":"double_","double_":N}` after `POST /api/authenticate` with the base64 serial | The value is **stored** and reads back, but the sound does not change and the Nuvo app does not show it. Balance −18 held for minutes: no audible change. |
+| Loudness | UPnP `RenderingControl.SetLoudness` | Accepted, evented back (`LastChange`), reads back, but **no audible difference** and the app does not update. `settings://mediaPlayer/loudness` stayed `false` while UPnP said `true`: two separate stores. |
+
+The reverse direction works: when the **app** changes bass or balance, the new value appears in
+`settings://mediaPlayer/*` (read with `getData`), so HA could show it within one poll. So the app
+applies tone through a route we cannot see, and stores the value in the settings tree as a side effect.
+
+Ruled out:
+- **UPnP:** no tone actions in any SCPD (only `SetLoudness`, `ListPresets`/`SelectPreset`), and no
+  tone events during a 30-minute recording while the app changed bass and balance.
+- **Web UI pages:** `home.fcgi` and `diagnostics.fcgi` have no audio controls. The API root is titled
+  "Settings (debug)", which suggests `settings:/` is a raw store that bypasses the apply logic.
+- **Other nSDK namespaces:** `getRows` on `systemMgmt:`, `player:`, `network:`, `lineIn:` returns
+  nothing; `mediaPlayer:`, `nuvo:`, `ui:`, `audio:`, `dsp:`, `svx:`, `zone:`, `av:` time out.
+  `roles=activate` exists for action nodes (`systemMgmt:startCaptureNetworkTraffic`), so an
+  activate-style tone action is plausible but was not found.
+- **HTTP proxy on the phone (mitmproxy):** the Nuvo app ignores the phone's proxy setting for LAN
+  traffic, so nothing was captured.
+
+Unexplained, possibly related: at the moment of a balance write, `VolumeDB` once changed
+(−80.79 → −81.16 dB) with `Volume` unchanged.
+
+### How to pick this up
+
+The missing piece is the Nuvo app's traffic while it changes a tone. Options, easiest first:
+
+1. **Android phone: PCAPdroid** (free, no root). Choose the Nuvo app as the target and start
+   capturing (plain PCAP; no TLS decryption needed for LAN traffic). In the app, change **one**
+   control on **one** zone, noting the time (e.g. Dining Room bass +2, then loudness on), then stop
+   and export the `.pcap`. Look at traffic to the zone IPs (192.168.1.52–54): HTTP to :80 (nSDK
+   `/api/*`), SOAP to the zone's UPnP port, or anything on other ports (e.g. a WebSocket, or 4747,
+   the `_nuvoplayer._tcp` mDNS service).
+2. **iPhone:** a Mac with Xcode tools, `rvictl -s <UDID>`, then Wireshark on the `rvi0` interface.
+3. **At the network:** a switch port mirror (SPAN) of the amp's port, or a capture on the router,
+   as in Phase 1. mpdrago/nuvo-zone-keepalive worked this way (a decrypted Wi-Fi capture).
+
+Things to look for: a `setData` with `roles=activate` or a different path; an nSDK path outside
+`settings:`; `/api/event/*` queue calls; a Nuvo-specific port; a different value type (e.g. `i32_`
+rather than `double_`).
+
+### Rules for the next attempt
+
+- Every write is a hardware write test: **STOP AND ASK**, one zone, record the before-state, restore after.
+- Check a zone is **not in use** first (Dining Room was playing when we tested; see docs/protocol.md).
+- A route counts as working only if the change is **audible and shows in the Nuvo app**. Reading
+  back the stored value proves nothing.
+- Any web-API write needs a new, narrow exception in `docs/safety.md` and `aionuvo/safety.py`
+  (the old one was withdrawn).
+- To restore the entities, start from `79f6c3e`: `number.py`, `switch.py`, `icons.json`,
+  `aionuvo/webapi.py`, the tone and loudness parts of `zone.py`, `models.py` and `safety.py`, and their tests.
 
 ## Risks and unknowns
 

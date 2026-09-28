@@ -48,9 +48,6 @@ async def test_live(hass, socket_enabled):
         for eid in (LOUNGE, DINING, "media_player.ana_s_bedroom"):
             s = hass.states.get(eid)
             print(eid, s.state, s.attributes.get("volume_level"), s.attributes.get("source"), s.attributes.get("group_members"))
-        for eid in ("number.lounge_bass", "number.lounge_treble", "number.lounge_balance", "switch.lounge_loudness"):
-            print(eid, hass.states.get(eid).state)
-        assert hass.states.get("number.lounge_bass").state not in ("unknown", "unavailable")
 
         # Volume through HA; the new value must come back by push.
         before = hass.states.get(LOUNGE).attributes["volume_level"]

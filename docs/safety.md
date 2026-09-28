@@ -18,16 +18,13 @@ zone's `UpdateURL`) is also forbidden.
 The guard raises `DeniedActionError` for these unless the environment has
 `NUVO_I_KNOW=1`. Do not set that variable in normal use.
 
-## Tone-control exception (user decision 2026-09-28)
+## Web UI JSON API
 
-The web UI JSON API (`/api/setData`, a write over GET) is denied except through
-`aionuvo.webapi.NuvoWebApi`, which calls `check_web_request`. That allows:
-
-- `POST /api/authenticate` (login with the zone's serial number);
-- `GET /api/getData` and `/api/getRows` (reads);
-- `GET /api/setData` **only** for `settings://mediaPlayer/bass`, `treble` and `balance`.
-
-Every other `setData` path (speaker impedance, line-out mode, audio mode, and so on) stays denied.
+The web UI JSON API writes through plain GET requests (`/api/setData`), so every
+write there is denied. A narrow tone-control exception (bass, treble, balance)
+existed from 2026-09-28 until it was **withdrawn the same day**: the writes were
+stored but never applied to the sound (PLAN.md, "Tone and loudness"). Any new
+exception needs a user decision recorded here first.
 
 ## Write actions (need user approval during recon)
 

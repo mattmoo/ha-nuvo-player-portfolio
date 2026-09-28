@@ -6,7 +6,7 @@ import asyncio
 import json
 import logging
 import time
-from collections.abc import Awaitable, Callable, Iterable, Sequence
+from collections.abc import Awaitable, Callable, Sequence
 from datetime import timedelta
 from typing import TYPE_CHECKING, Any
 from urllib.parse import urlsplit
@@ -43,7 +43,6 @@ from .didl import (
 from .exceptions import NuvoActionError, NuvoConnectionError, NuvoError
 from .models import Source, ZoneState, group_id
 from .safety import check_action, check_post_url, is_read_only
-from .webapi import TONE_PATHS, NuvoWebApi
 
 if TYPE_CHECKING:
     from .system import NuvoSystem
@@ -73,9 +72,7 @@ class NuvoZone:
         *,
         locate: Callable[[NuvoZone], Awaitable[str | None]] | None = None,
         system: NuvoSystem | None = None,
-        web: NuvoWebApi | None = None,
     ) -> None:
-        self.web = web
         self._device = device
         self._factory = factory
         self._locate = locate
@@ -339,8 +336,6 @@ class NuvoZone:
                 setattr(s, simple[key], value)
             elif key == "Volume":
                 s.volume_raw = int(value)
-            elif key == "Loudness":
-                s.loudness = value in (True, 1, "1", "true", "TRUE", "True")
             elif key == "Mute":
                 s.muted = value in (True, 1, "1", "true", "TRUE", "True")
             elif key == "MemberGroup":
@@ -581,41 +576,6 @@ class NuvoZone:
                 zone._mark_group_written()
                 zone.state.member_group = zone.state.master_group = ""
             self.state.master_group = ""
-
-    @property
-    def serial(self) -> str | None:
-        """Serial number from the UPnP description; also the web UI login."""
-        return self._device.serial_number or None
-
-    async def set_loudness(self, loudness: bool) -> None:
-        await self._write(
-            RENDERING_SERVICE, "SetLoudness", InstanceID=0, Channel="Master", DesiredLoudness=bool(loudness)
-        )
-        self.state.loudness = bool(loudness)
-
-    async def async_update_loudness(self) -> None:
-        result = await self._call(RENDERING_SERVICE, "GetLoudness", InstanceID=0, Channel="Master")
-        self._apply({"Loudness": result["CurrentLoudness"]})
-
-    def _require_web(self) -> NuvoWebApi:
-        if self.web is None:
-            raise NuvoError(f"{self.name}: web API unavailable (no serial number or HTTP session)")
-        return self.web
-
-    async def async_update_tone(self, keys: Iterable[str] = TONE_PATHS) -> None:
-        """Read bass/treble/balance via the web API (not evented; poll occasionally)."""
-        web = self._require_web()
-        for key in keys:
-            self.state.tone[key] = await web.get_tone(key)
-        self._notify()
-
-    async def set_tone(self, key: str, value: float) -> None:
-        """Set bass, treble (-6..6) or balance (-18..18)."""
-        if key not in TONE_PATHS:
-            raise NuvoError(f"Unknown tone control {key!r}")
-        async with self._lock:
-            self.state.tone[key] = await self._require_web().set_tone(key, value)
-        self._notify()
 
     async def play(self) -> None:
         await self._write(AVTRANSPORT_SERVICE, "Play", InstanceID=0, Speed="1")

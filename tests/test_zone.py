@@ -390,54 +390,6 @@ async def test_discover_classmethod(ssdp, fake):
     await s.async_stop()
 
 
-async def test_loudness(system, fake):
-    zone = zone_of(system)
-    await zone.set_loudness(True)
-    assert fake.loudness is True
-    await zone.async_update_loudness()
-    assert zone.state.loudness is True
-
-
-async def test_tone_controls(system, fake):
-    zone = zone_of(system)
-    await zone.async_update_tone()
-    assert zone.state.tone == {"bass": 0.0, "treble": 0.0, "balance": 0.0}
-    await zone.set_tone("bass", 2.4)
-    assert fake.tone["bass"] == 2.0 and zone.state.tone["bass"] == 2
-    await zone.set_tone("balance", -40)
-    assert fake.tone["balance"] == -18.0
-    await zone.set_tone("treble", 99)
-    assert fake.tone["treble"] == 6.0
-    with pytest.raises(NuvoError):
-        await zone.set_tone("speakerImpedance", 1)
-    paths = {p["path"] for path, p in fake.web_requests if path == "/api/setData"}
-    assert paths == {"settings://mediaPlayer/bass", "settings://mediaPlayer/balance", "settings://mediaPlayer/treble"}
-
-
-async def test_tone_requires_login(system, fake):
-    zone = zone_of(system)
-    zone.web._cookie = "d3Jvbmc="  # wrong serial
-    zone.web._authenticated = False
-    with pytest.raises(NuvoError, match="login refused"):
-        await zone.async_update_tone()
-
-
-async def test_tone_without_web_api(system):
-    zone = zone_of(system)
-    zone.web = None
-    with pytest.raises(NuvoError, match="web API unavailable"):
-        await zone.set_tone("bass", 1)
-
-
-async def test_web_api_denies_other_settings(system):
-    from aionuvo import DeniedActionError
-
-    with pytest.raises(DeniedActionError):
-        await zone_of(system).web._api("/api/setData", {"path": "settings://mediaPlayer/speakerImpedance", "value": "x"})
-    with pytest.raises(DeniedActionError):
-        await zone_of(system).web._request("GET", "/diagnostics_execute.fcgi")
-
-
 async def test_probe(ssdp, fake):
     import aiohttp
 
@@ -462,7 +414,7 @@ async def test_system_id_filter(ssdp, fake):
 async def test_late_zone_is_adopted(ssdp, fake):
     """A zone that was offline at startup is added when SSDP sees it."""
     dining = FakeZone(mac="0025ed1dd6e1", title="Dining Room", member_group="gidDining")
-    s = make_system(ssdp, web_port=fake.port)
+    s = make_system(ssdp)
     await s.async_start()
     added = []
     unsub = s.on_zone_added(added.append)

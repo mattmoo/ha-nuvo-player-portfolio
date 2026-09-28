@@ -51,15 +51,5 @@
     "abort": {
       "not_loaded": "The Nuvo system is not connected. Wait for it to load, then try again."
     }
-  },
-  "entity": {
-    "number": {
-      "bass": { "name": "Bass" },
-      "treble": { "name": "Treble" },
-      "balance": { "name": "Balance" }
-    },
-    "switch": {
-      "loudness": { "name": "Loudness" }
-    }
   }
 }

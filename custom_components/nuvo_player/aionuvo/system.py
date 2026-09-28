@@ -8,7 +8,6 @@ import logging
 import socket
 import time
 from collections.abc import Callable, Iterable
-from urllib.parse import urlsplit
 
 import aiohttp
 from async_upnp_client.aiohttp import AiohttpNotifyServer, AiohttpSessionRequester
@@ -19,7 +18,6 @@ from async_upnp_client.exceptions import UpnpError
 from .const import POLL_INTERVAL, REDISCOVERY_BACKOFF, SSDP_PORT, ZONE_DEVICE_TYPE, ZONE_SERVICE
 from .discovery import DiscoveredZone, LocationCache, ZoneWatcher, async_discover
 from .exceptions import NuvoConnectionError, NuvoError
-from .webapi import NuvoWebApi
 from . import zone as _zone
 from .zone import _CONNECTION_ERRORS, NuvoZone
 
@@ -52,11 +50,9 @@ class NuvoSystem:
         multicast: bool = True,
         ssdp_port: int = SSDP_PORT,
         search_timeout: int = 4,
-        web_port: int = 80,
         system_id: str | None = None,
     ) -> None:
         self._system_id = system_id
-        self._web_port = web_port
         self._own_session = session is None and requester is None
         self._session = session
         self._requester = requester
@@ -159,11 +155,7 @@ class NuvoSystem:
             return None
         if device.device_type != ZONE_DEVICE_TYPE or device.find_service(ZONE_SERVICE) is None:
             return None
-        web = None
-        if self._session is not None and device.serial_number:
-            host = urlsplit(location).hostname or ""
-            web = NuvoWebApi(self._session, host, device.serial_number, port=self._web_port)
-        zone = NuvoZone(device, self._factory, locate=self._locate, system=self, web=web)
+        zone = NuvoZone(device, self._factory, locate=self._locate, system=self)
         try:
             await zone.async_update()
         except NuvoError as err:

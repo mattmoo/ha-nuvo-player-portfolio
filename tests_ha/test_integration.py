@@ -65,9 +65,6 @@ async def test_entities_and_devices(hass, setup):
     assert sorted(e.entity_id for e in ents) == sorted(
         [
             LOUNGE, DINING,
-            "number.lounge_bass", "number.lounge_treble", "number.lounge_balance",
-            "number.dining_room_bass", "number.dining_room_treble", "number.dining_room_balance",
-            "switch.lounge_loudness", "switch.dining_room_loudness",
         ]
     )
 
@@ -130,26 +127,6 @@ async def test_grouping(hass, setup, amp):
         await call(hass, MP_DOMAIN, SERVICE_JOIN, LOUNGE, **{ATTR_GROUP_MEMBERS: ["media_player.not_nuvo"]})
 
 
-async def test_tone_numbers(hass, setup, amp):
-    lounge, _, _ = amp
-    assert hass.states.get("number.lounge_bass").state == "0.0"
-    attrs = hass.states.get("number.lounge_balance").attributes
-    assert (attrs["min"], attrs["max"], attrs["step"]) == (-18, 18, 1)
-    await hass.services.async_call(
-        "number", "set_value", {ATTR_ENTITY_ID: "number.lounge_bass", "value": 3}, blocking=True
-    )
-    assert lounge.tone["bass"] == 3.0
-    assert float(hass.states.get("number.lounge_bass").state) == 3
-
-
-async def test_loudness_switch(hass, setup, amp):
-    lounge, _, _ = amp
-    assert hass.states.get("switch.lounge_loudness").state == "off"
-    await call(hass, "switch", SERVICE_TURN_ON, "switch.lounge_loudness")
-    assert lounge.loudness is True
-    assert hass.states.get("switch.lounge_loudness").state == "on"
-
-
 async def test_zone_unavailable_and_back(hass, setup, amp):
     lounge, _, _ = amp
     await lounge.stop()
@@ -201,9 +178,24 @@ async def test_not_ready_without_zones(hass, entry):
     system.async_stop.assert_awaited()
 
 
-async def test_entity_icons(hass, setup):
-    from homeassistant.helpers.icon import async_get_icons
 
-    icons = (await async_get_icons(hass, "entity", integrations=[DOMAIN]))[DOMAIN]
-    assert icons["number"]["bass"]["default"] == "mdi:music-clef-bass"
-    assert icons["switch"]["loudness"]["state"]["off"] == "mdi:volume-medium"
+async def test_retired_tone_entities_are_removed(hass, entry, amp):
+    """Tone numbers and loudness switches from older versions are cleaned up."""
+    registry = er.async_get(hass)
+    for domain, uid in (("number", "memberId-0025ed1dd983_bass"), ("switch", "memberId-0025ed1dd983_loudness")):
+        registry.async_get_or_create(domain, DOMAIN, uid, config_entry=entry)
+    lounge, dining, responder = amp
+    from custom_components.nuvo_player.aionuvo import NuvoSystem
+    from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
+    def _create(hass_, entry_):
+        return NuvoSystem(session=async_get_clientsession(hass_), hosts=["127.0.0.1"], multicast=False,
+                          ssdp_port=responder.port, callback_host="127.0.0.1", search_timeout=1, system_id="nuvoTEST")
+
+    with patch("custom_components.nuvo_player.create_system", _create):
+        assert await hass.config_entries.async_setup(entry.entry_id)
+        await hass.async_block_till_done()
+        domains = {e.domain for e in er.async_entries_for_config_entry(registry, entry.entry_id)}
+        assert domains == {"media_player"}
+        await hass.config_entries.async_unload(entry.entry_id)
+        await hass.async_block_till_done()

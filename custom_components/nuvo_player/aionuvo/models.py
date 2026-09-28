@@ -35,8 +35,6 @@ class ZoneState:
     media_artist: str | None = None
     media_album: str | None = None
     media_image_url: str | None = None
-    loudness: bool | None = None
-    tone: dict[str, float] = field(default_factory=dict)
 
     @property
     def is_on(self) -> bool:
