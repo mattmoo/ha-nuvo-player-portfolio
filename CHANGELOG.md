@@ -5,6 +5,14 @@ while the version is 0.x, a minor bump (0.1 → 0.2) may include breaking change
 **Breaking**. Pre-releases (`b1`, `rc1`, ...) are published as GitHub pre-releases, which HACS offers
 when "Show beta versions" is on.
 
+## 0.3.1 (2026-09-30)
+
+### Fixed
+- A zone that went unavailable could stay that way until the integration was reloaded, if the
+  zone stopped answering the integration's own discovery search while Home Assistant's SSDP
+  scanner still saw it. Home Assistant's sightings now reconnect an unavailable zone.
+- A zone going unavailable is now logged as a warning (it was hidden at info level).
+
 ## 0.3.0 (2026-09-30)
 
 ### Added

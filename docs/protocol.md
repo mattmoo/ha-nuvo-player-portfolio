@@ -45,6 +45,10 @@ UPnP root device.
 - Advertised ST/NT per UDN: `upnp:rootdevice`, `uuid:<udn>`, `urn:schemas-nuvotechnologies-com:device:Zone:1`. Nothing else.
 - **Targeted M-SEARCH with the Zone device type works** (multicast and unicast to `<ip>:1900`). mpdrago reported targeted searches as unreliable on P3100; not the case here. Keep `ssdp:all` as the fallback anyway.
 - Unicast M-SEARCH to each zone IP answers. That is the cross-VLAN fallback.
+- **But not always:** on 2026-09-30 Lounge and Ana's bedroom stopped answering unicast M-SEARCH
+  (both `ssdp:all` and the Zone type) while multicast M-SEARCH, SOAP, the web UI and mDNS all
+  still worked, and Dining Room still answered unicast. HA showed both zones unavailable until
+  a reload. `aionuvo` now also reconnects an unavailable zone when HA's scanner sees it.
 
 ### mDNS (second discovery path)
 | Service | Host | Port | TXT |

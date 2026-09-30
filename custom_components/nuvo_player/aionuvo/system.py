@@ -70,6 +70,7 @@ class NuvoSystem:
         self._backoff: dict[str, tuple[int, float]] = {}
         self.zones: dict[str, NuvoZone] = {}
         self._adding: set[str] = set()
+        self._relocating: set[str] = set()
         self._tasks: set[asyncio.Task] = set()
         self._zone_added: list[Callable[[NuvoZone], None]] = []
 
@@ -201,16 +202,19 @@ class NuvoSystem:
     def async_location_seen(self, udn: str, location: str) -> None:
         """Feed an SSDP sighting (e.g. from Home Assistant's scanner).
 
-        A known zone at a new LOCATION is relocated; an unknown zone of this
-        system (for example one that was offline at startup) is added.
+        A known zone at a new LOCATION, or an unavailable one at any, is
+        (re)connected; an unknown zone of this system (for example one that was
+        offline at startup) is added. Without the unavailable case, a zone whose
+        own M-SEARCH recovery keeps failing would only come back on a reload.
         """
         zone = next((z for z in self.zones.values() if z.udn == udn), None)
         if zone is None:
             if udn not in self._adding:
                 self._adding.add(udn)
                 self._spawn(self._add_zone(udn, location))
-        elif zone.location != location:
-            _LOGGER.info("SSDP: %s is now at %s", zone.name, location)
+        elif (zone.location != location or not zone.available) and udn not in self._relocating:
+            _LOGGER.info("SSDP: %s seen at %s", zone.name, location)
+            self._relocating.add(udn)
             self._spawn(self._relocate(zone, location))
 
     def _spawn(self, coro) -> None:
@@ -245,13 +249,16 @@ class NuvoSystem:
         return lambda: self._zone_added.remove(callback)
 
     async def _relocate(self, zone: NuvoZone, location: str) -> None:
-        if await zone.async_relocate(location):
-            self._backoff.pop(zone.udn, None)
-            self._save_cache()
-            try:
-                await zone.async_update()
-            except NuvoError:
-                pass
+        try:
+            if await zone.async_relocate(location):
+                self._backoff.pop(zone.udn, None)
+                self._save_cache()
+                try:
+                    await zone.async_update()
+                except NuvoError:
+                    pass
+        finally:
+            self._relocating.discard(zone.udn)
 
     async def _maintain(self) -> None:
         while True:

@@ -222,6 +222,24 @@ async def test_unreachable_then_recovers(system, fake, ssdp):
     assert await eventually(lambda: zone.available and zone.location == fake.location, timeout=8)
 
 
+async def test_unavailable_recovers_on_sighting_at_same_location(system, fake, ssdp):
+    """The zone stops answering our M-SEARCH but HA's scanner still sees it (Lounge, 2026-09-30)."""
+    zone = zone_of(system)
+    port, zones = fake.port, ssdp.zones
+    ssdp.zones = []  # our own rediscovery finds nothing
+    await fake.stop()
+    with pytest.raises(NuvoConnectionError):
+        await zone.set_mute(True)
+    await fake.start(port=port)
+    await asyncio.sleep(0.5)  # several maintenance ticks: still lost
+    assert not zone.available
+    system.async_location_seen(zone.udn, fake.location)
+    system.async_location_seen(zone.udn, fake.location)  # duplicate while reconnecting
+    assert await eventually(lambda: zone.available)
+    assert zone.location == fake.location and zone.subscribed
+    ssdp.zones = zones
+
+
 async def test_dropped_subscription_is_renewed(system, fake):
     zone = zone_of(system)
     fake.subs.clear()  # device forgot us: renewals now get 412

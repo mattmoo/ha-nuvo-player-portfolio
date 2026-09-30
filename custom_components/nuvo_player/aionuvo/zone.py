@@ -218,7 +218,10 @@ class NuvoZone:
     def _set_available(self, available: bool) -> None:
         if available != self.available:
             self.available = available
-            _LOGGER.info("%s is %s", self.name, "available" if available else "unavailable")
+            if available:
+                _LOGGER.info("%s is available again", self.name)
+            else:
+                _LOGGER.warning("%s is unavailable; rediscovering it", self.name)
             self._notify()
 
     # --- SOAP -----------------------------------------------------------
