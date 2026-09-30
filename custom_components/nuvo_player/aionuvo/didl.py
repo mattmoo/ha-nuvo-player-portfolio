@@ -1,4 +1,4 @@
-"""DIDL-Lite payloads for X_NUVO_PlayContainerURI, and metadata and listing parsing.
+"""DIDL-Lite payloads for X_NUVO_PlayContainerURI and X_NUVO_PlayURI, and metadata and listing parsing.
 
 The Line In payload is byte-for-byte the one the official app sends, as captured
 by mpdrago/nuvo-zone-keepalive (MIT) and replayed on a P4300 (docs/protocol.md).
@@ -6,6 +6,7 @@ by mpdrago/nuvo-zone-keepalive (MIT) and replayed on a P4300 (docs/protocol.md).
 
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from xml.etree import ElementTree as ET
@@ -74,16 +75,40 @@ def line_in_track_metadata(member_id: str, zone_name: str) -> str:
     )
 
 
+def stream_metadata(url: str, mime: str | None, title: str | None) -> str:
+    """Item DIDL for X_NUVO_PlayURI. The zone ignores everything but the URL and
+    reports the URL as the title (docs/protocol.md, "HTTP stream playback")."""
+    return (
+        _DIDL_OPEN
+        + '<item id="stream" parentID="0" restricted="1">'
+        + f"<dc:title>{escape(title or url)}</dc:title>"
+        + "<upnp:class>object.item.audioItem.musicTrack</upnp:class>"
+        + f'<res protocolInfo="http-get:*:{escape(mime or "*")}:*">{escape(url)}</res>'
+        + "</item></DIDL-Lite>"
+    )
+
+
 _NS = {
     "d": "urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/",
     "dc": "http://purl.org/dc/elements/1.1/",
     "upnp": "urn:schemas-upnp-org:metadata-1-0/upnp/",
+    "x": "urn:schemas.nuvotechnologies.com",
 }
 
 
+def _stream_url(item: ET.Element) -> str | None:
+    """The HTTP URL a zone plays, from its x_nuvo_nsdk JSON (its res reads just `nuvo:`)."""
+    try:
+        nsdk = json.loads(item.findtext("x:x_nuvo_nsdk", "", _NS) or "{}")
+        uri = nsdk["mediaData"]["resources"][0]["uri"]
+    except (ValueError, KeyError, IndexError, TypeError):
+        return None
+    return uri if isinstance(uri, str) and uri.startswith(("http://", "https://")) else None
+
+
 def parse_metadata(didl: str | None) -> dict[str, str | None]:
-    """Return title/artist/album/image_url from the first item of a DIDL-Lite document."""
-    out: dict[str, str | None] = {"title": None, "artist": None, "album": None, "image_url": None}
+    """Return title/artist/album/image_url/stream_url from the first item of a DIDL-Lite document."""
+    out: dict[str, str | None] = {"title": None, "artist": None, "album": None, "image_url": None, "stream_url": None}
     if not didl or not didl.strip():
         return out
     try:
@@ -99,6 +124,7 @@ def parse_metadata(didl: str | None) -> dict[str, str | None]:
     # TuneIn stations carry their logo as upnp:icon; Line In has a skin: icon.
     art = item.findtext("upnp:albumArtURI", None, _NS) or item.findtext("upnp:icon", None, _NS)
     out["image_url"] = art if art and art.startswith("http") else None
+    out["stream_url"] = _stream_url(item)
     return out
 
 

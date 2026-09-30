@@ -53,7 +53,7 @@ UPnP root device.
 | `_nuvomaster._tcp`, instance `dev0025ed1dd723` | .54 only | 80 | `sId=<SystemID>`, `el=1`, `cts=9000000000000` |
 | `_spotify-connect._tcp` | each zone | random | `CPath=/spotify` |
 
-Ana's bedroom (.54) is the system master. Port 4747 is not probed yet; it is probably the nSDK channel the app uses.
+Ana's bedroom (.54) was the system master on 2026-09-28; on 2026-09-30 `_nuvomaster` was on Dining Room (.52), so the role moves. Port 4747 is not probed yet; it is probably the nSDK channel the app uses.
 
 ### DLNA overlap
 The device description embeds `urn:schemas-upnp-org:device:MediaRenderer:1` and
@@ -250,7 +250,46 @@ Zone service events carry every change (MemberGroup/MasterGroup), so group state
 current by push. `captures/group-test-1.txt` and `group-test-2.txt` have the raw runs.
 Whether a joined member was actually audible was not checked by ear.
 
-## HTTP stream playback: DO NOT USE (2026-09-28)
+## HTTP stream playback (2026-09-28, revised 2026-09-30)
+
+**Works via `X_NUVO_PlayURI` with MP3 and FLAC** (2026-09-30). **`SetAVTransportURI` + `Play`
+with WAV crashed the UPnP process** (2026-09-28, below) and should not be retried.
+
+### `X_NUVO_PlayURI` (2026-09-30, Dining Room, heard by ear at volume 25)
+
+Dining Room was on Line In in its own group, so no `GroupCreate` was needed. Each call was
+`X_NUVO_PlayURI(InstanceID=0, CurrentURI=<url>, CurrentURIMetaData=<DIDL item, res
+protocolInfo http-get:*:<mime>:*>)`, served from 192.168.1.43. The UPnP port (57147)
+never changed, so no test crashed the UPnP process.
+
+| Test | Result |
+|---|---|
+| 20 s MP3 file (128 kbit/s, Content-Length) | One GET, PLAYING, `RelTime` reached 0:00:20.035, then `PAUSED_PLAYBACK`. |
+| 20 s FLAC file | Same: played to 0:00:20.000, then `PAUSED_PLAYBACK`. |
+| Endless real-time MP3 (no Content-Length, `Connection: close`) | PLAYING indefinitely; `RelTime` counts up. |
+| `Pause`, then `Play` (Speed=1) on the live stream | PAUSED_PLAYBACK, then resumed from the same position. The HTTP connection stayed open while paused, so after resuming the audio lags the live stream by the pause length. |
+| `X_NUVO_PlayURI` with a second live URL while playing | Old connection closed, new GET at once, `RelTime` restarted at 0. |
+| `Stop` | STOPPED, `RelTime` 0:00:00, connection closed within 1 s. |
+
+- The zone requests with `User-Agent: Nuvo Player` and `icy-metadata: 1`, like an internet-radio client.
+- While a URL plays, `CurrentURI` reads `nuvo:`, not the URL.
+- Untested: live FLAC, other sample rates and bit depths, AAC, `SetAVTransportURI` + `Play`
+  with MP3, and gapless next tracks (the zone has no `SetNextAVTransportURI`).
+- Restored afterwards with `select_source(line_in)` and volume 70.
+- The zone **ignores the DIDL metadata sent with the URL**: `CurrentURIMetaData` and
+  `TrackMetaData` carry `dc:title` = the URL and an `x:x_nuvo_nsdk` JSON with
+  `mediaData.resources[0].uri` = the URL (mimeType `audio/unknown`). `aionuvo` reads the URL
+  from there (`ZoneState.stream_url`) and shows the metadata given to `play_url` instead.
+- AVTransport `LastChange` events carry that metadata, so stream state updates by push
+  (checked live with `aionuvo`: under 1 s, including pause, play and stop).
+- `Play` after `Stop` fetches the URL again from the start.
+- Transport actions while a URL plays: `Play,Stop,Pause,Seek,X_NUVO_SeekRelTime,X_NUVO_SeekTrackNr,Next,Previous,X_NUVO_Repeat`.
+- Music Assistant's Home Assistant MediaPlayers provider (checked in its source, 2026-09-30) always uses
+  flow mode (one continuous stream per session), defaults to MP3, sends `extra.metadata`
+  (`title`, `artist`, `album`, `imageUrl`), calls `media_stop` before `play_media` when the entity
+  is playing, and recognises its own playback by `media_content_id` echoing its stream URL.
+
+### `SetAVTransportURI` + `Play` with WAV: crashed (2026-09-28)
 
 `GroupCreate` then `SetAVTransportURI(http://<host>/tone.wav, DIDL with http-get:*:audio/wav:*)`
 then `Play` on Dining Room (which was off, at volume 20): the zone **fetched the file**
@@ -260,9 +299,8 @@ stayed pingable and its web UI kept running, and `versionLastBooted` did not cha
 the UPnP process restarted; the whole zone did not reboot. After the restart it read
 `PAUSED_PLAYBACK` with URI `nuvo:`.
 
-Even though `SinkProtocolInfo` advertises `http-get:*:*:*`, arbitrary HTTP playback is
-not a usable path on this firmware. It is not implemented, and it should not be retried
-without explicit approval (MP3 is untested).
+It is unknown whether the WAV format or the `SetAVTransportURI` path caused the crash. Do not
+retry either without explicit approval.
 
 ## Music Assistant / Sendspin landscape (user's network, 2026-09-28)
 

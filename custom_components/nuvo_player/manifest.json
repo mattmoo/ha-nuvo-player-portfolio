@@ -1,6 +1,7 @@
 {
   "domain": "nuvo_player",
   "name": "Nuvo Player Portfolio",
+  "after_dependencies": ["media_source"],
   "codeowners": ["@mattmoo"],
   "config_flow": true,
   "dependencies": ["ssdp", "zeroconf"],
@@ -14,6 +15,6 @@
       "deviceType": "urn:schemas-nuvotechnologies-com:device:Zone:1"
     }
   ],
-  "version": "0.2.1",
+  "version": "0.3.0",
   "zeroconf": ["_nuvoplayer._tcp.local."]
 }

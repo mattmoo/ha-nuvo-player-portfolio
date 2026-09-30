@@ -7,8 +7,8 @@
 Local control of a Legrand Nuvo Player Portfolio amp (built and tested on a
 3-zone **P4300**, firmware 2025.1) over its UPnP/SOAP interface. It covers
 volume, mute, Line In, on/off, grouping and push updates, and it survives the amp
-changing its HTTP port on every boot. With Music Assistant, use the zones as the
-power and volume control of the players feeding their Line In (see PLAN.md).
+changing its HTTP port on every boot. It also plays TuneIn and HTTP streams
+(MP3, FLAC), so Music Assistant can play to the zones directly.
 
 This project is largely "vibe-engineered" (I do have a Software Engineering degree). 
 Use at your own risk, I'm putting it here in case it comes in handy for someone.
@@ -70,8 +70,13 @@ the sound (PLAN.md, "Tone and loudness").
 play a station. The zone streams it itself. Station IDs from the browser work
 in `media_player.play_media` automations, but they include the station's
 category path, so a station that drops out of that category stops resolving.
-Other media (URLs, media sources, Music Assistant streams) are refused, because
-pushing HTTP media crashes the zone's UPnP server.
+
+**Streams:** `media_player.play_media` also takes an HTTP(S) URL or a media
+source (e.g. TTS), which the zone fetches and plays itself. MP3 and FLAC work,
+live streams included; WAV is refused, because it once crashed the zone's UPnP
+server. The zone does not keep a stream's title, so the title and artist from
+`extra.metadata` (as Music Assistant sends) are shown instead. Pause, play and
+stop work while a stream plays; stop on Line In or TuneIn does nothing.
 
 Options (**Configure** on the integration):
 
@@ -85,14 +90,22 @@ Options (**Configure** on the integration):
 
 ### Music Assistant
 
-The zones cannot be Music Assistant players themselves (see PLAN.md). Treat each
-zone as the amplifier of whatever feeds its Line In (e.g. a Chromecast Audio or
-a Sendspin receiver): in Music Assistant, open that player's settings and set
-**Power control** and **Volume control** to the zone's `media_player` entity.
-Playing to the player then turns the zone on to Line In and routes volume to the
-Nuvo. If you move a feeder to another zone, change it there. The Line In feeds
-option above does the switching without Music Assistant, and the two can be
-used together.
+Two ways, which can be combined:
+
+- **Zones as players:** in Music Assistant, add the **Home Assistant
+  MediaPlayers** provider and select the zones. Music Assistant then streams to
+  the zone itself (MP3 by default; FLAC also works, WAV does not). The zone
+  buffers a few seconds, so it does not stay in sync with other Music Assistant
+  players. Zones joined to the playing zone should hear the same stream, but
+  that is untested by ear.
+- **Zones as amplifiers:** treat each zone as the amplifier of whatever feeds its
+  Line In (e.g. a Chromecast Audio or a Sendspin receiver). In Music Assistant,
+  open that player's settings and set **Power control** and **Volume control**
+  to the zone's `media_player` entity. Playing to the player then turns the zone
+  on to Line In and routes volume to the Nuvo. This is the way to get synced
+  multi-room with other players. If you move a feeder to another zone, change it
+  there. The Line In feeds option above does the switching without Music
+  Assistant.
 
 ## Shim
 

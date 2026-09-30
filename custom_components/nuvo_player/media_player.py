@@ -1,4 +1,4 @@
-"""Media player per Nuvo zone: power, volume, Line In, TuneIn and grouping."""
+"""Media player per Nuvo zone: power, volume, Line In, TuneIn, HTTP streams and grouping."""
 
 from __future__ import annotations
 
@@ -6,13 +6,16 @@ import logging
 from collections.abc import Awaitable
 from typing import Any
 
+from homeassistant.components import media_source
 from homeassistant.components.media_player import (
+    ATTR_MEDIA_EXTRA,
     BrowseMedia,
     MediaPlayerDeviceClass,
     MediaPlayerEntity,
     MediaPlayerEntityFeature,
     MediaPlayerState,
     MediaType,
+    async_process_play_media_url,
 )
 from homeassistant.const import STATE_PLAYING, STATE_UNAVAILABLE, STATE_UNKNOWN
 from homeassistant.core import Event, EventStateChangedData, HomeAssistant, callback
@@ -23,7 +26,7 @@ from homeassistant.helpers.event import async_track_state_change_event
 from homeassistant.util import slugify
 
 from . import NuvoConfigEntry
-from .aionuvo import NuvoError, NuvoSystem, NuvoZone
+from .aionuvo import SOURCE_STREAM, NuvoError, NuvoSystem, NuvoZone
 from .browse import TuneInBrowser, is_tunein_id
 from .const import CONF_LINE_IN_FEEDS, DOMAIN, ENTITY_ID_PREFIX, SOURCE_LABELS
 from .entity import NuvoEntity
@@ -37,6 +40,21 @@ _STATES = {
     "PAUSED_PLAYBACK": MediaPlayerState.PAUSED,
     "TRANSITIONING": MediaPlayerState.BUFFERING,
 }
+
+_BASE_FEATURES = (
+    MediaPlayerEntityFeature.VOLUME_SET
+    | MediaPlayerEntityFeature.VOLUME_STEP
+    | MediaPlayerEntityFeature.VOLUME_MUTE
+    | MediaPlayerEntityFeature.SELECT_SOURCE
+    | MediaPlayerEntityFeature.TURN_ON
+    | MediaPlayerEntityFeature.TURN_OFF
+    | MediaPlayerEntityFeature.GROUPING
+    | MediaPlayerEntityFeature.BROWSE_MEDIA
+    | MediaPlayerEntityFeature.PLAY_MEDIA
+    | MediaPlayerEntityFeature.STOP
+)
+# Pause and resume are verified on HTTP streams only (docs/protocol.md).
+_STREAM_FEATURES = MediaPlayerEntityFeature.PAUSE | MediaPlayerEntityFeature.PLAY
 
 
 async def async_setup_entry(
@@ -57,17 +75,6 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
     _attr_name = None  # the device (zone) name
     _attr_device_class = MediaPlayerDeviceClass.SPEAKER
     _attr_media_content_type = MediaType.MUSIC
-    _attr_supported_features = (
-        MediaPlayerEntityFeature.VOLUME_SET
-        | MediaPlayerEntityFeature.VOLUME_STEP
-        | MediaPlayerEntityFeature.VOLUME_MUTE
-        | MediaPlayerEntityFeature.SELECT_SOURCE
-        | MediaPlayerEntityFeature.TURN_ON
-        | MediaPlayerEntityFeature.TURN_OFF
-        | MediaPlayerEntityFeature.GROUPING
-        | MediaPlayerEntityFeature.BROWSE_MEDIA
-        | MediaPlayerEntityFeature.PLAY_MEDIA
-    )
 
     def __init__(self, system: NuvoSystem, zone: NuvoZone, line_in_feed: str | None = None) -> None:
         super().__init__(system, zone)
@@ -114,6 +121,15 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
         return _STATES.get(playback, MediaPlayerState.IDLE)
 
     @property
+    def _on_stream(self) -> bool:
+        """True while this zone hears an HTTP stream (its own or its group master's)."""
+        return self.zone.state.is_on and self.zone.playback_zone.source == SOURCE_STREAM
+
+    @property
+    def supported_features(self) -> MediaPlayerEntityFeature:
+        return _BASE_FEATURES | _STREAM_FEATURES if self._on_stream else _BASE_FEATURES
+
+    @property
     def volume_level(self) -> float | None:
         return self.zone.volume_level
 
@@ -129,6 +145,11 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
     def source(self) -> str | None:
         key = self.zone.source
         return SOURCE_LABELS.get(key, key) if key else None
+
+    @property
+    def media_content_id(self) -> str | None:
+        """The stream URL; Music Assistant recognises its own playback by it."""
+        return self.zone.playback_zone.state.stream_url if self._on_stream else None
 
     @property
     def media_title(self) -> str | None:
@@ -201,21 +222,60 @@ class NuvoMediaPlayer(NuvoEntity, MediaPlayerEntity):
         return await self._browser.async_browse(media_content_id)
 
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None:
-        """Play a TuneIn station from the media browser.
+        """Play a TuneIn station from the media browser, a media source, or an HTTP URL.
 
-        Only the zone's own TuneIn works: an HTTP URL would crash its UPnP server
-        (PLAN.md, finding 7), so media sources and URLs are refused.
+        URLs go to the zone with X_NUVO_PlayURI (MP3 and FLAC verified; WAV is
+        refused, docs/protocol.md). Music Assistant plays through here.
         """
-        if not is_tunein_id(media_id):
+        if is_tunein_id(media_id):
+
+            async def _play() -> None:
+                container, station = await self._browser.async_resolve(media_id)
+                await self.zone.play_item(container, station)
+
+            await self._run(_play())
+            return
+
+        mime = media_type if "/" in str(media_type) else None
+        if media_source.is_media_source_id(media_id):
+            resolved = await media_source.async_resolve_media(self.hass, media_id, self.entity_id)
+            media_id, mime = resolved.url, resolved.mime_type
+        url = async_process_play_media_url(self.hass, media_id)
+        if not url.startswith(("http://", "https://")):
             raise ServiceValidationError(
-                f"{self.zone.name} can only play TuneIn stations from its media browser, not {media_id!r}"
+                f"{self.zone.name} plays TuneIn stations, media sources and HTTP URLs, not {media_id!r}"
             )
+        extra = kwargs.get(ATTR_MEDIA_EXTRA) or {}
+        meta = extra.get("metadata") or {}
+        images = meta.get("images") or [{}]
+        await self._run(
+            self.zone.play_url(
+                url,
+                mime,
+                title=meta.get("title") or extra.get("title"),
+                artist=meta.get("artist"),
+                album=meta.get("album") or meta.get("albumName"),
+                image_url=meta.get("imageUrl") or images[0].get("url") or extra.get("thumb"),
+            )
+        )
 
-        async def _play() -> None:
-            container, station = await self._browser.async_resolve(media_id)
-            await self.zone.play_item(container, station)
+    def _stream_zone(self, command: str) -> NuvoZone:
+        if not self._on_stream:
+            raise ServiceValidationError(f"{self.zone.name}: {command} works only while an HTTP stream plays")
+        return self.zone.playback_zone
 
-        await self._run(_play())
+    async def async_media_play(self) -> None:
+        await self._run(self._stream_zone("play").play())
+
+    async def async_media_pause(self) -> None:
+        await self._run(self._stream_zone("pause").pause())
+
+    async def async_media_stop(self) -> None:
+        """Stop a stream. Elsewhere a no-op: Music Assistant stops a playing
+        player before it plays to it, and a zone on Line In or TuneIn is then
+        simply switched to the new stream."""
+        if self._on_stream:
+            await self._run(self.zone.playback_zone.stop())
 
     async def async_join_players(self, group_members: list[str]) -> None:
         registry = er.async_get(self.hass)

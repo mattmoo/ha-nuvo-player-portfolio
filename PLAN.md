@@ -27,7 +27,7 @@ What changed from the original plan (details in docs/protocol.md):
 4. **The port-scan fallback is dropped.** Unicast M-SEARCH to the zone IP works, and each zone also advertises `_nuvoplayer._tcp` over mDNS on a fixed port (4747), which is a better fallback if ever needed.
 5. **Ports:** the shim API is on 8095 and its GENA callback on 8096. The original plan put both on 8095.
 6. **Web UI / nSDK JSON API on :80** (serial-number login) exposes the full settings tree: bass, treble, balance, turn-on volume, idle timeout. It **writes via plain GET** (`/api/setData`), so it is hard-denied. Writing tone there saves the value but does not change the sound (see "Tone and loudness").
-7. **Direct HTTP playback crashes the zone's UPnP process** (`SetAVTransportURI` + `Play` of an http WAV: the zone fetched it, then its UPnP server restarted on a new port). This is not a usable path, which rules out Music Assistant driving the zones directly. See Phase 4, Music Assistant.
+7. **HTTP playback: `SetAVTransportURI` + `Play` of a WAV crashes the zone's UPnP process** (it restarted on a new port). **`X_NUVO_PlayURI` with MP3 or FLAC works** (2026-09-30, heard by ear): files, endless live streams, pause/play, switching URL and stop, with no crash. So Music Assistant could drive the zones through HA; not implemented yet. See docs/protocol.md, "HTTP stream playback".
 9. **The amp's `Get` lags its own events** by a second or two after group changes. Group state is updated optimistically and confirmed by events; reads are ignored briefly after writes.
 10. **Tone and loudness are not controllable yet.** The obvious routes store values without applying them; see "Tone and loudness".
 11. **Favourites:** the Nuvo favourites service is dead. **TuneIn** browse and playback work through the zone's own ContentDirectory (2026-09-28) and are exposed through HA's media browser; Podcasts are hidden until tested. Playing by guide ID alone (for short automation IDs) is untested.
@@ -289,7 +289,7 @@ GET  /events                     -> Server-Sent Events stream of state changes
 
 ### Music Assistant / Sendspin
 
-The zones cannot be MA players directly. They advertise no AirPlay, Cast or Sendspin, and HTTP playback crashes their UPnP process. The zones are **amplifiers fed by the MA players**: each Chromecast Audio (or later a Sendspin receiver) feeds a zone's optical Line In.
+MA cannot discover the zones as players: they advertise no AirPlay, Cast, Sendspin or DLNA renderer (re-checked by mDNS 2026-09-30). **Revised 2026-09-30:** HTTP playback via `X_NUVO_PlayURI` works with MP3 and FLAC, so MA could play to a zone through its Home Assistant players provider if the integration accepted URLs. **Built 2026-09-30:** `NuvoZone.play_url` and `play_media` for URLs and media sources; pause/play offered while a stream plays, stop always (a no-op elsewhere, because MA stops a playing player first). No sync with other MA players, so the amplifier pattern below stays the way to do synced multi-room. Not yet tried with a real MA stream. The zones are **amplifiers fed by the MA players**: each Chromecast Audio (or later a Sendspin receiver) feeds a zone's optical Line In.
 
 - MA already supports this: in each MA player's settings, set **Power control** and **Volume control** (and optionally **Mute control**) to the matching `media_player.nuvo_<zone>` HA entity, via MA's Home Assistant plugin. When MA plays, it turns the zone on (to Line In) and routes volume to the Nuvo.
 - Requirements this puts on the integration:

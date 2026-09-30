@@ -73,6 +73,7 @@ class FakeZone:
     master_group: str = ""
     amp: list[FakeZone] | None = field(default=None, repr=False, compare=False)  # one physical amp
     uri: str = ""
+    metadata: str = ""
     transport: str = "PLAYING"
     calls: list[tuple[str, dict[str, str]]] = field(default_factory=list)
     subs: dict[str, Subscription] = field(default_factory=dict)
@@ -228,7 +229,8 @@ class FakeZone:
     def _avt_last_change(self) -> str:
         return ('<Event xmlns="urn:schemas-upnp-org:metadata-1-0/AVT/"><InstanceID val="0">'
                 f'<TransportState val="{self.transport}"/>'
-                f'<AVTransportURI val="{escape(self.uri, {chr(34): "&quot;"})}"/></InstanceID></Event>')
+                f'<AVTransportURI val="{escape(self.uri, {chr(34): "&quot;"})}"/>'
+                f'<AVTransportURIMetaData val="{escape(self.metadata, {chr(34): "&quot;"})}"/></InstanceID></Event>')
 
     # --- app-side changes (simulate the official app) --------------------
 
@@ -301,7 +303,7 @@ class FakeZone:
 
     def _a_GetMediaInfo(self, a):
         return {"NrTracks": 0, "MediaDuration": "NOT_IMPLEMENTED", "CurrentURI": self.uri,
-                "CurrentURIMetaData": "", "NextURI": "", "NextURIMetaData": "", "PlayMedium": "UNKNOWN",
+                "CurrentURIMetaData": self.metadata, "NextURI": "", "NextURIMetaData": "", "PlayMedium": "UNKNOWN",
                 "RecordMedium": "NOT_IMPLEMENTED", "WriteStatus": "NOT_IMPLEMENTED"}
 
     def _a_GetCurrentTransportActions(self, a):
@@ -370,6 +372,15 @@ class FakeZone:
         if not self.member_group:
             return self._fault(701, "No group")
         self.uri = a["TrackURI"]
+        self.metadata = ""
+        self.transport = "PLAYING"
+
+    def _a_X_NUVO_PlayURI(self, a):
+        if not self.member_group:
+            return self._fault(701, "No group")
+        # What a P4300 reports: our metadata is dropped, the URL becomes the title.
+        self.uri = "nuvo:"
+        self.metadata = stream_didl(a["CurrentURI"])
         self.transport = "PLAYING"
 
     def _a_Play(self, a):
@@ -386,6 +397,18 @@ class FakeZone:
 
     def _a_Previous(self, a):
         pass
+
+
+def stream_didl(url: str) -> str:
+    """GetMediaInfo metadata while a zone plays `url` (captured on Dining Room, 2026-09-30)."""
+    nsdk = json.dumps({"mediaData": {"resources": [{"mimeType": "audio/unknown", "uri": url}]},
+                       "title": url, "type": "audio"})
+    return ('<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/" '
+            'xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp/" '
+            'xmlns:x="urn:schemas.nuvotechnologies.com"><item id="" restricted="1">'
+            f'<dc:title>{escape(url)}</dc:title><res protocolInfo="nuvo:*:*:*">nuvo:</res>'
+            '<upnp:class>object.item.audioItem</upnp:class>'
+            f'<x:x_nuvo_nsdk>{escape(nsdk, {chr(34): "&quot;"})}</x:x_nuvo_nsdk></item></DIDL-Lite>')
 
 
 class FakeSsdp(asyncio.DatagramProtocol):

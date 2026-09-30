@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import mimetypes
 import time
 from collections.abc import Awaitable, Callable, Sequence
 from datetime import timedelta
@@ -24,9 +25,12 @@ from .const import (
     BROWSE_PAGE,
     CONTENT_DIRECTORY_SERVICE,
     MEMBER_ID_PREFIX,
+    REFUSED_STREAM_MIMES,
     RENDERING_SERVICE,
     SOURCE_LINE_IN,
+    SOURCE_STREAM,
     SOURCE_TUNEIN,
+    STREAM_URI,
     SUBSCRIBED_SERVICES,
     SUBSCRIPTION_TIMEOUT,
     TUNEIN_URI_PREFIX,
@@ -39,6 +43,7 @@ from .didl import (
     line_in_uri,
     parse_listing,
     parse_metadata,
+    stream_metadata,
 )
 from .exceptions import NuvoActionError, NuvoConnectionError, NuvoError
 from .models import Source, ZoneState, group_id
@@ -88,6 +93,8 @@ class NuvoZone:
         self.last_renewed = float("-inf")
         self.last_polled = float("-inf")
         self._group_written_at = float("-inf")
+        # (url, metadata) of the last play_url: the zone reports only the URL back.
+        self._stream_media: tuple[str, dict[str, str | None]] | None = None
 
     def __repr__(self) -> str:
         return f"<NuvoZone {self.name!r} {self.member_id} {self.location}>"
@@ -143,6 +150,8 @@ class NuvoZone:
         """Key of this zone's own source, or None if off, joined to another zone, or unknown."""
         if not self.state.is_on or self.master is not self:
             return None
+        if self.state.stream_url:
+            return SOURCE_STREAM
         uri = self.state.current_uri or ""
         if uri == line_in_uri(self.member_id):
             return SOURCE_LINE_IN
@@ -350,6 +359,13 @@ class NuvoZone:
                 s.media_artist = meta["artist"]
                 s.media_album = meta["album"]
                 s.media_image_url = meta["image_url"]
+                s.stream_url = meta["stream_url"]
+                if self._stream_media and s.stream_url == self._stream_media[0]:
+                    ours = self._stream_media[1]
+                    s.media_title = ours["title"] or s.media_title
+                    s.media_artist, s.media_album, s.media_image_url = ours["artist"], ours["album"], ours["image_url"]
+        if s.current_uri != STREAM_URI:
+            s.stream_url = None
 
     # --- events ---------------------------------------------------------
 
@@ -470,23 +486,63 @@ class NuvoZone:
         Both entries must come from Browse listings: the zone wants the parent
         container's element as returned by *its* parent, and the item's 1-based
         position (docs/protocol.md, "TuneIn playback"). The zone resolves the
-        stream itself; never hand it an HTTP URL (that crashes its UPnP server).
+        stream itself; for HTTP URLs use play_url.
         """
         if not item.playable or item.parent_id != container.id:
             raise NuvoError(f"{item.title!r} is not a playable item of {container.title!r}")
         return await self._play_container(container.didl, item.res or "", item.didl, item.index)
 
+    async def play_url(
+        self,
+        url: str,
+        mime: str | None = None,
+        *,
+        title: str | None = None,
+        artist: str | None = None,
+        album: str | None = None,
+        image_url: str | None = None,
+    ) -> str:
+        """Play an HTTP(S) stream or file with X_NUVO_PlayURI (MP3 and FLAC verified).
+
+        The zone keeps only the URL, so the metadata given here is what state
+        reports while that URL plays. WAV is refused: SetAVTransportURI + Play
+        of a WAV crashed the zone's UPnP process (docs/protocol.md). Leaves any
+        other zone's group like select_source; zones that joined us keep listening.
+        Returns the zone's group id.
+        """
+        if not url.startswith(("http://", "https://")):
+            raise NuvoError(f"Not an HTTP URL: {url!r}")
+        mime = (mime or mimetypes.guess_type(urlsplit(url).path)[0] or "").lower() or None
+        if mime in REFUSED_STREAM_MIMES:
+            raise NuvoError(f"{self.name} cannot play {mime} (untested, and WAV has crashed the zone); use MP3 or FLAC")
+        self._stream_media = (url, {"title": title, "artist": artist, "album": album, "image_url": image_url})
+        async with self._lock:
+            gid = await self._own_group()
+            await self._call(
+                AVTRANSPORT_SERVICE,
+                "X_NUVO_PlayURI",
+                InstanceID=0,
+                CurrentURI=url,
+                CurrentURIMetaData=stream_metadata(url, mime, title),
+            )
+            return gid
+
+    async def _own_group(self) -> str:
+        """Make sure this zone masters its own group; call with the lock held."""
+        await self._refresh_group()
+        if self.is_joined:
+            await self._leave_group()
+        gid = self.state.member_group
+        if not gid:
+            result = await self._call(ZONE_SERVICE, "GroupCreate", memberIDs=json.dumps([self.member_id]))
+            gid = result.get("groupID", "")
+            self._mark_group_written()
+            self.state.member_group = self.state.master_group = gid
+        return gid
+
     async def _play_container(self, container_meta: str, track_uri: str, track_meta: str, index: int) -> str:
         async with self._lock:
-            await self._refresh_group()
-            if self.is_joined:
-                await self._leave_group()
-            gid = self.state.member_group
-            if not gid:
-                result = await self._call(ZONE_SERVICE, "GroupCreate", memberIDs=json.dumps([self.member_id]))
-                gid = result.get("groupID", "")
-                self._mark_group_written()
-                self.state.member_group = self.state.master_group = gid
+            gid = await self._own_group()
             await self._call(
                 AVTRANSPORT_SERVICE,
                 "X_NUVO_PlayContainerURI",
@@ -505,7 +561,7 @@ class NuvoZone:
 
         No-op if Line In already plays, or if the zone listens to another zone's
         playing group (someone joined it there on purpose). A zone playing TuneIn
-        switches to Line In: Music Assistant's power control and the Line In
+        or a stream switches to Line In: Music Assistant's power control and the Line In
         feed option rely on this (PLAN.md, Music Assistant).
         """
         await self.async_update()

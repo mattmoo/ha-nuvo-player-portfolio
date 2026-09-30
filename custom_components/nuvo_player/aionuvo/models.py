@@ -35,6 +35,8 @@ class ZoneState:
     media_artist: str | None = None
     media_album: str | None = None
     media_image_url: str | None = None
+    # The HTTP URL playing, when X_NUVO_PlayURI started it (current_uri is then just "nuvo:").
+    stream_url: str | None = None
 
     @property
     def is_on(self) -> bool:

@@ -5,6 +5,16 @@ while the version is 0.x, a minor bump (0.1 → 0.2) may include breaking change
 **Breaking**. Pre-releases (`b1`, `rc1`, ...) are published as GitHub pre-releases, which HACS offers
 when "Show beta versions" is on.
 
+## 0.3.0 (2026-09-30)
+
+### Added
+- **HTTP streams:** `media_player.play_media` plays HTTP(S) URLs and media sources (MP3 and FLAC,
+  including live streams) via the zone's `X_NUVO_PlayURI`, so Music Assistant can use the zones as
+  players through its Home Assistant MediaPlayers provider. Titles, artists and cover art come
+  from `extra.metadata`. WAV is refused. Pause and play are offered while a stream plays; stop is
+  always offered and does nothing on Line In or TuneIn.
+- A zone playing a stream reports the source **Stream**.
+
 ## 0.2.1 (2026-09-28)
 
 ### Changed

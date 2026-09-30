@@ -11,7 +11,6 @@ from homeassistant.components.media_player import (
 )
 from homeassistant.const import STATE_IDLE, STATE_PLAYING, STATE_UNAVAILABLE
 from homeassistant.data_entry_flow import FlowResultType
-from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers.entity_component import EntityComponent
 
 from custom_components.nuvo_player.const import CONF_LINE_IN_FEEDS
@@ -86,15 +85,6 @@ async def test_play_station_cold(hass, setup, amp):
     await call(hass, MP_DOMAIN, SERVICE_PLAY_MEDIA, LOUNGE,
                **{ATTR_MEDIA_CONTENT_ID: station.media_content_id, ATTR_MEDIA_CONTENT_TYPE: "channel"})
     assert lounge.uri == "nuvo:tunein:browse?nsdkGuideId=s7160"
-
-
-async def test_play_refuses_urls(hass, setup, amp):
-    lounge, _dining, _ = amp
-    lounge.calls.clear()
-    with pytest.raises(ServiceValidationError):
-        await call(hass, MP_DOMAIN, SERVICE_PLAY_MEDIA, LOUNGE,
-                   **{ATTR_MEDIA_CONTENT_ID: "http://example.com/stream.mp3", ATTR_MEDIA_CONTENT_TYPE: "music"})
-    assert not any(name == "X_NUVO_PlayContainerURI" for name, _ in lounge.calls)
 
 
 async def set_feeds(hass, entry, feeds):

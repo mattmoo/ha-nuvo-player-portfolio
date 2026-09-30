@@ -77,8 +77,9 @@ def test_parse_metadata():
         "<item><dc:title>Song</dc:title><upnp:artist>Band</upnp:artist><upnp:album>LP</upnp:album>"
         "<upnp:albumArtURI>http://img/a.jpg</upnp:albumArtURI></item></DIDL-Lite>"
     )
-    assert parse_metadata(didl) == {"title": "Song", "artist": "Band", "album": "LP", "image_url": "http://img/a.jpg"}
-    empty = {"title": None, "artist": None, "album": None, "image_url": None}
+    assert parse_metadata(didl) == {"title": "Song", "artist": "Band", "album": "LP", "image_url": "http://img/a.jpg",
+                                   "stream_url": None}
+    empty = {"title": None, "artist": None, "album": None, "image_url": None, "stream_url": None}
     assert parse_metadata("") == empty
     assert parse_metadata("<not xml") == empty
     assert parse_metadata('<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/"/>') == empty

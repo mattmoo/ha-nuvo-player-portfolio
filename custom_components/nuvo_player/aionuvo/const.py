@@ -15,6 +15,14 @@ MEMBER_ID_PREFIX = "memberId-"
 
 SOURCE_LINE_IN = "line_in"
 SOURCE_TUNEIN = "tunein"
+# An HTTP stream sent with X_NUVO_PlayURI; not selectable.
+SOURCE_STREAM = "stream"
+# A zone's AVTransportURI while it plays such a stream.
+STREAM_URI = "nuvo:"
+
+# SetAVTransportURI + Play of a WAV crashed the zone's UPnP process, and WAV via
+# X_NUVO_PlayURI is untested (docs/protocol.md, "HTTP stream playback").
+REFUSED_STREAM_MIMES = frozenset({"audio/wav", "audio/x-wav", "audio/wave", "audio/vnd.wave", "audio/l16"})
 
 # TuneIn in the zone's ContentDirectory, and its track URIs (docs/protocol.md).
 TUNEIN_ROOT = "tunein:"

@@ -20,4 +20,4 @@ DEFAULT_CALLBACK_PORT = 0
 # Push events are the primary update path; this is a light safety net.
 HEARTBEAT_INTERVAL = timedelta(seconds=60)
 
-SOURCE_LABELS = {"line_in": "Line In", "tunein": "TuneIn"}
+SOURCE_LABELS = {"line_in": "Line In", "tunein": "TuneIn", "stream": "Stream"}
