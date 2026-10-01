@@ -8,6 +8,7 @@ import logging
 import socket
 import time
 from collections.abc import Callable, Iterable
+from urllib.parse import urlsplit
 
 import aiohttp
 from async_upnp_client.aiohttp import AiohttpNotifyServer, AiohttpSessionRequester
@@ -26,6 +27,8 @@ _LOGGER = logging.getLogger(__name__)
 TICK = 5.0
 # Seconds to wait before polling zones after a group change.
 RECONCILE_DELAY = 3.0
+# How often to search for expected zones that are not loaded (offline or missed at startup).
+MISSING_SEARCH_INTERVAL = 60.0
 
 
 def _local_ip_for(host: str) -> str:
@@ -73,6 +76,11 @@ class NuvoSystem:
         self._relocating: set[str] = set()
         self._tasks: set[asyncio.Task] = set()
         self._zone_added: list[Callable[[NuvoZone], None]] = []
+        self._locations_saved: list[Callable[[dict[str, str]], None]] = []
+        # Zones we expect but have not loaded: {udn: last known LOCATION}.
+        self._expected: dict[str, str] = {}
+        self._last_missing_search = float("-inf")
+        self._searching = False
 
     @classmethod
     async def discover(cls, timeout: int = 4, hosts: Iterable[str] = (), **kwargs) -> NuvoSystem:
@@ -112,6 +120,12 @@ class NuvoSystem:
             self.zones[zone.member_id] = zone
         if not self.zones:
             raise NuvoConnectionError("No Nuvo zones found")
+        self._expected = {udn: loc for udn, loc in known.items() if udn not in loaded}
+        if missing_hosts := self._missing_hosts():
+            _LOGGER.warning("No zone found at %s yet; still searching", ", ".join(missing_hosts))
+        if self._expected:
+            _LOGGER.warning("%d known zone(s) not reachable yet; still searching", len(self._expected))
+        self._last_missing_search = time.monotonic()
         self._save_cache()
 
         if subscribe:
@@ -180,9 +194,50 @@ class NuvoSystem:
             except (UpnpError, *_CONNECTION_ERRORS) as err:
                 _LOGGER.warning("Subscribe to %s failed (%r); polling instead", zone.name, err)
 
+    @property
+    def locations(self) -> dict[str, str]:
+        """{udn: LOCATION} of loaded zones, plus the last known one of expected zones not loaded yet."""
+        return {**self._expected, **{z.udn: z.location for z in self.zones.values()}}
+
     def _save_cache(self) -> None:
+        locations = self.locations
         if self._cache:
-            self._cache.save({z.udn: z.location for z in self.zones.values()})
+            self._cache.save(locations)
+        for cb in list(self._locations_saved):
+            cb(locations)
+
+    def on_locations_saved(self, callback: Callable[[dict[str, str]], None]) -> Callable[[], None]:
+        """Call `callback({udn: location})` whenever zone locations change, to persist them."""
+        self._locations_saved.append(callback)
+        return lambda: self._locations_saved.remove(callback)
+
+    # --- zones not loaded yet -------------------------------------------
+
+    def _missing_hosts(self) -> list[str]:
+        """Configured hosts with no loaded zone."""
+        loaded = {z.host for z in self.zones.values()}
+        return [h for h in self.hosts if h not in loaded]
+
+    async def _find_missing(self) -> None:
+        """Retry known LOCATIONs, then search, for zones we expect but have not loaded."""
+        try:
+            for udn, location in list(self._expected.items()):
+                await self._try_add(udn, location)
+            hosts = [*self._missing_hosts(), *(urlsplit(loc).hostname or "" for loc in self._expected.values())]
+            hosts = [h for h in dict.fromkeys(hosts) if h]
+            if not hosts:
+                return
+            found = await async_discover(self._search_timeout, hosts, multicast=self._multicast, port=self._ssdp_port)
+            for hit in found.values():
+                await self._try_add(hit.udn, hit.location)
+        finally:
+            self._searching = False
+
+    async def _try_add(self, udn: str, location: str) -> None:
+        if udn in self._adding or any(z.udn == udn for z in self.zones.values()):
+            return
+        self._adding.add(udn)
+        await self._add_zone(udn, location)
 
     # --- rediscovery ----------------------------------------------------
 
@@ -227,6 +282,7 @@ class NuvoSystem:
             zone = await self._load(location)
             if zone is None or zone.udn != udn or zone.member_id in self.zones:
                 return
+            self._expected.pop(udn, None)
             if self.system_id and zone.state.system_id != self.system_id:
                 return
             if self._notify_server:
@@ -263,6 +319,15 @@ class NuvoSystem:
     async def _maintain(self) -> None:
         while True:
             await asyncio.sleep(TICK)
+            now = time.monotonic()
+            if (
+                (self._expected or self._missing_hosts())
+                and not self._searching
+                and now - self._last_missing_search >= MISSING_SEARCH_INTERVAL
+            ):
+                self._searching = True
+                self._last_missing_search = now
+                self._spawn(self._find_missing())
             for zone in list(self.zones.values()):
                 try:
                     await self._maintain_zone(zone)

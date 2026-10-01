@@ -14,14 +14,23 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo
+from homeassistant.helpers.storage import Store
 
 from .aionuvo import NuvoConnectionError, NuvoError, NuvoSystem
 from .aionuvo.const import ZONE_DEVICE_TYPE
-from .const import CONF_CALLBACK_PORT, CONF_HOSTS, CONF_SYSTEM_ID, DEFAULT_CALLBACK_PORT, HEARTBEAT_INTERVAL
+from .const import CONF_CALLBACK_PORT, CONF_HOSTS, CONF_SYSTEM_ID, DEFAULT_CALLBACK_PORT, DOMAIN, HEARTBEAT_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS = [Platform.MEDIA_PLAYER]
+
+# Zone description LOCATIONs ({udn: url}) from the last run. They only change when
+# the amp reboots, and loading them directly does not depend on SSDP answers.
+STORAGE_VERSION = 1
+
+
+def _location_store(hass: HomeAssistant, entry: ConfigEntry) -> Store[dict[str, str]]:
+    return Store(hass, STORAGE_VERSION, f"{DOMAIN}.{entry.entry_id}.locations")
 
 type NuvoConfigEntry = ConfigEntry[NuvoSystem]
 
@@ -51,8 +60,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: NuvoConfigEntry) -> bool
     _remove_retired_entities(hass, entry)
     system = create_system(hass, entry)
 
-    # Locations HA's own SSDP scanner already knows save a search round-trip.
-    known = {
+    # Saved locations, then the ones HA's own SSDP scanner already knows. Some zones
+    # stop answering unicast M-SEARCH (docs/protocol.md), so a search alone can miss them.
+    store = _location_store(hass, entry)
+    known = dict(await store.async_load() or {})
+    known |= {
         info.ssdp_udn: info.ssdp_location
         for info in await ssdp.async_get_discovery_info_by_st(hass, ZONE_DEVICE_TYPE)
         if info.ssdp_udn and info.ssdp_location
@@ -64,6 +76,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: NuvoConfigEntry) -> bool
         await system.async_stop()
         raise ConfigEntryNotReady(f"No Nuvo zones reachable: {err}") from err
     entry.runtime_data = system
+    entry.async_on_unload(system.on_locations_saved(lambda locations: store.async_delay_save(lambda: locations, 1)))
+    store.async_delay_save(lambda: system.locations, 1)
 
     @callback
     def _ssdp_seen(info: SsdpServiceInfo, change: ssdp.SsdpChange) -> None:
@@ -97,3 +111,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: NuvoConfigEntry) -> boo
     if unloaded:
         await entry.runtime_data.async_stop()
     return unloaded
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: NuvoConfigEntry) -> None:
+    await _location_store(hass, entry).async_remove()

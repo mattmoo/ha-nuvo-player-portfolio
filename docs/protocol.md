@@ -49,6 +49,10 @@ UPnP root device.
   (both `ssdp:all` and the Zone type) while multicast M-SEARCH, SOAP, the web UI and mDNS all
   still worked, and Dining Room still answered unicast. HA showed both zones unavailable until
   a reload. `aionuvo` now also reconnects an unavailable zone when HA's scanner sees it.
+- On 2026-10-01 (0.3.1, after an HA restart) the same two zones were **never loaded**: HA's
+  scanner had no locations yet, the 4 s startup search got only Dining Room (unicast), and
+  nothing searched again. Since 0.3.2 the integration saves zone LOCATIONs in HA storage and
+  loads them directly at startup, and searches every minute for zones it expects but lacks.
 
 ### mDNS (second discovery path)
 | Service | Host | Port | TXT |

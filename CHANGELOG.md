@@ -5,6 +5,14 @@ while the version is 0.x, a minor bump (0.1 → 0.2) may include breaking change
 **Breaking**. Pre-releases (`b1`, `rc1`, ...) are published as GitHub pre-releases, which HACS offers
 when "Show beta versions" is on.
 
+## 0.3.2 (2026-10-01)
+
+### Fixed
+- Zones that did not answer the discovery search when Home Assistant started stayed unavailable
+  until the integration was reloaded (0.3.1 did not fix this case). Zone addresses are now saved
+  and loaded directly at startup, and zones that are still missing are searched for every minute.
+  Missing zones are logged as a warning.
+
 ## 0.3.1 (2026-09-30)
 
 ### Fixed

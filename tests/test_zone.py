@@ -476,3 +476,49 @@ async def test_lagging_get_does_not_clobber_fresh_group_state(amp):
     f_dining.stale_get_groups = None
     await dining.async_update()
     assert dining.state.member_group == "gidLounge"
+
+
+async def test_known_zone_offline_at_startup_is_loaded_later(ssdp, fake, monkeypatch):
+    """A saved LOCATION is retried without SSDP: Lounge and Ana's bedroom missed at startup (2026-10-01)."""
+    import aionuvo.system
+
+    monkeypatch.setattr(aionuvo.system, "MISSING_SEARCH_INTERVAL", 0.2)
+    dining = FakeZone(mac="0025ed1dd6e1", title="Dining Room", member_group="gidDining")
+    await dining.start()
+    port, location = dining.port, dining.location
+    await dining.stop()
+    s = make_system(ssdp)
+    saved = []
+    s.on_locations_saved(saved.append)
+    try:
+        await s.async_start({dining.udn: location})
+        assert DINING not in s.zones
+        assert s.locations[dining.udn] == location  # not forgotten while missing
+        await dining.start(port=port)  # never answers SSDP: the responder only knows Lounge
+        assert await eventually(lambda: DINING in s.zones, timeout=5)
+        assert saved and saved[-1][dining.udn] == location and len(saved[-1]) == 2
+    finally:
+        await s.async_stop()
+        await dining.stop()
+
+
+async def test_known_zone_at_new_port_is_found_by_search(fake, monkeypatch):
+    """The saved LOCATION is stale (amp rebooted), so the periodic search finds the zone."""
+    import aionuvo.system
+
+    monkeypatch.setattr(aionuvo.system, "MISSING_SEARCH_INTERVAL", 0.2)
+    dining = FakeZone(mac="0025ed1dd6e1", title="Dining Room", member_group="gidDining", amp=fake.amp)
+    responder = FakeSsdp([fake])
+    await responder.start()
+    s = make_system(responder)
+    try:
+        await s.async_start({dining.udn: "http://127.0.0.1:1/stale.xml"})
+        assert DINING not in s.zones
+        await dining.start()
+        responder.zones = [fake, dining]
+        assert await eventually(lambda: DINING in s.zones, timeout=5)
+        assert s.zones[DINING].location == dining.location
+    finally:
+        await s.async_stop()
+        responder.stop()
+        await dining.stop()
